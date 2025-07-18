@@ -5,8 +5,8 @@ function SlowList({ query }: { query: string }) {
   const filteredItems = items.filter(item => item.includes(query));
 
   return (
-    <ul style={{ maxHeight: '200px', overflowY: 'auto', border: '1px solid #eee', padding: '10px' }}>
-      {filteredItems.map(item => <li key={item}>{item}</li>)}
+    <ul className="max-h-60 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white shadow-sm w-80">
+      {filteredItems.map(item => <li key={item} className="py-1 text-gray-700">{item}</li>)}
     </ul>
   );
 }

@@ -19,7 +19,9 @@ const MyInput = forwardRef<MyInputHandle, MyInputProps>(({ placeholder }, ref) =
     },
   }));
 
-  return <input ref={inputRef} placeholder={placeholder} style={{ padding: '8px', border: '1px solid #ccc' }} />;
+  return (
+    <input ref={inputRef} placeholder={placeholder} className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+  );
 });
 
 MyInput.displayName = 'MyInput';

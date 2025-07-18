@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
-import localFont from 'next/font/local';
+// import localFont from 'next/font/local';
 import "./globals.css";
 
 // Configure Google Fonts
@@ -17,11 +17,11 @@ const robotoMono = Roboto_Mono({
 });
 
 // Configure Local Font
-const customLocalFont = localFont({
-  src: '../../../public/fonts/YourCustomFont.woff2',
-  variable: '--font-custom',
-  display: 'swap',
-});
+// const customLocalFont = localFont({
+//   src: '../../public/fonts/YourCustomFont.woff2',
+//   variable: '--font-custom',
+//   display: 'swap',
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${robotoMono.variable} ${customLocalFont.variable}`}
+        className={`${inter.variable} ${robotoMono.variable} `}
       >
         {children}
       </body>

@@ -11,7 +11,7 @@ export default function PostList() {
   }, []);
 
   return (
-    <div>
+    <div className="w-full max-w-2xl mx-auto p-4">
       {posts.map(post => <PostCard key={post.id} post={post} />)}
     </div>
   );

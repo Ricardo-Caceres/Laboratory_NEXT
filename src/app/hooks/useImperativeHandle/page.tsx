@@ -1,21 +1,15 @@
-'use client';
+import ParentComponent from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useRef } from 'react';
-import MyInput, { MyInputHandle } from './MyInput';
-
-export default function ParentComponent() {
-  const inputRef = useRef<MyInputHandle>(null);
-
-  const handleClick = () => {
-    inputRef.current?.focusInput();
-  };
-
+export default function UseImperativeHandlePage() {
   return (
-    <div>
-      <MyInput ref={inputRef} placeholder="Type something..." />
-      <button onClick={handleClick} style={{ marginLeft: '10px', padding: '10px 15px' }}>
-        Focus Input from Parent
-      </button>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useImperativeHandle/_client_example.tsx', 'src/app/hooks/useImperativeHandle/MyInput.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <ParentComponent />
+      </div>
     </div>
   );
 }

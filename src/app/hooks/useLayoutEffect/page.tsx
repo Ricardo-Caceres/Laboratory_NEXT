@@ -1,36 +1,15 @@
-'use client';
+import LayoutEffectExample from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useState, useRef, useLayoutEffect } from 'react';
-
-export default function LayoutEffectExample() {
-  const [width, setWidth] = useState(0);
-  const divRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (divRef.current) {
-      const newWidth = divRef.current.offsetWidth;
-      if (newWidth !== width) {
-        setWidth(newWidth);
-        console.log('useLayoutEffect: Div width measured and updated:', newWidth);
-      }
-    }
-  }, [width]);
-
+export default function UseLayoutEffectPage() {
   return (
-    <div>
-      <div
-        ref={divRef}
-        style={{
-          background: 'lightblue',
-          padding: '20px',
-          margin: '20px',
-          border: '1px solid blue',
-          width: width === 0 ? 'auto' : `${width}px`
-        }}
-      >
-        This div's width is: {width}px
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useLayoutEffect/_client_example.tsx']} />
       </div>
-      <p>Resize your browser window to see the effect.</p>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <LayoutEffectExample />
+      </div>
     </div>
   );
 }

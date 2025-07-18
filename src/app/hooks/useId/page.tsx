@@ -1,19 +1,15 @@
-'use client';
+import AccessibleInput from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useId } from 'react';
-
-export default function AccessibleInput() {
-  const id = useId();
-
+export default function UseIdPage() {
   return (
-    <div>
-      <label htmlFor={id + '-firstName'}>First Name:</label>
-      <input id={id + '-firstName'} type="text" />
-
-      <br />
-
-      <label htmlFor={id + '-lastName'}>Last Name:</label>
-      <input id={id + '-lastName'} type="text" />
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useId/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <AccessibleInput />
+      </div>
     </div>
   );
 }

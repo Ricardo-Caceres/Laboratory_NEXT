@@ -79,6 +79,7 @@ export default function Home() {
             <li><Link href="/nextjs-apis/document">next/document (Pages Router)</Link></li>
             <li><Link href="/nextjs-apis/app">next/app (Pages Router)</Link></li>
             <li><Link href="/nextjs-apis/config">next/config</Link></li>
+            </ul>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">

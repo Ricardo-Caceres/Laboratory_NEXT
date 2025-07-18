@@ -1,26 +1,15 @@
-'use client';
+import UseContextExample from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { ThemeProvider, useTheme } from './ThemeContext';
-
-function ThemeToggleButton() {
-  const { theme, toggleTheme } = useTheme();
-
+export default function UseContextPage() {
   return (
-    <button onClick={toggleTheme} style={{
-      padding: '10px 20px',
-      background: theme === 'light' ? '#FFF' : '#333',
-      color: theme === 'light' ? '#000' : '#FFF',
-      border: '1px solid'
-    }}>
-      Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-    </button>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useContext/_client_example.tsx', 'src/app/hooks/useContext/ThemeContext.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <UseContextExample />
+      </div>
+    </div>
   );
-}
-
-export default function UseContextExample() {
-    return (
-        <ThemeProvider>
-            <ThemeToggleButton />
-        </ThemeProvider>
-    )
 }

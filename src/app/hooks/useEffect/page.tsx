@@ -1,44 +1,15 @@
-'use client';
+import DataFetcher from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useState, useEffect } from 'react';
-
-interface Post {
-  id: number;
-  title: string;
-}
-
-export default function DataFetcher() {
-  const [data, setData] = useState<Post[] | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        const posts = await response.json();
-        setData(posts);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
-      setLoading(false);
-    }
-
-    fetchData();
-
-    return () => {
-    };
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+export default function UseEffectPage() {
   return (
-    <div>
-      <h1>Fetched Data</h1>
-      <ul>
-        {data && data.slice(0, 5).map(post => <li key={post.id}>{post.title}</li>)}
-      </ul>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useEffect/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <DataFetcher />
+      </div>
     </div>
   );
 }

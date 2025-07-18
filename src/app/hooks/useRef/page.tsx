@@ -1,20 +1,15 @@
-'use client';
+import FocusInput from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useRef } from 'react';
-
-export default function FocusInput() {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleClick = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  };
-
+export default function UseRefPage() {
   return (
-    <div>
-      <input ref={inputRef} type="text" placeholder="Click button to focus" />
-      <button onClick={handleClick}>Focus Input</button>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useRef/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <FocusInput />
+      </div>
     </div>
   );
 }

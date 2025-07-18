@@ -3,9 +3,9 @@ import Header from '@/app/architectures/atomic-design/components/organisms/Heade
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100">
       <Header />
-      <main style={{ padding: '1rem' }}>{children}</main>
+      <main className="p-4">{children}</main>
     </div>
   );
 }

@@ -1,35 +1,15 @@
-'use client';
+import Counter from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useReducer } from 'react';
-
-interface State {
-  count: number;
-}
-
-type Action = { type: 'increment' } | { type: 'decrement' } | { type: 'reset' };
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    case 'reset':
-      return { count: 0 };
-    default:
-      throw new Error('Unknown action type');
-  }
-}
-
-export default function Counter() {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
-
+export default function UseReducerPage() {
   return (
-    <div>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
-      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useReducer/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <Counter />
+      </div>
     </div>
   );
 }

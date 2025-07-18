@@ -1,11 +1,15 @@
-'use client';
+import OnlineStatusIndicator from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import useOnlineStatus from './useOnlineStatus';
-
-export default function OnlineStatusIndicator() {
-  const isOnline = useOnlineStatus();
-
+export default function UseDebugValuePage() {
   return (
-    <h1>You are {isOnline ? 'online' : 'offline'}</h1>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useDebugValue/_client_example.tsx', 'src/app/hooks/useDebugValue/useOnlineStatus.ts']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <OnlineStatusIndicator />
+      </div>
+    </div>
   );
 }

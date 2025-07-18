@@ -2,8 +2,8 @@ import SearchForm from '@/app/architectures/atomic-design/components/molecules/S
 
 export default function Header() {
   return (
-    <header style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
-      <div>Logo</div>
+    <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
+      <div className="text-2xl font-bold">Logo</div>
       <SearchForm />
     </header>
   );

@@ -1,6 +1,5 @@
-'use client';
-
-import { useSyncExternalStore } from 'react';
+import OnlineStatus from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
 function subscribe(callback: () => void) {
   window.addEventListener('online', callback);
@@ -19,10 +18,15 @@ function getServerSnapshot() {
   return true;
 }
 
-export default function OnlineStatus() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-
+export default function UseSyncExternalStorePage() {
   return (
-    <h1>You are {isOnline ? 'online' : 'offline'}</h1>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useSyncExternalStore/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <OnlineStatus />
+      </div>
+    </div>
   );
 }

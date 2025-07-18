@@ -1,54 +1,29 @@
-'use client';
+import MyPage from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { ComponentType, useEffect, useState } from 'react';
+const description = `
+El patrón de Componente de Orden Superior (Higher-Order Component - HOC) es una técnica avanzada en React para reutilizar la lógica de componentes. Los HOCs son funciones que toman un componente como entrada y devuelven un nuevo componente con props o comportamientos adicionales.
 
-function useAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+En este ejemplo, 'withAuth' es un HOC que añade lógica de autenticación a cualquier componente que envuelva. Si el usuario no está autenticado, muestra un mensaje; de lo contrario, renderiza el componente envuelto. Esto permite reutilizar la lógica de autenticación sin duplicar código en cada componente que necesite protección.
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsAuthenticated(true);
-      setLoading(false);
-    }, 1000);
-  }, []);
+Beneficios:
+- **Reutilización de lógica:** Evita la duplicación de código al compartir lógica entre componentes.
+- **Separación de preocupaciones:** Separa la lógica de presentación de la lógica de negocio o de datos.
+- **Componibilidad:** Permite combinar múltiples HOCs para construir componentes complejos.
+`;
 
-  return { isAuthenticated, loading };
-}
-
-function withAuth<P extends object>(
-  WrappedComponent: ComponentType<P>
-) {
-  const WithAuthComponent = (props: P) => {
-    const { isAuthenticated, loading } = useAuth();
-
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-
-    if (!isAuthenticated) {
-      return <div>Please log in to view this content.</div>;
-    }
-
-    return <WrappedComponent {...props} />;
-  };
-
-  WithAuthComponent.displayName = `WithAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
-
-  return WithAuthComponent;
-}
-
-function SecretDashboard() {
+export default function HigherOrderComponentPage() {
   return (
-    <div>
-      <h1>Secret Dashboard</h1>
-      <p>Welcome, authenticated user!</p>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <h2 className="text-2xl font-bold mb-4">Higher-Order Component Pattern</h2>
+        <p className="mb-4 whitespace-pre-wrap">{description}</p>
+        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
+        <CodeDisplay filePaths={['src/app/patterns/higher-order-component/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <MyPage />
+      </div>
     </div>
   );
-}
-
-const AuthenticatedDashboard = withAuth(SecretDashboard);
-
-export default function MyPage() {
-  return <AuthenticatedDashboard />;
 }

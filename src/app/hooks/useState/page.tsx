@@ -1,16 +1,15 @@
-'use client';
+import Counter from './_client_example';
+import CodeDisplay from '../../../components/CodeDisplay';
 
-import { useState } from 'react';
-
-export default function Counter() {
-  const [count, setCount] = useState(0);
-
+export default function UseStatePage() {
   return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay filePaths={['src/app/hooks/useState/_client_example.tsx']} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+        <Counter />
+      </div>
     </div>
   );
 }
