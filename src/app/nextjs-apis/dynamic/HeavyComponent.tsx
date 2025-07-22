@@ -14,9 +14,9 @@ export default function HeavyComponent() {
   }, []);
 
   return (
-    <div style={{ border: '1px dashed gray', padding: '20px', marginTop: '20px' }}>
-      <h2>Heavy Component (Dynamically Loaded)</h2>
-      {data ? <p>{data}</p> : <p>Loading heavy component data...</p>}
+    <div className="border border-dashed border-gray-400 p-5 mt-5">
+      <h2 className="text-xl font-semibold mb-2">Heavy Component (Dynamically Loaded)</h2>
+      {data ? <p className="text-lg">{data}</p> : <p className="text-lg text-gray-500">Loading heavy component data...</p>}
     </div>
   );
 }

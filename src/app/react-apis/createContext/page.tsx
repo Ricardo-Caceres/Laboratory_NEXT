@@ -1,27 +1,20 @@
-'use client';
+import { readFileSync } from 'fs';
+import path from 'path';
+import CreateContextExample from './_client_example';
 
-import { ThemeProvider, useTheme } from './ThemeContext';
+export default function CreateContextExamplePage() {
+  const pagePath = 'src/app/react-apis/createContext/_client_example.tsx';
+  const themeContextPath = 'src/app/react-apis/createContext/ThemeContext.tsx';
+  const codeContent = [
+    {
+      filePath: pagePath,
+      content: readFileSync(path.join(process.cwd(), pagePath), 'utf-8'),
+    },
+    {
+      filePath: themeContextPath,
+      content: readFileSync(path.join(process.cwd(), themeContextPath), 'utf-8'),
+    },
+  ];
 
-function ThemeToggleButton() {
-  const { theme, toggleTheme } = useTheme();
-
-  return (
-    <button onClick={toggleTheme} style={{
-      padding: '10px 20px',
-      background: theme === 'light' ? '#FFF' : '#333',
-      color: theme === 'light' ? '#000' : '#FFF',
-      border: '1px solid'
-    }}>
-      Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-    </button>
-  );
-}
-
-export default function CreateContextExample() {
-    return (
-        <ThemeProvider>
-            <h1>React.createContext Example</h1>
-            <ThemeToggleButton />
-        </ThemeProvider>
-    )
+  return <CreateContextExample codeContent={codeContent} />;
 }

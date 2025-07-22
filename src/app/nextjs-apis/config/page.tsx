@@ -1,5 +1,3 @@
-'use client';
-
 import getConfig from 'next/config';
 
 export default function ConfigExample() {
@@ -9,12 +7,12 @@ export default function ConfigExample() {
   console.log('serverRuntimeConfig on client:', serverRuntimeConfig);
 
   return (
-    <div>
-      <h1>Next.js `next/config` Example</h1>
-      <p>App Name: {publicRuntimeConfig.appName}</p>
-      <p>Version: {publicRuntimeConfig.version}</p>
-      <p>Public API URL: {publicRuntimeConfig.publicApiUrl}</p>
-      <p>Check the console for `serverRuntimeConfig` (will be undefined on client).</p>
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-4">Next.js `next/config` Example</h1>
+      <p className="text-lg mb-2">App Name: {publicRuntimeConfig.appName}</p>
+      <p className="text-lg mb-2">Version: {publicRuntimeConfig.version}</p>
+      <p className="text-lg mb-2">Public API URL: {publicRuntimeConfig.publicApiUrl}</p>
+      <p className="text-lg">Check the console for `serverRuntimeConfig` (will be undefined on client).</p>
     </div>
   );
 }

@@ -35,7 +35,8 @@ export default function DataFetcher() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Fetched Data</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">`useEffect` Hook Example</h1>
+      <p className="text-lg mb-4">`useEffect` te permite realizar efectos secundarios en componentes funcionales. Es útil para suscripciones, llamadas a API, y manipular directamente el DOM.</p>
       <ul className="list-disc list-inside bg-white p-6 rounded-lg shadow-md w-full max-w-md">
         {data && data.slice(0, 5).map(post => <li key={post.id} className="mb-2 text-gray-700">{post.title}</li>)}
       </ul>

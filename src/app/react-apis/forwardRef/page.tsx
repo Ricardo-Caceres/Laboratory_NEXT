@@ -1,7 +1,8 @@
-'use client';
-
 import React, { useRef } from 'react';
 import MyInput from './MyInput';
+import CodeDisplay from '../../../components/CodeDisplay';
+import { readFileSync } from 'fs';
+import path from 'path';
 
 export default function ParentComponent() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -10,12 +11,34 @@ export default function ParentComponent() {
     inputRef.current?.focus();
   };
 
+  const pagePath = 'src/app/react-apis/forwardRef/page.tsx';
+  const myInputPath = 'src/app/react-apis/forwardRef/MyInput.tsx';
+  const codeContent = [
+    {
+      filePath: pagePath,
+      content: readFileSync(path.join(process.cwd(), pagePath), 'utf-8'),
+    },
+    {
+      filePath: myInputPath,
+      content: readFileSync(path.join(process.cwd(), myInputPath), 'utf-8'),
+    },
+  ];
+
   return (
-    <div>
-      <MyInput ref={inputRef} placeholder="Focus me!" />
-      <button onClick={handleClick} style={{ marginLeft: '10px', padding: '10px 15px' }}>
-        Focus Input
-      </button>
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay codeContent={codeContent} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+        <div className="container mx-auto py-8">
+          <h1 className="text-2xl font-bold mb-4">React.forwardRef Example</h1>
+          <p className="text-lg mb-4">`React.forwardRef` permite que los componentes pasen una ref que reciben a un componente hijo en el árbol. Esto es útil para reutilizar componentes que necesitan interactuar con el DOM.</p>
+          <MyInput ref={inputRef} placeholder="Focus me!" />
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" onClick={handleClick}>
+            Focus Input
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

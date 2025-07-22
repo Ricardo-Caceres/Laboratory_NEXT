@@ -4,28 +4,28 @@ import Link from 'next/link';
 
 export default function NavigationExample() {
   return (
-    <div>
-      <h1>Next.js Link Example</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/">
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-4">Next.js Link Example</h1>
+      <nav className="mt-4">
+        <ul className="list-disc list-inside">
+          <li className="mb-2">
+            <Link className="text-blue-500 hover:underline" href="/">
               Home
             </Link>
           </li>
-          <li>
-            <Link href="/nextjs-apis/link/about">
+          <li className="mb-2">
+            <Link className="text-blue-500 hover:underline" href="/nextjs-apis/link/about">
               About (Prefetched)
             </Link>
           </li>
-          <li>
-            <Link href="/nextjs-apis/link/contact" prefetch={false}>
+          <li className="mb-2">
+            <Link className="text-blue-500 hover:underline" href="/nextjs-apis/link/contact" prefetch={false}>
               Contact (No Prefetch)
             </Link>
           </li>
           <li>
             <Link href="/nextjs-apis/link/dashboard">
-              <button style={{ padding: '10px 15px', background: '#0070f3', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
                 Go to Dashboard
               </button>
             </Link>

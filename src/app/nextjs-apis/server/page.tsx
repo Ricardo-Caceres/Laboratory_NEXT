@@ -21,14 +21,14 @@ export default function ServerApiExample() {
   }, []);
 
   return (
-    <div>
-      <h1>Next.js Server API Example</h1>
-      <h2>Route Handler (`/api/hello`)</h2>
-      <p>GET Response: {message}</p>
-      <p>POST Response: {postResponse}</p>
-      <h2>Middleware Example</h2>
-      <p>Check your browser's network tab for `x-custom-header` on this page's response.</p>
-      <p>Accessing <a href="/nextjs-apis/server/private">/nextjs-apis/server/private</a> (if middleware is uncommented) would redirect.</p>
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-4">Next.js Server API Example</h1>
+      <h2 className="text-xl font-semibold mt-4 mb-2">Route Handler (`/api/hello`)</h2>
+      <p className="text-lg mb-2">GET Response: {message}</p>
+      <p className="text-lg mb-2">POST Response: {postResponse}</p>
+      <h2 className="text-xl font-semibold mt-4 mb-2">Middleware Example</h2>
+      <p className="text-lg mb-2">Check your browser's network tab for `x-custom-header` on this page's response.</p>
+      <p className="text-lg">Accessing <a className="text-blue-500 hover:underline" href="/nextjs-apis/server/private">/nextjs-apis/server/private</a> (if middleware is uncommented) would redirect.</p>
     </div>
   );
 }

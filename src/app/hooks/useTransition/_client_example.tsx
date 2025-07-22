@@ -29,13 +29,8 @@ export default function TransitionExample() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleChange}
-        placeholder="Search items..."
-        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 w-80"
-      />
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">`useTransition` Hook Example</h1>
+      <p className="text-lg mb-4">`useTransition` te permite marcar actualizaciones de estado como transiciones. Las transiciones son actualizaciones de UI que no bloquean el navegador, lo que ayuda a mantener la aplicación responsiva durante operaciones de renderizado costosas.</p>
       {isPending && <p className="text-lg text-gray-600 mb-2">Loading...</p>}
       <SlowList query={displayValue} />
     </div>

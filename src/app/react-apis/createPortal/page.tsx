@@ -1,22 +1,20 @@
-'use client';
+import { readFileSync } from 'fs';
+import path from 'path';
+import PortalExample from './_client_example';
 
-import React, { useState } from 'react';
-import Modal from './Modal';
+export default function PortalExamplePage() {
+  const pagePath = 'src/app/react-apis/createPortal/_client_example.tsx';
+  const modalPath = 'src/app/react-apis/createPortal/Modal.tsx';
+  const codeContent = [
+    {
+      filePath: pagePath,
+      content: readFileSync(path.join(process.cwd(), pagePath), 'utf-8'),
+    },
+    {
+      filePath: modalPath,
+      content: readFileSync(path.join(process.cwd(), modalPath), 'utf-8'),
+    },
+  ];
 
-export default function PortalExample() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  return (
-    <div>
-      <h1>React.createPortal Example</h1>
-      <button onClick={() => setIsModalOpen(true)}>
-        Open Modal
-      </button>
-
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2>This is a Modal!</h2>
-        <p>This content is rendered outside the main DOM hierarchy.</p>
-      </Modal>
-    </div>
-  );
+  return <PortalExample codeContent={codeContent} />;
 }

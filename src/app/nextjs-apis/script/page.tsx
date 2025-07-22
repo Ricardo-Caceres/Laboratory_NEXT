@@ -7,10 +7,10 @@ export default function ScriptExample() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   return (
-    <div>
-      <h1>Next.js Script Optimization</h1>
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-4">Next.js Script Optimization</h1>
 
-      <h2>Analytics Script (afterInteractive)</h2>
+      <h2 className="text-xl font-semibold mt-4 mb-2">Analytics Script (afterInteractive)</h2>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
         strategy="afterInteractive"
@@ -19,7 +19,7 @@ export default function ScriptExample() {
         }}
       />
 
-      <h2>Chat Widget Script (lazyOnload)</h2>
+      <h2 className="text-xl font-semibold mt-4 mb-2">Chat Widget Script (lazyOnload)</h2>
       <Script
         src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js" // Using lodash as a dummy script
         strategy="lazyOnload"
@@ -28,9 +28,9 @@ export default function ScriptExample() {
           setScriptLoaded(true);
         }}
       />
-      {scriptLoaded && <p>Chat widget is now available! (Check console for lodash global variable)</p>}
+      {scriptLoaded && <p className="text-lg mt-2">Chat widget is now available! (Check console for lodash global variable)</p>}
 
-      <h2>Inline Script (beforeInteractive)</h2>
+      <h2 className="text-xl font-semibold mt-4 mb-2">Inline Script (beforeInteractive)</h2>
       <Script
         id="inline-script-example"
         strategy="beforeInteractive"
@@ -42,7 +42,7 @@ export default function ScriptExample() {
         }}
       />
 
-      <p>Check the network tab and console to observe script loading behavior.</p>
+      <p className="text-lg mt-4">Check the network tab and console to observe script loading behavior.</p>
     </div>
   );
 }

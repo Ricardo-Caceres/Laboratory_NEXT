@@ -1,30 +1,13 @@
-'use client';
+import { readFileSync } from 'fs';
+import path from 'path';
+import StrictModeExample from './_client_example';
 
-import React, { useState, useEffect } from 'react';
+export default function StrictModeExamplePage() {
+  const filePath = 'src/app/react-apis/StrictMode/_client_example.tsx';
+  const codeContent = [{
+    filePath: filePath,
+    content: readFileSync(path.join(process.cwd(), filePath), 'utf-8'),
+  }];
 
-function MyComponent() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log('Effect ran');
-    return () => {
-      console.log('Effect cleanup ran');
-    };
-  }, []);
-
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </div>
-  );
-}
-
-export default function StrictModeExample() {
-  return (
-    <React.StrictMode>
-      <h1>Strict Mode Enabled</h1>
-      <MyComponent />
-    </React.StrictMode>
-  );
+  return <StrictModeExample codeContent={codeContent} />;
 }

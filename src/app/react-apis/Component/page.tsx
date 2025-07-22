@@ -1,6 +1,7 @@
-'use client';
-
 import React from 'react';
+import CodeDisplay from '../../../components/CodeDisplay';
+import { readFileSync } from 'fs';
+import path from 'path';
 
 interface MyComponentProps {
   message: string;
@@ -33,14 +34,32 @@ class MyComponent extends React.Component<MyComponentProps, MyComponentState> {
     const { message } = this.props;
     const { count } = this.state;
     return (
-      <div>
-        <h1>Class Component Example</h1>
-        <p>{message}</p>
-        <p>Count: {count}</p>
-        <button onClick={this.handleClick}>Increment</button>
+      <div className="container mx-auto py-8">
+        <h1 className="text-2xl font-bold mb-4">Class Component Example</h1>
+        <p className="text-lg mb-4">`React.Component` es la clase base para definir componentes de clase en React. Permite manejar el estado interno y el ciclo de vida.</p>
+        <p className="text-lg mb-2">{message}</p>
+        <p className="text-lg mb-4">Count: {count}</p>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={this.handleClick}>Increment</button>
       </div>
     );
   }
 }
 
-export default MyComponent;
+export default function ComponentExample() {
+  const filePath = 'src/app/react-apis/Component/page.tsx';
+  const codeContent = [{
+    filePath: filePath,
+    content: readFileSync(path.join(process.cwd(), filePath), 'utf-8'),
+  }];
+
+  return (
+    <div className="flex h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <CodeDisplay codeContent={codeContent} />
+      </div>
+      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+        <MyComponent message="Hello from Component!" />
+      </div>
+    </div>
+  );
+}
