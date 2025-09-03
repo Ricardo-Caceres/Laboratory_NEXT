@@ -1,5 +1,5 @@
 import HomePage from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
+import ArchitecturePageLayout from '../../../components/ArchitecturePageLayout';
 
 const description = `
 Feature-Sliced Design (FSD) es una metodología de arquitectura para aplicaciones frontend que organiza el código por características (features) y por capas (layers). Su objetivo principal es hacer que el código sea escalable, mantenible y fácil de entender, especialmente en proyectos grandes.
@@ -17,23 +17,20 @@ En este ejemplo, tenemos:
 Este enfoque ayuda a mantener la coherencia y la modularidad del código, facilitando el desarrollo en equipo y la evolución del proyecto.
 `;
 
+const filePaths = [
+  'src/app/architectures/feature-sliced-design/_client_example.tsx',
+  'src/app/architectures/feature-sliced-design/widgets/PostList/ui/PostList.tsx',
+  'src/app/architectures/feature-sliced-design/entities/post/ui/PostCard.tsx',
+  'src/app/architectures/feature-sliced-design/entities/post/model/types.ts',
+];
+
 export default function FeatureSlicedDesignPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">Feature-Sliced Design Architecture</h2>
-        <p className="mb-4 whitespace-pre-wrap">{description}</p>
-        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
-        <CodeDisplay filePaths={[
-          'src/app/architectures/feature-sliced-design/_client_example.tsx',
-          'src/app/architectures/feature-sliced-design/widgets/PostList/ui/PostList.tsx',
-          'src/app/architectures/feature-sliced-design/entities/post/ui/PostCard.tsx',
-          'src/app/architectures/feature-sliced-design/entities/post/model/types.ts',
-        ]} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <HomePage />
-      </div>
-    </div>
+    <ArchitecturePageLayout
+      title="Feature-Sliced Design Architecture"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={HomePage}
+    />
   );
 }

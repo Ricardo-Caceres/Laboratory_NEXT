@@ -1,5 +1,5 @@
 import HomePage from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
+import ArchitecturePageLayout from '../../../components/ArchitecturePageLayout';
 
 const description = `
 Atomic Design es una metodología para construir sistemas de diseño robustos y jerárquicos. Descompone la interfaz de usuario en cinco niveles distintos:
@@ -13,25 +13,22 @@ Atomic Design es una metodología para construir sistemas de diseño robustos y 
 Este enfoque promueve la reutilización, la consistencia y la escalabilidad en el desarrollo de interfaces de usuario.
 `;
 
+const filePaths = [
+  'src/app/architectures/atomic-design/_client_example.tsx',
+  'src/app/architectures/atomic-design/components/atoms/Button.tsx',
+  'src/app/architectures/atomic-design/components/atoms/Input.tsx',
+  'src/app/architectures/atomic-design/components/molecules/SearchForm.tsx',
+  'src/app/architectures/atomic-design/components/organisms/Header.tsx',
+  'src/app/architectures/atomic-design/components/templates/MainLayout.tsx',
+];
+
 export default function AtomicDesignPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">Atomic Design Architecture</h2>
-        <p className="mb-4 whitespace-pre-wrap">{description}</p>
-        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
-        <CodeDisplay filePaths={[
-          'src/app/architectures/atomic-design/_client_example.tsx',
-          'src/app/architectures/atomic-design/components/atoms/Button.tsx',
-          'src/app/architectures/atomic-design/components/atoms/Input.tsx',
-          'src/app/architectures/atomic-design/components/molecules/SearchForm.tsx',
-          'src/app/architectures/atomic-design/components/organisms/Header.tsx',
-          'src/app/architectures/atomic-design/components/templates/MainLayout.tsx',
-        ]} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <HomePage />
-      </div>
-    </div>
+    <ArchitecturePageLayout
+      title="Atomic Design Architecture"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={HomePage}
+    />
   );
 }

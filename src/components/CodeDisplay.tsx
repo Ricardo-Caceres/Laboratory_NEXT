@@ -12,12 +12,18 @@ export default function CodeDisplay({ codeContent }: CodeDisplayProps) {
   const codeRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
-    codeRefs.current.forEach((codeRef) => {
-      if (codeRef) {
-        hljs.highlightElement(codeRef);
-      }
-    });
+    if (codeContent) {
+      codeRefs.current.forEach((codeRef) => {
+        if (codeRef) {
+          hljs.highlightElement(codeRef);
+        }
+      });
+    }
   }, [codeContent]);
+
+  if (!codeContent) {
+    return null;
+  }
 
   return (
     <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto max-h-[calc(100vh-4rem)]">
