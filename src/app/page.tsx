@@ -45,6 +45,11 @@ export default function Home() {
             <li><Link href="/architectures/atomic-design">Atomic Design</Link></li>
             <li><Link href="/architectures/feature-sliced-design">Feature-Sliced Design</Link></li>
           </ul>
+          <h2 className="text-xl font-semibold mt-4 mb-2">State Management</h2>
+          <ul className="list-disc list-inside">
+            <li><Link href="/state-management/redux-toolkit">Redux Toolkit</Link></li>
+            <li><Link href="/state-management/zustand">Zustand</Link></li>
+          </ul>
           <h2 className="text-xl font-semibold mt-4 mb-2">React APIs</h2>
           <ul className="list-disc list-inside">
             <li><Link href="/react-apis/createElement">React.createElement</Link></li>
