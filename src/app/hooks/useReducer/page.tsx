@@ -1,6 +1,5 @@
 import Counter from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useReducer** es un Hook alternativo a useState para manejar lógica de estado compleja. Es similar al patrón reducer de Redux y es especialmente útil cuando el estado tiene múltiples sub-valores o cuando las actualizaciones dependen del estado anterior.
@@ -51,19 +50,17 @@ function reducer(state, action) {
 En este ejemplo, demostramos cómo usar useReducer para manejar un contador con múltiples acciones (incrementar, decrementar, reset) de forma organizada.
 `;
 
+const filePaths = [
+  'src/app/hooks/useReducer/_client_example.tsx',
+];
+
 export default function UseReducerPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useReducer Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useReducer/_client_example.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <Counter />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useReducer Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={Counter}
+    />
   );
 }

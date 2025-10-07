@@ -1,6 +1,5 @@
 import ParentComponent from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useCallback** es un Hook de optimización que devuelve una versión memoizada de una función callback. Previene la recreación innecesaria de funciones en cada renderizado, lo cual es especialmente útil cuando pasas callbacks a componentes hijos optimizados.
@@ -32,19 +31,17 @@ Casos de uso comunes:
 En este ejemplo, demostramos cómo useCallback previene re-renderizados innecesarios en componentes hijos cuando se usa junto con React.memo.
 `;
 
+const filePaths = [
+  'src/app/hooks/useCallback/_client_example.tsx',
+];
+
 export default function UseCallbackPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useCallback Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useCallback/_client_example.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <ParentComponent />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useCallback Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={ParentComponent}
+    />
   );
 }

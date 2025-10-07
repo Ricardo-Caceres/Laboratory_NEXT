@@ -1,6 +1,5 @@
 import OnlineStatusIndicator from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useDebugValue** es un Hook especializado para mostrar información de depuración en React DevTools. Es útil principalmente para custom hooks, permitiendo mostrar valores formateados que facilitan el debugging.
@@ -56,19 +55,18 @@ function useCustomHook(value) {
 En este ejemplo, creamos un custom hook \`useOnlineStatus\` que detecta si el navegador está online u offline, y usamos useDebugValue para mostrar este estado en React DevTools de forma legible.
 `;
 
+const filePaths = [
+  'src/app/hooks/useDebugValue/_client_example.tsx',
+  'src/app/hooks/useDebugValue/useOnlineStatus.ts',
+];
+
 export default function UseDebugValuePage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useDebugValue Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useDebugValue/_client_example.tsx', 'src/app/hooks/useDebugValue/useOnlineStatus.ts']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <OnlineStatusIndicator />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useDebugValue Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={OnlineStatusIndicator}
+    />
   );
 }

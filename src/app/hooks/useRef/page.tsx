@@ -1,6 +1,5 @@
 import FocusInput from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useRef** es un Hook que devuelve un objeto mutable que persiste durante toda la vida del componente. A diferencia del estado, cambiar un ref NO causa un re-renderizado.
@@ -41,19 +40,17 @@ Casos de uso comunes:
 En este ejemplo, demostramos cómo usar useRef para acceder y manipular un elemento input del DOM, permitiéndonos enfocarlo programáticamente.
 `;
 
+const filePaths = [
+  'src/app/hooks/useRef/_client_example.tsx',
+];
+
 export default function UseRefPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useRef Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useRef/_client_example.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <FocusInput />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useRef Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={FocusInput}
+    />
   );
 }

@@ -1,6 +1,5 @@
 import UseContextExample from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useContext** es el Hook que permite consumir valores de un Context de React sin necesidad de usar componentes Consumer. Simplifica el acceso a datos compartidos en toda la aplicación.
@@ -39,19 +38,18 @@ Casos de uso comunes:
 En este ejemplo, demostramos cómo usar useContext para implementar un sistema de temas (light/dark) que puede ser accedido desde cualquier componente de la aplicación.
 `;
 
+const filePaths = [
+  'src/app/hooks/useContext/_client_example.tsx',
+  'src/app/hooks/useContext/ThemeContext.tsx',
+];
+
 export default function UseContextPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useContext Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useContext/_client_example.tsx', 'src/app/hooks/useContext/ThemeContext.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <UseContextExample />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useContext Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={UseContextExample}
+    />
   );
 }

@@ -1,6 +1,5 @@
 import MemoExample from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useMemo** es un Hook de optimización que memoriza el resultado de un cálculo costoso. Solo recalcula el valor cuando una de sus dependencias cambia, evitando cálculos innecesarios en cada renderizado.
@@ -37,19 +36,17 @@ Casos de uso comunes:
 En este ejemplo, demostramos cómo useMemo optimiza el cálculo de números primos, que es una operación costosa que solo debe ejecutarse cuando el input cambia.
 `;
 
+const filePaths = [
+  'src/app/hooks/useMemo/_client_example.tsx',
+];
+
 export default function UseMemoPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useMemo Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useMemo/_client_example.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <MemoExample />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useMemo Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={MemoExample}
+    />
   );
 }
