@@ -31,17 +31,22 @@ export default async function ArchitecturePageLayout({
   const codeContent = await getCodeContent(filePaths);
 
   return (
-    <div className="flex min-h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">{title}</h2>
-        <div className="mb-4">
+    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-8rem)]">
+      {/* Left Panel - Description and Code */}
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4">{title}</h2>
+        <div className="mb-4 text-sm sm:text-base">
           <StyledText text={description} />
         </div>
-        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
+        <h3 className="text-lg sm:text-xl font-bold mb-2">Code Example:</h3>
         <CodeDisplay codeContent={codeContent} />
       </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <ClientExample />
+      
+      {/* Right Panel - Live Example */}
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-gray-100 p-4 sm:p-6 min-h-[400px] lg:min-h-0">
+        <div className="w-full max-w-4xl">
+          <ClientExample />
+        </div>
       </div>
     </div>
   );

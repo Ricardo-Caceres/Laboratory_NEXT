@@ -15,7 +15,6 @@ export default function CodeDisplay({ codeContent, filePaths }: CodeDisplayProps
 
   useEffect(() => {
     if (filePaths && filePaths.length > 0) {
-      // Fetch file contents from the server
       Promise.all(
         filePaths.map(async (filePath) => {
           const response = await fetch(`/api/get-file-content?path=${encodeURIComponent(filePath)}`);
@@ -39,18 +38,18 @@ export default function CodeDisplay({ codeContent, filePaths }: CodeDisplayProps
   }, [loadedContent]);
 
   if (loadedContent.length === 0) {
-    return <div className="bg-gray-800 text-white p-4 rounded-lg">Loading code...</div>;
+    return <div className="bg-gray-800 text-white p-3 sm:p-4 rounded-lg text-sm sm:text-base">Loading code...</div>;
   }
 
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-lg overflow-auto max-h-[calc(100vh-4rem)]">
+    <div className="bg-gray-800 text-white p-3 sm:p-4 rounded-lg overflow-auto max-h-[400px] sm:max-h-[600px] lg:max-h-[calc(100vh-20rem)]">
       {loadedContent.map((file, index) => (
         <div key={index} className="mb-4 last:mb-0">
-          <h2 className="text-lg font-bold mb-2">{file.filePath}</h2>
-          <pre>
+          <h2 className="text-sm sm:text-lg font-bold mb-2 break-all">{file.filePath}</h2>
+          <pre className="overflow-x-auto">
             <code
               ref={(el) => { codeRefs.current[index] = el; }}
-              className="language-typescript"
+              className="language-typescript text-xs sm:text-sm"
             >
               {file.content}
             </code>

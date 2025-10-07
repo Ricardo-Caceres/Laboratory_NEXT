@@ -31,19 +31,26 @@ export default async function HookPageLayout({
   const codeContent = await getCodeContent(filePaths);
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">{title}</h1>
-          <StyledText text={description} />
+    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-8rem)]">
+      {/* Left Panel - Description and Code */}
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
+        <div className="mb-6 p-4 sm:p-6 bg-slate-800/50 rounded-lg border border-slate-700">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">{title}</h1>
+          <div className="text-sm sm:text-base">
+            <StyledText text={description} />
+          </div>
         </div>
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-white mb-2">Code Example:</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-2">Code Example:</h3>
         </div>
         <CodeDisplay codeContent={codeContent} />
       </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <ClientExample />
+      
+      {/* Right Panel - Live Example */}
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-gray-100 p-4 sm:p-6 min-h-[400px] lg:min-h-0">
+        <div className="w-full max-w-4xl">
+          <ClientExample />
+        </div>
       </div>
     </div>
   );
