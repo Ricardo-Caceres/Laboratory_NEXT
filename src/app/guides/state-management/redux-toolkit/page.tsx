@@ -237,7 +237,7 @@ export default function Cart() {
         <section>
           <h2 className="text-2xl font-bold mb-4">1. Creando los Slices</h2>
           <p className="mb-4">
-            Los "slices" son la parte más importante de Redux Toolkit. Un slice es una colección de lógica de reducers y acciones para una sola característica en tu aplicación.
+            Los &quot;slices&quot; son la parte más importante de Redux Toolkit. Un slice es una colección de lógica de reducers y acciones para una sola característica en tu aplicación.
           </p>
           <CodeDisplay codeContent={[codeContent[0], codeContent[1]]} />
         </section>

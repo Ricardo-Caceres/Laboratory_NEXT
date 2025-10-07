@@ -2,7 +2,6 @@
 'use client';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
 import { addItem, removeItem, clearCart, selectCartItems, selectTotalPrice } from '../features/cart/cart-slice';
 
 const products = [

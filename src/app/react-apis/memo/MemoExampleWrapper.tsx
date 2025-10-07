@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import MemoExample from './page'; // Assuming page.tsx will be the client component
+import MemoExample from './_client_example';
 
 export default function MemoExampleWrapper() {
-  const filePath = 'src/app/react-apis/memo/page.tsx';
+  const filePath = 'src/app/react-apis/memo/_client_example.tsx';
   const codeContent = [{
     filePath: filePath,
     content: readFileSync(path.join(process.cwd(), filePath), 'utf-8'),

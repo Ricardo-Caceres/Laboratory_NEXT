@@ -1,6 +1,8 @@
 import OnlineStatus from './_client_example';
 import CodeDisplay from '../../../components/CodeDisplay';
 
+// These functions are examples for documentation purposes
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function subscribe(callback: () => void) {
   window.addEventListener('online', callback);
   window.addEventListener('offline', callback);
@@ -10,10 +12,12 @@ function subscribe(callback: () => void) {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getSnapshot() {
   return navigator.onLine;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getServerSnapshot() {
   return true;
 }

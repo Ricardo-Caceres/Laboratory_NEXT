@@ -11,10 +11,7 @@ function Accordion({ children }: { children: ReactNode }) {
   );
 }
 
-function Item({ children, label }: { children: ReactNode; label: string }) {
-  const { openItem } = useAccordion();
-  const isOpen = openItem === label;
-
+function Item({ children }: { children: ReactNode; label: string }) {
   return <div className="border-b border-gray-200 last:border-b-0">{children}</div>;
 }
 

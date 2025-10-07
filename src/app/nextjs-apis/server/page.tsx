@@ -27,7 +27,7 @@ export default function ServerApiExample() {
       <p className="text-lg mb-2">GET Response: {message}</p>
       <p className="text-lg mb-2">POST Response: {postResponse}</p>
       <h2 className="text-xl font-semibold mt-4 mb-2">Middleware Example</h2>
-      <p className="text-lg mb-2">Check your browser's network tab for `x-custom-header` on this page's response.</p>
+      <p className="text-lg mb-2">Check your browser&apos;s network tab for `x-custom-header` on this page&apos;s response.</p>
       <p className="text-lg">Accessing <a className="text-blue-500 hover:underline" href="/nextjs-apis/server/private">/nextjs-apis/server/private</a> (if middleware is uncommented) would redirect.</p>
     </div>
   );

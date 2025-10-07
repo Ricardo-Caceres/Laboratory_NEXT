@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import CodeDisplay from '../../../components/CodeDisplay';
 
-const MemoizedGreeting = React.memo(({ name }: { name: string }) => {
+const MemoizedGreeting = React.memo(function MemoizedGreeting({ name }: { name: string }) {
   console.log(`Rendering MemoizedGreeting for ${name}`);
   return <p>Hello, {name}!</p>;
 });

@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useCartStore, CartItem } from '../store';
+import { useCartStore } from '../store';
 
 const products = [
   { id: 1, name: 'Laptop', price: 1200 },

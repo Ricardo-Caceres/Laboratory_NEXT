@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, use } from 'react';
 
 function fetchData(): Promise<string> {
   return new Promise(resolve => {

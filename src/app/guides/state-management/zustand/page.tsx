@@ -260,7 +260,7 @@ export default function AsyncPosts() {
         <section>
           <h2 className="text-2xl font-bold mb-4">1. Creando los Stores</h2>
           <p className="mb-4">
-            En Zustand, un "store" es un hook que contiene tanto el estado como las acciones que lo modifican. Se crean con la función `create`.
+            En Zustand, un &quot;store&quot; es un hook que contiene tanto el estado como las acciones que lo modifican. Se crean con la función `create`.
           </p>
           <CodeDisplay codeContent={[codeContent[0], codeContent[1], codeContent[2]]} />
         </section>

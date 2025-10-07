@@ -2,11 +2,6 @@
 
 import { useState } from 'react';
 
-export const metadata = {
-  title: 'Default Title',
-  description: 'This is a page about dynamic titles.',
-};
-
 export default function HeadExample() {
   const [pageTitle, setPageTitle] = useState('Default Title');
 

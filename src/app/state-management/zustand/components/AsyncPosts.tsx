@@ -1,7 +1,6 @@
 
 'use client';
 
-import { useEffect } from 'react';
 import { useAsyncStore } from '../store';
 
 export default function AsyncPosts() {

@@ -36,7 +36,7 @@ export default function MyStyledComponent() {
       <h1 className="text-3xl font-bold text-gray-800 mb-6">`useInsertionEffect` Hook Example</h1>
       <p className="text-lg mb-4">`useInsertionEffect` es un Hook que se ejecuta de forma síncrona después de que el DOM ha sido actualizado, pero antes de que el navegador haya tenido la oportunidad de pintar esos cambios. Es útil para inyectar estilos dinámicamente en el DOM.</p>
       <button className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300" onClick={() => setColor(color === 'blue' ? 'red' : 'blue')}>Change Color</button>
-      <p className="text-sm text-gray-500 mt-4 text-center max-w-md">Open your browser's developer tools and inspect the head section to see the dynamically injected style tag.</p>
+      <p className="text-sm text-gray-500 mt-4 text-center max-w-md">Open your browser&apos;s developer tools and inspect the head section to see the dynamically injected style tag.</p>
     </div>
   );
 }

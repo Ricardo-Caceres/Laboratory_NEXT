@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import MyInput, { MyInputHandle } from './MyInput';
+import { MyInputHandle } from './MyInput';
 
 export default function ParentComponent() {
   const inputRef = useRef<MyInputHandle>(null);

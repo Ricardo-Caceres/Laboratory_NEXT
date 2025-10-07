@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, Profiler } from 'react';
+import React, { useState, Profiler, ProfilerOnRenderCallback } from 'react';
 import CodeDisplay from '../../../components/CodeDisplay';
 
 function Counter() {
@@ -14,21 +14,22 @@ function Counter() {
   );
 }
 
-function onRenderCallback(
-  id: string,
-  phase: "mount" | "update",
-  actualDuration: number,
-  baseDuration: number,
-  startTime: number,
-  commitTime: number,
-  interactions: Set<unknown>
-) {
+const onRenderCallback: ProfilerOnRenderCallback = (
+  id,
+  phase,
+  actualDuration,
+  baseDuration,
+  startTime,
+  commitTime
+) => {
   console.log(`Profiler ID: ${id}`);
   console.log(`Phase: ${phase}`);
   console.log(`Actual Duration: ${actualDuration.toFixed(2)}ms`);
   console.log(`Base Duration: ${baseDuration.toFixed(2)}ms`);
+  console.log(`Start Time: ${startTime.toFixed(2)}ms`);
+  console.log(`Commit Time: ${commitTime.toFixed(2)}ms`);
   console.log('---');
-}
+};
 
 export default function ProfilerExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
   return (
@@ -40,7 +41,7 @@ export default function ProfilerExample({ codeContent }: { codeContent: { filePa
         <div className="container mx-auto py-8">
           <h1 className="text-2xl font-bold mb-4">React.Profiler Example</h1>
           <p className="text-lg mb-4">`React.Profiler` mide el rendimiento de renderizado de un árbol de React. Permite recopilar información sobre cuánto tiempo tardan los componentes en renderizarse y cuándo lo hacen.</p>
-          <p className="text-lg mb-4">Open your browser's developer console to see the profiling logs.</p>
+          <p className="text-lg mb-4">Open your browser&apos;s developer console to see the profiling logs.</p>
           <Profiler id="CounterProfiler" onRender={onRenderCallback}>
             <Counter />
           </Profiler>

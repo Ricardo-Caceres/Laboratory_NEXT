@@ -99,16 +99,16 @@ export default async function RenderPropsPage() {
   const codeContent = await getCodeContent();
 
   return (
-    <div class="flex min-h-screen">
-      <div class="w-1/2 p-4 overflow-y-auto">
-        <h2 class="text-2xl font-bold mb-4">Render Props Pattern</h2>
-        <div class="mb-4">
+    <div className="flex min-h-screen">
+      <div className="w-1/2 p-4 overflow-y-auto">
+        <h2 className="text-2xl font-bold mb-4">Render Props Pattern</h2>
+        <div className="mb-4">
           <StyledText text={description} />
         </div>
-        <h3 class="text-xl font-bold mb-2">Code Example:</h3>
+        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
         <CodeDisplay codeContent={codeContent} />
       </div>
-      <div class="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
         <MouseTracker />
       </div>
     </div>

@@ -15,13 +15,10 @@ function SlowList({ query }: { query: string }) {
 }
 
 export default function TransitionExample() {
-  const [inputValue, setInputValue] = useState('');
   const [displayValue, setDisplayValue] = useState('');
   const [isPending, startTransition] = useTransition();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-
     startTransition(() => {
       setDisplayValue(event.target.value);
     });
@@ -31,6 +28,12 @@ export default function TransitionExample() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">`useTransition` Hook Example</h1>
       <p className="text-lg mb-4">`useTransition` te permite marcar actualizaciones de estado como transiciones. Las transiciones son actualizaciones de UI que no bloquean el navegador, lo que ayuda a mantener la aplicación responsiva durante operaciones de renderizado costosas.</p>
+      <input
+        type="text"
+        onChange={handleChange}
+        placeholder="Type to filter..."
+        className="border p-2 mb-4 rounded"
+      />
       {isPending && <p className="text-lg text-gray-600 mb-2">Loading...</p>}
       <SlowList query={displayValue} />
     </div>
