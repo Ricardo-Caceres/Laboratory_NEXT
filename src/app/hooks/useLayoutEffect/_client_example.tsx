@@ -17,8 +17,8 @@ export default function LayoutEffectExample() {
   }, [width]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">`useLayoutEffect` Hook Example</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">`useLayoutEffect` Hook Example</h1>
       <p className="text-lg mb-4">`useLayoutEffect` es idéntico a `useEffect`, pero se ejecuta de forma síncrona inmediatamente después de que React ha realizado todas las mutaciones del DOM. Es útil para realizar mediciones del layout antes de que el navegador pinte la pantalla.</p>
       <p className="text-lg text-gray-700 mt-4">Resize your browser window to see the effect.</p>
     </div>

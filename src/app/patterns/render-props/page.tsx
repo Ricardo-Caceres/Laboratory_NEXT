@@ -108,7 +108,7 @@ export default async function RenderPropsPage() {
         <h3 className="text-xl font-bold mb-2">Code Example:</h3>
         <CodeDisplay codeContent={codeContent} />
       </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
+      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
         <MouseTracker />
       </div>
     </div>

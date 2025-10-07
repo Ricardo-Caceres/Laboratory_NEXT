@@ -25,8 +25,8 @@ export default function TransitionExample() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">`useTransition` Hook Example</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">`useTransition` Hook Example</h1>
       <p className="text-lg mb-4">`useTransition` te permite marcar actualizaciones de estado como transiciones. Las transiciones son actualizaciones de UI que no bloquean el navegador, lo que ayuda a mantener la aplicación responsiva durante operaciones de renderizado costosas.</p>
       <input
         type="text"

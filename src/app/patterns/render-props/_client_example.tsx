@@ -26,8 +26,8 @@ function Mouse({ render }: MouseProps) {
 
 export default function MouseTracker() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Move the mouse around!</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">Move the mouse around!</h1>
       <Mouse
         render={({ x, y }) => (
           <p className="text-xl text-blue-600 font-semibold">The current mouse position is ({x}, {y})</p>

@@ -8,8 +8,8 @@ export default function DeferredValueExample() {
   const deferredQuery = useDeferredValue(inputValue);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">`useDeferredValue` Hook Example</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">`useDeferredValue` Hook Example</h1>
       <p className="text-lg mb-4">`useDeferredValue` te permite aplazar la actualización de una parte de la UI. Es útil para mejorar la responsividad de la aplicación cuando hay actualizaciones de UI costosas que no son críticas.</p>
       <input
         type="text"

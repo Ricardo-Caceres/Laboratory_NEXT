@@ -41,7 +41,7 @@ function withAuth<P extends object>(
 function SecretDashboard() {
   return (
     <div className="bg-white p-8 rounded-lg shadow-md text-center">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Secret Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-4">Secret Dashboard</h1>
       <p className="text-lg text-gray-700">Welcome, authenticated user!</p>
     </div>
   );
@@ -51,7 +51,7 @@ const AuthenticatedDashboard = withAuth(SecretDashboard);
 
 export default function MyPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4">
       <AuthenticatedDashboard />
     </div>
   );

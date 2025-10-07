@@ -19,7 +19,7 @@ function ThemeToggleButton() {
 function ThemedContent() {
   const { theme } = useTheme();
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen ${theme === 'light' ? 'bg-gray-100' : 'bg-gray-900 text-white'}`}>
+    <div className={`flex flex-col items-center justify-center min-h-screen ${theme === 'light' ? 'bg-white' : 'bg-gray-900 text-white'}`}>
       <ThemeToggleButton />
     </div>
   );
@@ -28,7 +28,7 @@ function ThemedContent() {
 export default function UseContextExample() {
     return (
         <ThemeProvider>
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">`useContext` Hook Example</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-6">`useContext` Hook Example</h1>
             <p className="text-lg mb-4">`useContext` te permite suscribirte a un Contexto de React sin anidar componentes. Es una forma de compartir valores como temas, configuraciones de usuario, o datos de autenticación a través de la jerarquía de componentes sin pasar props manualmente en cada nivel.</p>
             <ThemedContent />
         </ThemeProvider>
