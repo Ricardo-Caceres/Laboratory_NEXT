@@ -55,6 +55,7 @@ const segmentNames: Record<string, string> = {
   // Architectures
   'atomic-design': 'Atomic Design',
   'feature-sliced-design': 'Feature-Sliced Design',
+  'micro-frontends': 'Micro Frontends',
   'clean-architecture': 'Clean Architecture',
   'hexagonal-architecture': 'Hexagonal Architecture',
   'layered-architecture': 'Layered Architecture',
