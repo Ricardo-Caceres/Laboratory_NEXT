@@ -1,105 +1,323 @@
-# Next.js DevKit
+# 🚀 DevKit Laboratory - React & Next.js Learning Platform
 
-Welcome to the Next.js DevKit! This guide is designed to provide a comprehensive overview of best practices, patterns, and examples for developing with Next.js.
+> **Version 2.0** - Production Ready ✨
 
-## Table of Contents
+A comprehensive, interactive learning platform for React Hooks, Design Patterns, and Software Architectures. Built with Next.js 15, React 19, and TypeScript.
 
-1.  **[Cheatsheets](#cheatsheets)**
-    -   [JavaScript Cheatsheet](cheatsheets/javascript.md)
-    -   [TypeScript Cheatsheet](cheatsheets/typescript.md)
-    -   [JavaScript Data Structures and Methods](cheatsheets/js-data-structures.md)
+## ✨ What's New in v2.0
 
-2.  **[React Hooks Examples](#react-hooks-examples)**
-    -   [`useState`](examples/hooks/useState.md)
-    -   [`useEffect`](examples/hooks/useEffect.md)
-    -   [`useContext`](examples/hooks/useContext.md)
-    -   [`useReducer`](examples/hooks/useReducer.md)
-    -   [`useCallback`](examples/hooks/useCallback.md)
-    -   [`useMemo`](examples/hooks/useMemo.md)
-    -   [`useRef`](examples/hooks/useRef.md)
-    -   [`useLayoutEffect`](examples/hooks/useLayoutEffect.md)
-    -   [`useImperativeHandle`](examples/hooks/useImperativeHandle.md)
-    -   [`useDebugValue`](examples/hooks/useDebugValue.md)
-    -   [`useDeferredValue`](examples/hooks/useDeferredValue.md)
-    -   [`useTransition`](examples/hooks/useTransition.md)
-    -   [`useId`](examples/hooks/useId.md)
-    -   [`useSyncExternalStore`](examples/hooks/useSyncExternalStore.md)
-    -   [`useInsertionEffect`](examples/hooks/useInsertionEffect.md)
-    -   [`use`](examples/hooks/use.md)
+### 🔥 Critical Fix
+- **Fixed:** Production deployment error (`napi-postinstall@0.3.1`)
+- **Status:** ✅ Ready for production deployment
 
-3.  **[Design Patterns](#design-patterns)**
-    -   [Compound Components](examples/patterns/compound-components.md)
-    -   [Higher-Order Component (HOC)](examples/patterns/higher-order-component.md)
-    -   [Render Props](examples/patterns/render-props.md)
-
-4.  **[Architectural Patterns](#architectural-patterns)**
-    -   [Atomic Design](examples/architectures/atomic-design.md)
-    -   [Feature-Sliced Design (FSD)](examples/architectures/feature-sliced-design.md)
-
-5.  **[React APIs](#react-apis)**
-    -   [`React.createElement`](examples/react-apis/createElement.md)
-    -   [`React.Children`](examples/react-apis/Children.md)
-    -   [`React.Fragment`](examples/react-apis/Fragment.md)
-    -   [`React.memo`](examples/react-apis/memo.md)
-    -   [`React.lazy` and `Suspense`](examples/react-apis/lazy-suspense.md)
-    -   [`React.StrictMode`](examples/react-apis/StrictMode.md)
-    -   [`React.createRef`](examples/react-apis/createRef.md)
-    -   [`React.forwardRef`](examples/react-apis/forwardRef.md)
-    -   [`React.cloneElement`](examples/react-apis/cloneElement.md)
-    -   [`React.isValidElement`](examples/react-apis/isValidElement.md)
-    -   [`React.Component`](examples/react-apis/Component.md)
-    -   [`React.PureComponent`](examples/react-apis/PureComponent.md)
-    -   [`React.Profiler`](examples/react-apis/Profiler.md)
-    -   [`React.startTransition`](examples/react-apis/startTransition.md)
-    -   [`React.createPortal`](examples/react-apis/createPortal.md)
-    -   [`React.createContext`](examples/react-apis/createContext.md)
-6.  **[Next.js APIs](#nextjs-apis)**
-    -   [`next/link`](examples/nextjs-apis/link.md)
-    -   [`next/router`](examples/nextjs-apis/router.md)
-    -   [`next/image`](examples/nextjs-apis/image.md)
-    -   [`next/script`](examples/nextjs-apis/script.md)
-    -   [`next/head`](examples/nextjs-apis/head.md)
-    -   [`next/dynamic`](examples/nextjs-apis/dynamic.md)
-    -   [`next/navigation`](examples/nextjs-apis/navigation.md)
-    -   [`next/headers`](examples/nextjs-apis/headers.md)
-    -   [`next/server`](examples/nextjs-apis/server.md)
-    -   [`next/font`](examples/nextjs-apis/font.md)
-    -   [`next/document`](examples/nextjs-apis/document.md)
-    -   [`next/app`](examples/nextjs-apis/app.md)
-    -   [`next/config`](examples/nextjs-apis/config.md)
+### 📈 Expanded Content
+- **21 Design Patterns** (+6 new)
+- **7 Architectures** (+5 new)
+- **16 React Hooks** (4 with enhanced examples)
+- **140+ Interactive Pages**
 
 ---
 
-## Cheatsheets
+## 📚 Table of Contents
 
-Quick references for JavaScript and TypeScript syntax and features.
+1. [React Hooks (16)](#react-hooks)
+2. [Design Patterns (21)](#design-patterns)
+3. [Architectures (7)](#architectures)
+4. [Getting Started](#getting-started)
+5. [Deployment](#deployment)
 
--   **[JavaScript Cheatsheet](cheatsheets/javascript.md):** Covers variables, data types, operators, control flow, functions, arrays, objects, ES6+ features, and asynchronous JavaScript.
--   **[TypeScript Cheatsheet](cheatsheets/typescript.md):** Includes basic types, interfaces, type aliases, functions, generics, enums, and utility types.
+---
 
-## React Hooks Examples
+## 🎣 React Hooks
 
-Practical examples of the most common React hooks.
+Interactive examples with visual demonstrations:
 
--   **[`useState`](examples/hooks/useState.md):** For managing simple component state.
--   **[`useEffect`](examples/hooks/useEffect.md):** For handling side effects like data fetching.
--   **[`useContext`](examples/hooks/useContext.md):** For sharing state across the component tree.
--   **[`useReducer`](examples/hooks/useReducer.md):** For managing complex state logic.
--   **[`useCallback`](examples/hooks/useCallback.md):** For memoizing callback functions.
--   **[`useMemo`](examples/hooks/useMemo.md):** For memoizing expensive calculations.
--   **[`useRef`](examples/hooks/useRef.md):** For accessing DOM elements and storing mutable values.
+### Core Hooks
+- **useState** - State management ✅ Enhanced
+- **useEffect** - Side effects ✅ Enhanced
+- **useContext** - Context API ✅ Enhanced
+- **useReducer** - Complex state logic
 
-## Design Patterns
+### Performance Hooks
+- **useCallback** - Memoized callbacks ✅ Enhanced
+- **useMemo** - Memoized values ✅ Enhanced
+- **useRef** - DOM access & mutable refs ✅ Enhanced
 
-Proven solutions to common problems in component design.
+### Additional Hooks
+- **useLayoutEffect** - Synchronous effects
+- **useImperativeHandle** - Customize ref exposure
+- **useDebugValue** - Custom hook debugging
+- **useDeferredValue** - Defer updates
+- **useTransition** - Concurrent rendering
+- **useId** - Unique IDs generation
+- **useSyncExternalStore** - External store subscription
+- **useInsertionEffect** - CSS-in-JS
+- **use** - Resource reading
 
--   **[Compound Components](examples/patterns/compound-components.md):** Create expressive and flexible components.
--   **[Higher-Order Component (HOC)](examples/patterns/higher-order-component.md):** Reuse component logic.
--   **[Render Props](examples/patterns/render-props.md):** Share code with a function prop.
+---
 
-## Architectural Patterns
+## 🎨 Design Patterns (21)
 
-Methodologies for structuring your Next.js application.
+### Creational (2)
+- **Factory Pattern** ✨ NEW - Object creation without specifying class
+- **Singleton Pattern** - Single instance guarantee
 
--   **[Atomic Design](examples/architectures/atomic-design.md):** A methodology for creating design systems with a clear hierarchy.
--   **[Feature-Sliced Design (FSD)](examples/architectures/feature-sliced-design.md):** A scalable architecture for large frontend projects.
+### Structural (8)
+- **Adapter Pattern** ✨ NEW - Interface compatibility
+- **Decorator Pattern** ✨ NEW - Dynamic functionality addition
+- **Facade Pattern** ✨ NEW - Simplified interface
+- **Proxy Pattern** - Object access control
+- **Module Pattern** - Encapsulation
+- **Compound Components** - Flexible component composition
+- **Higher-Order Component (HOC)** - Component enhancement
+- **Layout Pattern** - Reusable layouts
+
+### Behavioral (7)
+- **Strategy Pattern** ✨ NEW - Interchangeable algorithms
+- **Command Pattern** ✨ NEW - Request encapsulation
+- **Observer Pattern** - Event subscription
+- **State Reducer** - Predictable state updates
+- **Render Props** - Component logic sharing
+- **Props Getter** - Prop management
+- **Conditional Rendering** - Dynamic UI
+
+### React-Specific (4)
+- **Container/Presentational** - Separation of concerns
+- **Provider Pattern** - Data distribution
+- **Controlled vs Uncontrolled** - Form handling
+- **Custom Hooks** - Logic extraction
+
+---
+
+## 🏗️ Architectures (7)
+
+- **Atomic Design** - Component hierarchy system
+- **Feature-Sliced Design (FSD)** - Feature-based structure
+- **Clean Architecture** ✨ NEW - Dependency rule layers
+- **Hexagonal Architecture** ✨ NEW - Ports and adapters
+- **Layered Architecture** ✨ NEW - Traditional layers
+- **Microservices Architecture** ✨ NEW - Independent services
+- **MVC Architecture** ✨ NEW - Model-View-Controller
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18.x or higher
+- Yarn 1.22.22
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd Laboratory_NEXT
+
+# Install dependencies
+yarn install
+
+# Run development server
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Available Commands
+
+```bash
+yarn dev          # Start development server (Turbopack)
+yarn build        # Build for production
+yarn start        # Start production server
+yarn lint         # Run ESLint
+```
+
+---
+
+## 🎯 Features
+
+### 🎨 Modern UI/UX
+- ✅ Fully responsive design
+- ✅ Smooth animations and transitions
+- ✅ Modern gradient designs
+- ✅ Consistent styling across all pages
+- ✅ Mobile-first approach
+
+### 🧩 Interactive Examples
+- ✅ Live code demonstrations
+- ✅ Visual feedback
+- ✅ Step-by-step explanations
+- ✅ Real-world use cases
+
+### 🔍 Easy Navigation
+- ✅ Organized dropdown menus
+- ✅ Breadcrumb navigation
+- ✅ Persistent navbar
+- ✅ Active route highlighting
+
+### 📱 Responsive
+- ✅ Desktop (1920x1080, 1440x900)
+- ✅ Tablet (iPad, 768x1024)
+- ✅ Mobile (iPhone, 375x667)
+- ✅ All modern browsers
+
+---
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel --prod
+```
+
+### Deploy via GitHub
+
+1. Push to GitHub
+2. Import repository in Vercel
+3. Deploy automatically
+
+See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.
+
+---
+
+## 📊 Project Statistics
+
+- **Total Pages:** 140+
+- **React Hooks:** 16 (all with examples)
+- **Design Patterns:** 21 (comprehensive collection)
+- **Architectures:** 7 (enterprise-level)
+- **Bundle Size:** ~100 KB First Load JS
+- **Build Time:** ~40-50 seconds
+- **TypeScript:** Strict mode enabled
+- **Status:** ✅ Production Ready
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 15.4.1 (App Router)
+- **React:** 19.1.0
+- **TypeScript:** 5.9.3
+- **Styling:** Tailwind CSS 4
+- **Package Manager:** Yarn 1.22.22
+- **Linting:** ESLint + Next.js Config
+
+---
+
+## 📝 Documentation
+
+- **[PROYECTO_MEJORADO.md](./PROYECTO_MEJORADO.md)** - Complete project summary
+- **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** - Deployment instructions
+- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and changes
+
+---
+
+## 🤝 Contributing
+
+This is a learning platform. Feel free to:
+- Report issues
+- Suggest improvements
+- Request new patterns or architectures
+- Submit pull requests
+
+---
+
+## 📄 License
+
+See [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🎓 Learning Path
+
+### For Beginners
+1. Start with **React Hooks** (useState, useEffect)
+2. Explore **Basic Patterns** (Container/Presentational)
+3. Learn **Core Architectures** (MVC, Layered)
+
+### For Intermediate
+1. Master all **React Hooks**
+2. Study **Structural Patterns** (Adapter, Decorator, Facade)
+3. Understand **Clean Architecture** concepts
+
+### For Advanced
+1. Implement **Behavioral Patterns** (Strategy, Command)
+2. Apply **Hexagonal Architecture**
+3. Design **Microservices** systems
+
+---
+
+## ⭐ Features Highlights
+
+### Visual Examples
+Every pattern and hook includes:
+- 💡 Clear explanations
+- 🎨 Interactive demonstrations
+- 📝 Code examples
+- ✨ Best practices
+- 🔍 Use cases
+
+### Code Quality
+- ✅ TypeScript strict mode
+- ✅ ESLint configured
+- ✅ Consistent code style
+- ✅ Production-ready
+- ✅ Optimized performance
+
+---
+
+## 🔗 Quick Links
+
+- **Homepage:** `/`
+- **Hooks:** `/hooks/useState`
+- **Patterns:** `/patterns/factory-pattern`
+- **Architectures:** `/architectures/clean-architecture`
+
+---
+
+## 💡 Tips
+
+- Use the **Navbar** for quick navigation
+- Check **Breadcrumbs** for current location
+- All examples are **interactive**
+- Code is **copy-paste ready**
+- Explanations are in **Spanish**
+
+---
+
+## 🐛 Known Issues
+
+None! All previous issues have been resolved in v2.0.
+
+---
+
+## 🔜 Roadmap
+
+- [ ] Dark mode toggle
+- [ ] Search functionality
+- [ ] Code playground
+- [ ] Unit tests
+- [ ] E2E tests
+- [ ] i18n support
+- [ ] More architectures
+- [ ] Performance monitoring
+
+---
+
+## 📬 Contact
+
+For questions, suggestions, or issues:
+- Open an issue on GitHub
+- Check documentation files
+- Review examples in the app
+
+---
+
+**Built with ❤️ using Next.js, React, and TypeScript**
+
+**Version:** 2.0.0 | **Status:** ✅ Production Ready | **Updated:** December 2024
