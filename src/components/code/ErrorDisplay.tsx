@@ -10,10 +10,10 @@ interface ErrorDisplayProps {
 
 export const ErrorDisplay = ({ error, onRetry }: ErrorDisplayProps) => {
   return (
-    <div className="bg-red-900/20 border border-red-500/50 text-white p-4 rounded-lg">
+    <div className="bg-red-50 dark:bg-red-950 border border-red-300 dark:border-red-800 text-red-900 dark:text-red-100 p-4 rounded-lg">
       <div className="flex items-start space-x-3">
         <svg 
-          className="h-6 w-6 text-red-500 flex-shrink-0" 
+          className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0" 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -27,11 +27,11 @@ export const ErrorDisplay = ({ error, onRetry }: ErrorDisplayProps) => {
         </svg>
         <div className="flex-1">
           <h3 className="font-semibold mb-1">Error Loading Code</h3>
-          <p className="text-sm text-red-200">{error.message}</p>
+          <p className="text-sm opacity-90">{error.message}</p>
           {onRetry && (
             <button
               onClick={onRetry}
-              className="mt-2 text-sm bg-red-600 hover:bg-red-700 px-3 py-1 rounded transition-colors"
+              className="mt-2 text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-colors"
             >
               Try Again
             </button>

@@ -27,7 +27,7 @@ export const DesktopNav = ({
       {Object.entries(navigation).map(([category, items]) => (
         <div key={category} className="relative group">
           <button
-            className="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md transition-all"
+            className="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-[var(--foreground)] opacity-80 hover:opacity-100 hover:bg-[var(--border)] rounded-md transition-all"
             onMouseEnter={() => setOpenDropdown(category)}
             aria-haspopup="true"
             aria-expanded={openDropdown === category}
@@ -38,7 +38,7 @@ export const DesktopNav = ({
           
           {openDropdown === category && (
             <div
-              className="absolute left-0 mt-0 w-64 rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5 max-h-96 overflow-y-auto"
+              className="absolute left-0 mt-0 w-64 rounded-md shadow-lg bg-[var(--panel)] border border-[var(--border)] max-h-96 overflow-y-auto"
               onMouseLeave={() => setOpenDropdown(null)}
               role="menu"
             >
@@ -49,8 +49,8 @@ export const DesktopNav = ({
                     href={item.href}
                     className={`block px-4 py-2 text-sm transition-colors ${
                       isActive(item.href)
-                        ? 'bg-cyan-600 text-white'
-                        : 'text-slate-300 hover:bg-slate-700 hover:text-white'
+                        ? 'bg-[var(--primary)] text-white'
+                        : 'text-[var(--foreground)] opacity-80 hover:opacity-100 hover:bg-[var(--border)]'
                     }`}
                     onClick={() => setOpenDropdown(null)}
                     role="menuitem"

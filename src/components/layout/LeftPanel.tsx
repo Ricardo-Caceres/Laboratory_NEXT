@@ -26,39 +26,18 @@ export const LeftPanel = ({
   const isHookVariant = variant === 'hook';
 
   return (
-    <div
-      className={`w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto ${
-        isHookVariant
-          ? 'bg-gradient-to-br from-slate-900 to-slate-800'
-          : 'bg-white'
-      }`}
-    >
-      {isHookVariant ? (
-        <div className="mb-6 p-4 sm:p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            {title}
-          </h1>
-          <div className="text-sm sm:text-base">
-            <StyledText text={description} />
-          </div>
+    <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+      <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">
+          {title}
+        </h1>
+        <div className="text-sm sm:text-base text-[var(--foreground)]">
+          <StyledText text={description} />
         </div>
-      ) : (
-        <>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">
-            {title}
-          </h2>
-          <div className="mb-4 text-sm sm:text-base text-gray-700">
-            <StyledText text={description} />
-          </div>
-        </>
-      )}
+      </div>
 
       <div className="mb-4">
-        <h3
-          className={`text-lg sm:text-xl font-bold mb-2 ${
-            isHookVariant ? 'text-white' : 'text-gray-900'
-          }`}
-        >
+        <h3 className="text-lg sm:text-xl font-bold mb-2 text-[var(--foreground)]">
           Code Example:
         </h3>
       </div>

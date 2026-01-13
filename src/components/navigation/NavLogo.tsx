@@ -13,7 +13,7 @@ export const NavLogo = () => {
     <div className="flex items-center">
       <Link 
         href="/" 
-        className="flex items-center space-x-2 text-white hover:text-cyan-400 transition-colors"
+        className="flex items-center space-x-2 text-[var(--foreground)] hover:text-[var(--primary)] transition-colors"
         aria-label="Go to home page"
       >
         <Home className="h-6 w-6" aria-hidden="true" />

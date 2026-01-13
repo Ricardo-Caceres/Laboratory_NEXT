@@ -55,14 +55,14 @@ export default function CodeDisplay({ codeContent, filePaths }: CodeDisplayProps
 
   if (content.length === 0) {
     return (
-      <div className="bg-gray-800 text-slate-400 p-4 rounded-lg text-center">
+      <div className="bg-[var(--panel)] text-[var(--foreground)] opacity-70 p-4 rounded-lg text-center border border-[var(--border)]">
         No code to display
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-800 text-white p-3 sm:p-4 rounded-lg overflow-auto max-h-[400px] sm:max-h-[600px] lg:max-h-[calc(100vh-20rem)]">
+    <div className="bg-[var(--panel)] text-[var(--foreground)] p-3 sm:p-4 rounded-lg overflow-auto max-h-[400px] sm:max-h-[600px] lg:max-h-[calc(100vh-20rem)] border border-[var(--border)]">
       {content.map((file, index) => (
         <CodeBlock
           key={file.filePath}

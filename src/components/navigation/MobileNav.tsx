@@ -25,12 +25,12 @@ export const MobileNav = ({
   onLinkClick
 }: MobileNavProps) => {
   return (
-    <div className="lg:hidden border-t border-slate-700">
+    <div className="lg:hidden border-t border-[var(--border)]">
       <div className="space-y-1 px-2 pb-3 pt-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
         {Object.entries(navigation).map(([category, items]) => (
           <div key={category} className="space-y-1">
             <button
-              className="flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium text-white hover:bg-slate-800"
+              className="flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium text-[var(--foreground)] hover:bg-[var(--border)]"
               onClick={() => toggleDropdown(category)}
               aria-expanded={openDropdown === category}
             >
@@ -50,8 +50,8 @@ export const MobileNav = ({
                     href={item.href}
                     className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                       isActive(item.href)
-                        ? 'bg-cyan-600 text-white'
-                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-[var(--primary)] text-white'
+                        : 'text-[var(--foreground)] opacity-80 hover:opacity-100 hover:bg-[var(--border)]'
                     }`}
                     onClick={onLinkClick}
                   >

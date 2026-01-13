@@ -17,7 +17,7 @@ export const MobileMenuButton = ({ isOpen, onClick }: MobileMenuButtonProps) => 
     <div className="flex lg:hidden">
       <button
         type="button"
-        className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        className="inline-flex items-center justify-center rounded-md p-2 text-[var(--foreground)] opacity-70 hover:opacity-100 hover:bg-[var(--border)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--primary)]"
         onClick={onClick}
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}

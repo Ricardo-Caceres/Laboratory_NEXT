@@ -43,7 +43,7 @@ const renderLine = (
   return parts.flatMap((part, partIndex) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return (
-        <strong key={`${lineIndex}-${partIndex}`} className="font-bold text-cyan-400">
+        <strong key={`${lineIndex}-${partIndex}`} className="font-bold text-[var(--primary)]">
           {part.slice(2, -2)}
         </strong>
       );
@@ -99,8 +99,8 @@ export function StyledText({ text }: StyledTextProps) {
         key={index}
         className={
           isTitle
-            ? 'font-bold text-white text-lg mb-2'
-            : 'mb-2 text-white'
+            ? 'font-bold text-[var(--foreground)] text-lg mb-2'
+            : 'mb-2 text-[var(--foreground)]'
         }
       >
         {renderLine(line, index, isTitle)}

@@ -17,7 +17,7 @@ interface CodeBlockProps {
 export const CodeBlock = ({ filePath, content, codeRef }: CodeBlockProps) => {
   return (
     <div className="mb-4 last:mb-0">
-      <h2 className="text-sm sm:text-lg font-bold mb-2 break-all text-cyan-400">
+      <h2 className="text-sm sm:text-lg font-bold mb-2 break-all text-[var(--primary)]">
         {filePath}
       </h2>
       <pre className="overflow-x-auto">

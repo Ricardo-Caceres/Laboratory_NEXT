@@ -1,5 +1,53 @@
 # 📋 Changelog - Laboratory_NEXT
 
+## [3.0.0] - 2026-01-13
+
+### 🚀 MAJOR UPGRADE - Next.js 16 & React 19.2
+
+#### Framework Updates
+- ⬆️ **Next.js**: 15.4.1 → **16.1.1** (Turbopack)
+- ⬆️ **React**: 19.1.0 → **19.2.3**
+- ⬆️ **React DOM**: 19.1.0 → **19.2.3**
+- ⬆️ **@types/react**: → 19.x latest
+- ⬆️ **@types/react-dom**: → 19.x latest
+- ⬆️ **eslint-config-next**: → 16.1.1
+- ⬆️ **PostCSS**: → 8.5.6
+
+#### Tailwind CSS v4 Configuration
+- ⬆️ **Tailwind CSS**: v4 (latest)
+- ➕ **@tailwindcss/postcss**: 4.1.18
+- ➕ **Autoprefixer**: 10.4.23
+- ⚙️ **New syntax**: `@import "tailwindcss"` in globals.css
+- ⚙️ **PostCSS config**: Using `@tailwindcss/postcss` plugin
+- ❌ **Removed**: `tailwind.config.ts` (not needed in v4)
+
+#### Breaking Changes & Migrations
+- 🔄 **next/config removed**: Migrated to environment variables
+  - Old: `import getConfig from 'next/config'`
+  - New: `process.env.NEXT_PUBLIC_*` variables
+- 🔄 **Runtime config removed**: Deleted `publicRuntimeConfig` and `serverRuntimeConfig`
+- ✏️ Updated `src/app/nextjs-apis/config/page.tsx` to use env vars
+
+#### Configuration Updates
+- ✏️ `next.config.ts` - Removed deprecated runtime configs
+- ✏️ `postcss.config.mjs` - Updated for Tailwind v4
+- ✏️ `src/app/globals.css` - New `@import` syntax
+- ✏️ `jest.setup.ts` - Type assertions for globalThis
+- ✏️ `tsconfig.json` - Updated by Next.js 16
+
+#### Build & Performance
+- ✅ Build successful with **89 static routes**
+- ✅ TypeScript compilation: **0 errors**
+- ✅ Turbopack enabled by default
+- ✅ Production ready
+
+#### Documentation
+- ➕ `SESSION_2026-01-13_UPGRADE.md` - Upgrade session notes
+- ✏️ `README.md` - Updated to v3.0
+- ✏️ `CHANGELOG.md` - This file
+
+---
+
 ## [2.1.0] - Enero 13, 2026
 
 ### 🧪 TESTING INFRASTRUCTURE

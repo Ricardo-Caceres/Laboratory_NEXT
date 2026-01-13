@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <nav 
-      className="bg-slate-900 border-b border-slate-700 sticky top-0 z-50 shadow-lg"
+      className="bg-[var(--panel)] border-b border-[var(--border)] sticky top-0 z-50 shadow-md"
       aria-label="Main navigation"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

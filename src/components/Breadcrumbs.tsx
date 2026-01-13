@@ -53,7 +53,7 @@ export default function Breadcrumbs() {
 
   return (
     <nav 
-      className="bg-slate-800 border-b border-slate-700 px-4 sm:px-6 lg:px-8 py-3" 
+      className="bg-[var(--panel)] border-b border-[var(--border)] px-4 sm:px-6 lg:px-8 py-3" 
       aria-label="Breadcrumb"
     >
       <div className="mx-auto max-w-7xl">
@@ -61,7 +61,7 @@ export default function Breadcrumbs() {
           <li className="flex items-center flex-shrink-0">
             <Link
               href="/"
-              className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group px-2 py-1 rounded hover:bg-slate-700"
+              className="text-[var(--foreground)] opacity-70 hover:opacity-100 transition-opacity flex items-center gap-1.5 group px-2 py-1 rounded hover:bg-[var(--border)]"
               aria-label="Go to home"
             >
               <Home 
@@ -77,10 +77,10 @@ export default function Breadcrumbs() {
             
             return (
               <li key={breadcrumb.href} className="flex items-center flex-shrink-0">
-                <ChevronRight className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
+                <ChevronRight className="h-3.5 w-3.5 opacity-40" aria-hidden="true" />
                 {isLast ? (
                   <span 
-                    className="text-cyan-400 font-semibold px-2 py-1"
+                    className="text-[var(--primary)] font-semibold px-2 py-1"
                     aria-current="page"
                   >
                     {breadcrumb.label}
@@ -88,7 +88,7 @@ export default function Breadcrumbs() {
                 ) : (
                   <Link
                     href={breadcrumb.href}
-                    className="text-slate-400 hover:text-white transition-colors px-2 py-1 rounded hover:bg-slate-700 font-medium"
+                    className="text-[var(--foreground)] opacity-70 hover:opacity-100 transition-opacity px-2 py-1 rounded hover:bg-[var(--border)] font-medium"
                   >
                     {breadcrumb.label}
                   </Link>
