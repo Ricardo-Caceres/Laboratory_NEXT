@@ -1,0 +1,651 @@
+# Claude AI - DevKit Laboratory Project Rules
+# Next.js 15 + React 19 + TypeScript Educational Platform
+# Updated: January 2026
+
+## Project Context
+
+This is an educational platform showcasing React Hooks, Design Patterns, and Software Architectures with interactive examples. The codebase prioritizes clarity, best practices, and modern patterns for teaching purposes.
+
+## Core Principles
+
+### 1. SOLID Principles (Mandatory)
+- **Single Responsibility**: Each module/component has one clear purpose
+- **Open/Closed**: Extend functionality without modifying existing code
+- **Liskov Substitution**: Subtypes must be substitutable for base types
+- **Interface Segregation**: Small, specific interfaces over large ones
+- **Dependency Inversion**: Depend on abstractions, not concretions
+
+### 2. Clean Code Standards
+- Self-documenting code with descriptive names
+- Functions: max 20 lines, max 3 parameters
+- Components: max 200 lines (split if larger)
+- No magic numbers or strings (use constants)
+- Comments only for complex business logic, not what code does
+
+### 3. TypeScript Excellence
+- Strict mode enabled - no compromises
+- No `any` types (use `unknown` if necessary)
+- Explicit return types for functions
+- Interface over type when possible
+- Proper generics with constraints
+
+## Tech Stack & Versions
+
+```json
+{
+  "runtime": "Node.js 18+",
+  "framework": "Next.js 15.4.1",
+  "react": "19.1.0",
+  "typescript": "5.9.3",
+  "styling": "Tailwind CSS 4",
+  "state": ["Redux Toolkit 2.9.0", "Zustand 5.0.8"],
+  "packageManager": "yarn 1.22.22"
+}
+```
+
+## ECMAScript Standards (2024+)
+
+### Required Modern Features
+```typescript
+// ✅ Use: Optional chaining
+const user = data?.user?.profile?.name;
+
+// ✅ Use: Nullish coalescing
+const count = value ?? 0;
+
+// ✅ Use: Async/await over Promise chains
+const data = await fetchData();
+
+// ✅ Use: Destructuring
+const { name, email } = user;
+
+// ✅ Use: Template literals
+const message = `Hello, ${name}!`;
+
+// ✅ Use: Arrow functions for callbacks
+const doubled = numbers.map(n => n * 2);
+
+// ✅ Use: Modules (ESM)
+import { Component } from './component';
+export { Component };
+```
+
+### Avoid
+```typescript
+// ❌ Avoid: var declarations
+var x = 1; // Use const/let
+
+// ❌ Avoid: Function constructors
+const fn = new Function('a', 'b', 'return a + b');
+
+// ❌ Avoid: Legacy Promise patterns
+promise.then().then().catch(); // Use async/await
+
+// ❌ Avoid: require() in new code
+const module = require('./module'); // Use import
+```
+
+## Architecture Patterns
+
+### File Structure
+```
+src/
+├── app/                      # Next.js 15 App Router
+│   ├── (routes)/
+│   │   ├── hooks/           # React Hooks examples
+│   │   ├── patterns/        # Design patterns
+│   │   └── architectures/   # Architecture examples
+│   ├── layout.tsx           # Root layout
+│   └── page.tsx             # Homepage
+├── components/              # Shared components
+│   ├── ui/                  # UI primitives
+│   ├── layout/              # Layout components
+│   └── [Component].tsx
+├── lib/                     # Utilities (create as needed)
+│   ├── utils/
+│   ├── hooks/
+│   ├── constants/
+│   └── types/
+└── styles/
+    └── globals.css
+```
+
+### Component Patterns
+
+#### Server Components (Default)
+```typescript
+// Server Component - Default in Next.js 15
+export default async function ProductPage({ params }: Props) {
+  const product = await fetchProduct(params.id);
+  
+  return <ProductView product={product} />;
+}
+```
+
+#### Client Components (When Needed)
+```typescript
+'use client';
+
+import { useState, useCallback } from 'react';
+
+interface InteractiveButtonProps {
+  initialCount?: number;
+}
+
+export const InteractiveButton = ({ initialCount = 0 }: InteractiveButtonProps) => {
+  const [count, setCount] = useState(initialCount);
+  
+  const increment = useCallback(() => {
+    setCount(prev => prev + 1);
+  }, []);
+  
+  return (
+    <button onClick={increment} className="btn">
+      Count: {count}
+    </button>
+  );
+};
+```
+
+### Design Pattern Implementation
+
+#### Compound Components
+```typescript
+interface TabsContextValue {
+  activeTab: number;
+  setActiveTab: (index: number) => void;
+}
+
+const TabsContext = createContext<TabsContextValue | null>(null);
+
+export const Tabs = ({ children }: { children: ReactNode }) => {
+  const [activeTab, setActiveTab] = useState(0);
+  
+  return (
+    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+      <div className="tabs">{children}</div>
+    </TabsContext.Provider>
+  );
+};
+
+Tabs.List = TabsList;
+Tabs.Tab = Tab;
+Tabs.Panel = TabPanel;
+```
+
+#### Container/Presentational Separation
+```typescript
+// Container - Logic & Data Fetching
+const UserProfileContainer = () => {
+  const { user, loading, error } = useUserData();
+  
+  if (loading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage error={error} />;
+  if (!user) return <NotFound />;
+  
+  return <UserProfileView user={user} />;
+};
+
+// Presentational - Pure UI
+interface UserProfileViewProps {
+  user: User;
+}
+
+const UserProfileView = ({ user }: UserProfileViewProps) => (
+  <article className="user-profile">
+    <h1>{user.name}</h1>
+    <p>{user.bio}</p>
+  </article>
+);
+```
+
+#### Custom Hooks Pattern
+```typescript
+interface UseToggleReturn {
+  isOn: boolean;
+  toggle: () => void;
+  setOn: () => void;
+  setOff: () => void;
+}
+
+/**
+ * Custom hook for boolean toggle state management
+ * 
+ * @param initialValue - Initial state (default: false)
+ * @returns Toggle state and control functions
+ */
+export const useToggle = (initialValue = false): UseToggleReturn => {
+  const [isOn, setIsOn] = useState(initialValue);
+  
+  const toggle = useCallback(() => setIsOn(prev => !prev), []);
+  const setOn = useCallback(() => setIsOn(true), []);
+  const setOff = useCallback(() => setIsOn(false), []);
+  
+  return { isOn, toggle, setOn, setOff };
+};
+```
+
+## React Best Practices
+
+### State Management
+```typescript
+// ✅ Local state for UI-only state
+const [isOpen, setIsOpen] = useState(false);
+
+// ✅ useReducer for complex state logic
+const [state, dispatch] = useReducer(reducer, initialState);
+
+// ✅ Context for component tree state
+const ThemeContext = createContext<Theme>('light');
+
+// ✅ Redux/Zustand for global app state
+const useStore = create<Store>((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 }))
+}));
+```
+
+### Side Effects
+```typescript
+// ✅ Proper cleanup in useEffect
+useEffect(() => {
+  const controller = new AbortController();
+  const { signal } = controller;
+  
+  fetchData(id, signal)
+    .then(setData)
+    .catch(error => {
+      if (error.name !== 'AbortError') {
+        console.error('Fetch failed:', error);
+      }
+    });
+    
+  return () => controller.abort();
+}, [id]);
+
+// ✅ Correct dependencies
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount(c => c + 1); // Function updater
+  }, 1000);
+  
+  return () => clearInterval(timer);
+}, []); // Empty deps is correct here
+```
+
+### Performance Optimization
+```typescript
+// ✅ Memoize expensive computations
+const sortedItems = useMemo(() => {
+  return items.sort((a, b) => a.price - b.price);
+}, [items]);
+
+// ✅ Memoize callbacks passed as props
+const handleClick = useCallback((id: string) => {
+  deleteItem(id);
+}, [deleteItem]);
+
+// ✅ Memoize components with React.memo
+const ExpensiveComponent = memo(({ data }: Props) => {
+  return <div>{/* Complex render */}</div>;
+});
+
+// ⚠️ Don't over-optimize - memoize only when needed
+```
+
+## Next.js 15 Specific Rules
+
+### Routing & Metadata
+```typescript
+// ✅ Static metadata
+export const metadata: Metadata = {
+  title: 'Page Title',
+  description: 'Page description',
+  openGraph: {
+    title: 'OG Title',
+    description: 'OG Description',
+  },
+};
+
+// ✅ Dynamic metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await fetchProduct(params.id);
+  
+  return {
+    title: product.name,
+    description: product.description,
+  };
+}
+```
+
+### Data Fetching
+```typescript
+// ✅ Server Component - Direct fetch
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data', {
+    next: { revalidate: 3600 } // ISR
+  }).then(res => res.json());
+  
+  return <Component data={data} />;
+}
+
+// ✅ Loading UI
+export default function Loading() {
+  return <SkeletonLoader />;
+}
+
+// ✅ Error handling
+export default function Error({ error, reset }: ErrorProps) {
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button onClick={reset}>Try again</button>
+    </div>
+  );
+}
+```
+
+### Image Optimization
+```typescript
+// ✅ Use Next.js Image component
+import Image from 'next/image';
+
+<Image
+  src="/hero.jpg"
+  alt="Hero image"
+  width={1200}
+  height={600}
+  priority // For LCP
+  placeholder="blur"
+  blurDataURL="data:image/..."
+/>
+```
+
+## TypeScript Type Patterns
+
+### Props Types
+```typescript
+// ✅ Interface for component props
+interface ButtonProps {
+  label: string;
+  onClick: () => void;
+  variant?: 'primary' | 'secondary' | 'danger';
+  disabled?: boolean;
+  children?: ReactNode;
+}
+
+// ✅ Discriminated unions for polymorphic props
+type InputProps = 
+  | { type: 'text'; value: string; onChange: (value: string) => void }
+  | { type: 'number'; value: number; onChange: (value: number) => void }
+  | { type: 'checkbox'; checked: boolean; onChange: (checked: boolean) => void };
+```
+
+### Generic Types
+```typescript
+// ✅ Generic components
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => ReactNode;
+  keyExtractor: (item: T) => string;
+}
+
+function List<T>({ items, renderItem, keyExtractor }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map(item => (
+        <li key={keyExtractor(item)}>
+          {renderItem(item)}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### Utility Types
+```typescript
+// ✅ Use built-in utility types
+type PartialUser = Partial<User>;
+type ReadonlyConfig = Readonly<Config>;
+type UserWithoutPassword = Omit<User, 'password'>;
+type UserBasicInfo = Pick<User, 'id' | 'name' | 'email'>;
+```
+
+## Error Handling
+
+### Client-Side
+```typescript
+// ✅ Error boundaries for React errors
+class ErrorBoundary extends Component<Props, State> {
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+  
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    logErrorToService(error, errorInfo);
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return <ErrorFallback error={this.state.error} />;
+    }
+    return this.props.children;
+  }
+}
+
+// ✅ Try-catch for async operations
+const fetchData = async () => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Fetch failed');
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+```
+
+## Accessibility Standards
+
+### Semantic HTML
+```typescript
+// ✅ Use semantic elements
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+  </ul>
+</nav>
+
+<main>
+  <article>
+    <h1>Title</h1>
+    <p>Content</p>
+  </article>
+</main>
+
+<footer>
+  <p>&copy; 2026</p>
+</footer>
+```
+
+### ARIA Labels
+```typescript
+// ✅ Provide accessible labels
+<button
+  onClick={handleClose}
+  aria-label="Close dialog"
+  aria-pressed={isPressed}
+>
+  <CloseIcon />
+</button>
+
+<input
+  type="text"
+  id="email"
+  aria-describedby="email-hint"
+  aria-invalid={hasError}
+  aria-required
+/>
+<span id="email-hint">Enter your email address</span>
+```
+
+## Testing Strategy (Future Implementation)
+
+### Unit Tests
+```typescript
+// ✅ Test hooks
+describe('useToggle', () => {
+  it('should initialize with false by default', () => {
+    const { result } = renderHook(() => useToggle());
+    expect(result.current.isOn).toBe(false);
+  });
+  
+  it('should toggle the value', () => {
+    const { result } = renderHook(() => useToggle());
+    act(() => result.current.toggle());
+    expect(result.current.isOn).toBe(true);
+  });
+});
+
+// ✅ Test components
+describe('Button', () => {
+  it('should call onClick when clicked', () => {
+    const handleClick = jest.fn();
+    render(<Button label="Click me" onClick={handleClick} />);
+    
+    fireEvent.click(screen.getByText('Click me'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+## Code Review Checklist
+
+### Before Committing
+- [ ] TypeScript strict mode - no errors
+- [ ] ESLint - no warnings or errors
+- [ ] Build succeeds (`yarn build`)
+- [ ] No `console.log` statements (use proper logging)
+- [ ] No `any` types
+- [ ] All functions have return types
+- [ ] Component props properly typed
+- [ ] useEffect dependencies correct
+- [ ] Proper cleanup in useEffect
+- [ ] No prop drilling (use Context if needed)
+- [ ] Accessibility attributes where needed
+- [ ] Responsive design considered
+- [ ] Performance optimizations appropriate (not premature)
+
+### Security
+- [ ] No hardcoded secrets or API keys
+- [ ] User input validated and sanitized
+- [ ] XSS prevention in place
+- [ ] CSRF tokens for mutations
+- [ ] Proper authentication checks
+
+## Anti-Patterns to Avoid
+
+### React Anti-Patterns
+```typescript
+// ❌ Direct state mutation
+state.items.push(newItem); // Wrong
+setState({ items: [...state.items, newItem] }); // Correct
+
+// ❌ Using index as key
+{items.map((item, index) => <Item key={index} />)} // Wrong
+{items.map(item => <Item key={item.id} />)} // Correct
+
+// ❌ Missing dependencies
+useEffect(() => {
+  fetchData(userId);
+}, []); // Wrong - missing userId
+
+// ❌ Unnecessary useEffect
+useEffect(() => {
+  setFullName(firstName + ' ' + lastName);
+}, [firstName, lastName]); // Wrong - derive during render
+const fullName = firstName + ' ' + lastName; // Correct
+```
+
+### TypeScript Anti-Patterns
+```typescript
+// ❌ Using any
+const data: any = fetchData(); // Wrong
+const data: unknown = fetchData(); // Better
+
+// ❌ Type assertion without validation
+const user = data as User; // Wrong
+const user = validateUser(data); // Correct
+
+// ❌ Ignoring errors
+// @ts-ignore
+const value = obj.property; // Wrong
+```
+
+## Documentation Standards
+
+### Component Documentation
+```typescript
+/**
+ * Modal component with customizable content and actions
+ * 
+ * @param isOpen - Controls modal visibility
+ * @param onClose - Callback when modal should close
+ * @param title - Modal title
+ * @param children - Modal content
+ * 
+ * @example
+ * ```tsx
+ * <Modal
+ *   isOpen={showModal}
+ *   onClose={() => setShowModal(false)}
+ *   title="Confirm Action"
+ * >
+ *   <p>Are you sure?</p>
+ * </Modal>
+ * ```
+ */
+export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
+  // implementation
+};
+```
+
+## Git Commit Standards
+
+### Commit Message Format
+```
+type(scope): subject
+
+body (optional)
+
+footer (optional)
+```
+
+### Types
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting)
+- `refactor`: Code refactoring
+- `perf`: Performance improvements
+- `test`: Adding tests
+- `chore`: Build process or auxiliary tool changes
+
+### Examples
+```
+feat(hooks): add useLocalStorage custom hook
+
+Implements a custom hook for localStorage management with
+automatic JSON serialization and deserialization.
+
+Closes #123
+```
+
+---
+
+**Project**: DevKit Laboratory
+**Maintainer**: Development Team
+**Last Updated**: January 2026
+**Version**: 2.0

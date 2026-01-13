@@ -8,6 +8,7 @@
 
 # testing
 /coverage
+*.log
 
 # next.js
 /.next/
@@ -26,7 +27,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
+.env.development
+.env.production
 
 # vercel
 .vercel
@@ -34,3 +38,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Temporary files
+*.tmp
+.cache/
+
+# AI/Editor specific (optional - keep project files)
+# .cursorrules
+# .claude
+# .agents

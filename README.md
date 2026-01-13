@@ -211,9 +211,22 @@ See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.
 
 ## 📝 Documentation
 
+### Essential Guides
+- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - 📋 Quick reference for daily development
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - 🏗️ Architecture, patterns, and SOLID principles
+- **[STANDARDS_SUMMARY.md](./STANDARDS_SUMMARY.md)** - ✨ Executive summary of standards
+- **[NEXT_STEPS.md](./NEXT_STEPS.md)** - 🎯 Next steps and commit guide
+
+### Configuration Files
+- **[.cursorrules](./.cursorrules)** - 🤖 Cursor AI development guidelines
+- **[.claude](./.claude)** - 🧠 Claude AI project rules
+- **[.agents](./.agents)** - 🎓 AI Agents behavior guidelines
+
+### Project Documentation
 - **[PROYECTO_MEJORADO.md](./PROYECTO_MEJORADO.md)** - Complete project summary
 - **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** - Deployment instructions
 - **[CHANGELOG.md](./CHANGELOG.md)** - Version history and changes
+- **[SESSION_2026-01-13.md](./SESSION_2026-01-13.md)** - Latest session notes
 
 ---
 
@@ -318,6 +331,45 @@ For questions, suggestions, or issues:
 
 ---
 
+---
+
+## 🎓 Development Standards
+
+This project follows strict code quality standards:
+
+- **SOLID Principles** - Clean architecture and maintainable code
+- **Clean Code** - Readable, self-documenting code
+- **TypeScript Strict** - Type safety throughout
+- **Modern ES2024+** - Latest JavaScript features
+- **Next.js 15 Best Practices** - Server/Client components optimization
+- **Accessibility** - WCAG 2.1 AA compliance
+
+See [.cursorrules](./.cursorrules), [.claude](./.claude), and [.agents](./.agents) for detailed guidelines.
+
+---
+
+## 🏗️ Architecture
+
+### Component Patterns
+- **Container/Presentational** - Separation of concerns
+- **Compound Components** - Flexible composition
+- **Custom Hooks** - Reusable logic extraction
+- **Server Components** - Default rendering strategy
+- **Client Components** - Interactive UI when needed
+
+### Code Organization
+```
+src/
+├── app/              # Next.js 15 App Router
+│   ├── hooks/       # React Hooks examples
+│   ├── patterns/    # Design Patterns
+│   └── architectures/ # Software Architectures
+├── components/      # Reusable components
+└── lib/            # Utilities & helpers
+```
+
+---
+
 **Built with ❤️ using Next.js, React, and TypeScript**
 
-**Version:** 2.0.0 | **Status:** ✅ Production Ready | **Updated:** December 2024
+**Version:** 2.0.1 | **Status:** ✅ Production Ready | **Updated:** January 2026

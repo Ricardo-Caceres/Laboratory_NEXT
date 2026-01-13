@@ -1,0 +1,708 @@
+# AI Agent Guidelines - DevKit Laboratory
+# Educational Platform: React Hooks, Design Patterns & Architectures
+# Stack: Next.js 15 + React 19 + TypeScript 5.9
+# Updated: January 2026
+
+## Mission Statement
+
+Assist in developing and maintaining an educational platform that demonstrates modern React development, design patterns, and software architecture principles with clarity and best practices.
+
+## Project Identity
+
+**Name**: DevKit Laboratory
+**Type**: Interactive learning platform
+**Purpose**: Teaching React hooks, design patterns, and software architectures
+**Audience**: Developers learning modern React and TypeScript
+**Language**: Spanish (content), English (code)
+
+## Technology Stack
+
+### Core Technologies
+- **Framework**: Next.js 15.4.1 (App Router with Turbopack)
+- **React**: 19.1.0 (React Compiler enabled)
+- **TypeScript**: 5.9.3 (strict mode)
+- **Styling**: Tailwind CSS 4.0
+- **Package Manager**: Yarn 1.22.22
+
+### State Management
+- Redux Toolkit 2.9.0 (global state examples)
+- Zustand 5.0.8 (lightweight state examples)
+- React Context (component tree state)
+- React Hooks (local state)
+
+### Development Tools
+- ESLint 9 + Next.js config
+- TypeScript strict mode
+- PostCSS with Tailwind
+
+## Architectural Principles
+
+### SOLID Principles (Non-negotiable)
+
+1. **Single Responsibility Principle (SRP)**
+   - Each component/function has one clear purpose
+   - Separate concerns: logic vs presentation
+   - Split large components into smaller, focused ones
+
+2. **Open/Closed Principle (OCP)**
+   - Open for extension, closed for modification
+   - Use composition over inheritance
+   - Extend via props, hooks, and patterns
+
+3. **Liskov Substitution Principle (LSP)**
+   - Child components must be usable wherever parent is expected
+   - Maintain consistent interfaces
+   - Respect contract of base types
+
+4. **Interface Segregation Principle (ISP)**
+   - Small, specific interfaces over large ones
+   - Don't force components to depend on unused props
+   - Split complex prop types into focused interfaces
+
+5. **Dependency Inversion Principle (DIP)**
+   - Depend on abstractions (interfaces, types)
+   - Inject dependencies rather than hardcode
+   - Use hooks for dependencies (useContext, custom hooks)
+
+### Clean Code Principles
+
+- **Meaningful Names**: Descriptive, searchable, pronounceable
+- **Small Functions**: Max 20 lines, max 3 parameters
+- **DRY**: Don't Repeat Yourself
+- **KISS**: Keep It Simple, Stupid
+- **YAGNI**: You Aren't Gonna Need It
+- **Boy Scout Rule**: Leave code better than you found it
+
+### Modern JavaScript (ES2024+)
+
+Required features:
+- Optional chaining (`?.`)
+- Nullish coalescing (`??`)
+- Async/await (no Promise chains)
+- Destructuring
+- Template literals
+- Arrow functions
+- Spread operator
+- Object/Array methods (map, filter, reduce)
+- ES Modules (import/export)
+
+Forbidden:
+- `var` declarations (use const/let)
+- `Function` constructor
+- `eval()`
+- `with` statement
+- Legacy Promise patterns
+
+## Code Style & Conventions
+
+### Naming Conventions
+
+```typescript
+// Components - PascalCase
+export const UserProfile = () => {};
+
+// Hooks - camelCase with 'use' prefix
+export const useLocalStorage = () => {};
+
+// Utilities - camelCase
+export const formatDate = () => {};
+
+// Constants - UPPER_SNAKE_CASE
+export const API_BASE_URL = 'https://api.example.com';
+
+// Types/Interfaces - PascalCase
+interface UserData {}
+type ButtonVariant = 'primary' | 'secondary';
+
+// Files - Match export name
+UserProfile.tsx
+useLocalStorage.ts
+formatDate.ts
+```
+
+### TypeScript Standards
+
+```typescript
+// ✅ Always use strict types
+interface ButtonProps {
+  label: string;
+  onClick: () => void;
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
+}
+
+// ✅ Explicit return types
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+
+// ✅ Use unknown over any
+const parseJSON = (data: unknown): ParsedData => {
+  // validation logic
+};
+
+// ❌ Never use any
+const badFunction = (data: any) => {}; // FORBIDDEN
+
+// ✅ Use generics with constraints
+function identity<T extends object>(arg: T): T {
+  return arg;
+}
+```
+
+### Component Patterns
+
+#### Server Components (Default)
+```typescript
+// No 'use client' directive = Server Component
+export default async function ProductPage({ params }: PageProps) {
+  const product = await fetchProduct(params.id);
+  
+  return (
+    <div>
+      <h1>{product.name}</h1>
+      <ProductDetails product={product} />
+    </div>
+  );
+}
+```
+
+#### Client Components (When Needed)
+```typescript
+'use client';
+
+import { useState, useCallback } from 'react';
+
+interface CounterProps {
+  initialValue?: number;
+}
+
+export const Counter = ({ initialValue = 0 }: CounterProps) => {
+  const [count, setCount] = useState(initialValue);
+  
+  const increment = useCallback(() => {
+    setCount(prev => prev + 1);
+  }, []);
+  
+  return (
+    <button onClick={increment}>
+      Count: {count}
+    </button>
+  );
+};
+```
+
+#### Container/Presentational Pattern
+```typescript
+// Container - Logic & Data
+const UserProfileContainer = () => {
+  const { user, loading, error } = useUser();
+  
+  if (loading) return <Spinner />;
+  if (error) return <ErrorMessage error={error} />;
+  
+  return <UserProfileView user={user} />;
+};
+
+// Presentational - Pure UI
+interface UserProfileViewProps {
+  user: User;
+}
+
+const UserProfileView = ({ user }: UserProfileViewProps) => (
+  <div className="user-profile">
+    <h1>{user.name}</h1>
+    <p>{user.email}</p>
+  </div>
+);
+```
+
+## React Best Practices
+
+### State Management
+
+```typescript
+// ✅ Local state for UI
+const [isOpen, setIsOpen] = useState(false);
+
+// ✅ useReducer for complex logic
+const [state, dispatch] = useReducer(reducer, initialState);
+
+// ✅ Context for component tree
+const theme = useContext(ThemeContext);
+
+// ✅ Custom hooks for reusable logic
+const { value, toggle } = useToggle(false);
+```
+
+### Side Effects & Cleanup
+
+```typescript
+// ✅ Proper cleanup
+useEffect(() => {
+  const controller = new AbortController();
+  
+  fetchData(id, controller.signal)
+    .then(setData)
+    .catch(error => {
+      if (error.name !== 'AbortError') {
+        handleError(error);
+      }
+    });
+    
+  return () => controller.abort();
+}, [id]);
+
+// ✅ Correct dependencies
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount(c => c + 1); // Function updater
+  }, 1000);
+  
+  return () => clearInterval(timer);
+}, []); // Empty is correct - no external deps
+```
+
+### Performance Optimization
+
+```typescript
+// ✅ Memoize expensive computations
+const sortedData = useMemo(() => {
+  return data.sort((a, b) => a.value - b.value);
+}, [data]);
+
+// ✅ Memoize callbacks
+const handleClick = useCallback((id: string) => {
+  deleteItem(id);
+}, [deleteItem]);
+
+// ✅ Memoize components
+const MemoizedComponent = memo(({ data }: Props) => {
+  return <ExpensiveRender data={data} />;
+});
+
+// ⚠️ Don't over-optimize
+// Only memoize when profiling shows need
+```
+
+## Next.js 15 Patterns
+
+### File-based Routing
+
+```
+app/
+├── layout.tsx              # Root layout
+├── page.tsx                # Homepage (/)
+├── loading.tsx             # Loading UI
+├── error.tsx               # Error boundary
+├── not-found.tsx           # 404 page
+├── hooks/
+│   ├── [hookName]/
+│   │   └── page.tsx        # /hooks/useState, etc.
+├── patterns/
+│   └── [patternName]/
+│       └── page.tsx        # /patterns/factory-pattern
+└── architectures/
+    └── [archName]/
+        └── page.tsx        # /architectures/clean
+```
+
+### Metadata API
+
+```typescript
+// Static metadata
+export const metadata: Metadata = {
+  title: 'React Hooks - DevKit Laboratory',
+  description: 'Interactive examples of React hooks',
+};
+
+// Dynamic metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const hook = await getHookDetails(params.hookName);
+  
+  return {
+    title: `${hook.name} - DevKit Laboratory`,
+    description: hook.description,
+  };
+}
+```
+
+### Data Fetching
+
+```typescript
+// ✅ Server Component - Direct fetch
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data', {
+    next: { revalidate: 3600 }
+  }).then(res => res.json());
+  
+  return <DataView data={data} />;
+}
+
+// ✅ With error handling
+export default async function Page() {
+  try {
+    const data = await fetchData();
+    return <DataView data={data} />;
+  } catch (error) {
+    return <ErrorView error={error} />;
+  }
+}
+```
+
+## Design Patterns Implementation
+
+### Factory Pattern
+```typescript
+interface Button {
+  render: () => JSX.Element;
+}
+
+class PrimaryButton implements Button {
+  render() {
+    return <button className="btn-primary">Primary</button>;
+  }
+}
+
+class SecondaryButton implements Button {
+  render() {
+    return <button className="btn-secondary">Secondary</button>;
+  }
+}
+
+class ButtonFactory {
+  static create(type: 'primary' | 'secondary'): Button {
+    switch (type) {
+      case 'primary':
+        return new PrimaryButton();
+      case 'secondary':
+        return new SecondaryButton();
+      default:
+        throw new Error('Invalid button type');
+    }
+  }
+}
+```
+
+### Observer Pattern
+```typescript
+type Observer<T> = (data: T) => void;
+
+class Observable<T> {
+  private observers: Observer<T>[] = [];
+  
+  subscribe(observer: Observer<T>): () => void {
+    this.observers.push(observer);
+    return () => {
+      this.observers = this.observers.filter(obs => obs !== observer);
+    };
+  }
+  
+  notify(data: T): void {
+    this.observers.forEach(observer => observer(data));
+  }
+}
+```
+
+### Compound Components
+```typescript
+interface TabsContextValue {
+  activeTab: number;
+  setActiveTab: (index: number) => void;
+}
+
+const TabsContext = createContext<TabsContextValue | null>(null);
+
+export const Tabs = ({ children }: PropsWithChildren) => {
+  const [activeTab, setActiveTab] = useState(0);
+  
+  return (
+    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+      {children}
+    </TabsContext.Provider>
+  );
+};
+
+Tabs.List = TabsList;
+Tabs.Tab = Tab;
+Tabs.Panel = TabPanel;
+```
+
+## Error Handling
+
+### Client-Side Errors
+```typescript
+// Error Boundary
+'use client';
+
+class ErrorBoundary extends Component<Props, State> {
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
+  }
+  
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return <ErrorFallback error={this.state.error} />;
+    }
+    return this.props.children;
+  }
+}
+```
+
+### Async Error Handling
+```typescript
+const fetchWithErrorHandling = async <T,>(url: string): Promise<T> => {
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Fetch error:', error.message);
+    }
+    throw error;
+  }
+};
+```
+
+## Accessibility Requirements
+
+### Semantic HTML
+```typescript
+// ✅ Use semantic elements
+<nav>
+  <ul>
+    <li><Link href="/">Home</Link></li>
+  </ul>
+</nav>
+
+<main>
+  <article>
+    <h1>Title</h1>
+    <section>
+      <h2>Section</h2>
+    </section>
+  </article>
+</main>
+```
+
+### ARIA Labels
+```typescript
+// ✅ Accessible interactive elements
+<button
+  onClick={handleClose}
+  aria-label="Close modal"
+  aria-pressed={isActive}
+>
+  <CloseIcon />
+</button>
+
+<input
+  type="email"
+  id="email"
+  aria-describedby="email-hint"
+  aria-invalid={hasError}
+  aria-required
+/>
+<span id="email-hint">Enter your email</span>
+```
+
+## Testing Guidelines (Future)
+
+### Unit Tests
+```typescript
+import { renderHook, act } from '@testing-library/react';
+import { useToggle } from './useToggle';
+
+describe('useToggle', () => {
+  it('should initialize with false', () => {
+    const { result } = renderHook(() => useToggle());
+    expect(result.current.isOn).toBe(false);
+  });
+  
+  it('should toggle value', () => {
+    const { result } = renderHook(() => useToggle());
+    
+    act(() => {
+      result.current.toggle();
+    });
+    
+    expect(result.current.isOn).toBe(true);
+  });
+});
+```
+
+### Component Tests
+```typescript
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button', () => {
+  it('should render with label', () => {
+    render(<Button label="Click me" onClick={() => {}} />);
+    expect(screen.getByText('Click me')).toBeInTheDocument();
+  });
+  
+  it('should call onClick when clicked', () => {
+    const handleClick = jest.fn();
+    render(<Button label="Click" onClick={handleClick} />);
+    
+    fireEvent.click(screen.getByText('Click'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+## Security Guidelines
+
+### Input Validation
+```typescript
+// ✅ Validate user input
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+// ✅ Sanitize before rendering
+import DOMPurify from 'dompurify';
+
+const SafeHTML = ({ html }: { html: string }) => {
+  const sanitized = DOMPurify.sanitize(html);
+  return <div dangerouslySetInnerHTML={{ __html: sanitized }} />;
+};
+```
+
+### Environment Variables
+```typescript
+// ✅ Use environment variables for secrets
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+// ❌ Never hardcode secrets
+const apiKey = 'sk_live_123456789'; // FORBIDDEN
+```
+
+## Code Review Checklist
+
+Before considering code complete:
+
+### Functionality
+- [ ] Meets requirements
+- [ ] Handles edge cases
+- [ ] Error handling in place
+- [ ] Loading states implemented
+- [ ] Empty states considered
+
+### Code Quality
+- [ ] Follows SOLID principles
+- [ ] Clean Code standards met
+- [ ] No code duplication
+- [ ] Proper separation of concerns
+- [ ] Components under 200 lines
+
+### TypeScript
+- [ ] No `any` types
+- [ ] All functions typed
+- [ ] Props interfaces defined
+- [ ] Return types explicit
+- [ ] Generics used appropriately
+
+### React
+- [ ] Correct hook dependencies
+- [ ] Proper cleanup in useEffect
+- [ ] No unnecessary re-renders
+- [ ] Memoization appropriate
+- [ ] Keys on list items
+
+### Next.js
+- [ ] Server/Client components correctly used
+- [ ] Metadata provided
+- [ ] Images optimized
+- [ ] Loading states implemented
+- [ ] Error boundaries in place
+
+### Accessibility
+- [ ] Semantic HTML used
+- [ ] ARIA labels where needed
+- [ ] Keyboard navigation works
+- [ ] Color contrast sufficient
+- [ ] Focus indicators visible
+
+### Performance
+- [ ] No unnecessary renders
+- [ ] Large lists virtualized
+- [ ] Images lazy loaded
+- [ ] Code split appropriately
+- [ ] Bundle size considered
+
+### Security
+- [ ] No secrets in code
+- [ ] Input validated
+- [ ] Output sanitized
+- [ ] CSRF protection
+- [ ] XSS prevention
+
+## AI Agent Behavior Guidelines
+
+### When Assisting with Code
+
+1. **Always ask for clarification** if requirements are ambiguous
+2. **Explain your reasoning** for architectural decisions
+3. **Suggest alternatives** when multiple approaches exist
+4. **Point out potential issues** before they become problems
+5. **Provide context** for patterns and best practices used
+
+### When Reviewing Code
+
+1. **Be constructive** - focus on improvement
+2. **Explain the why** - don't just point out issues
+3. **Suggest better patterns** with examples
+4. **Prioritize issues** - critical vs nice-to-have
+5. **Acknowledge good practices** when you see them
+
+### When Teaching
+
+1. **Start with concepts** before diving into code
+2. **Use examples from the project** when possible
+3. **Link to documentation** for deeper understanding
+4. **Explain trade-offs** of different approaches
+5. **Encourage questions** and experimentation
+
+## Communication Style
+
+- **Be concise but complete** - no unnecessary verbosity
+- **Use code examples** - show, don't just tell
+- **Format responses** - use headings, lists, code blocks
+- **Provide context** - explain why, not just how
+- **Be patient and encouraging** - learning takes time
+
+## Continuous Improvement
+
+### Stay Updated
+- Monitor React and Next.js releases
+- Follow ECMAScript proposals
+- Track TypeScript updates
+- Review Tailwind CSS changes
+- Study new patterns and practices
+
+### Documentation
+- Keep .cursorrules and .claude files updated
+- Document architectural decisions
+- Maintain changelog for significant changes
+- Update README for new features
+- Create guides for complex patterns
+
+---
+
+**Project**: DevKit Laboratory
+**Purpose**: Educational platform for modern React development
+**Standards**: SOLID, Clean Code, Modern ES, TypeScript Strict
+**Last Updated**: January 2026
+**Version**: 2.0

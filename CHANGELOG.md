@@ -1,5 +1,39 @@
 # 📋 Changelog - Laboratory_NEXT
 
+## [2.0.1] - Enero 2026
+
+### 📚 DOCUMENTATION & STANDARDS
+
+#### New Configuration Files
+- ➕ `.cursorrules` - Cursor AI development guidelines with SOLID, Clean Code, modern ES2024+
+- ➕ `.claude` - Claude AI project rules and architectural patterns
+- ➕ `.agents` - AI Agent behavior guidelines and best practices
+- ➕ `ARCHITECTURE.md` - Comprehensive architecture documentation with examples
+
+#### Standards Implementation
+- ✅ **SOLID Principles** - Complete documentation with React examples
+- ✅ **Clean Code** - Naming conventions, code organization, best practices
+- ✅ **TypeScript Strict** - Type safety guidelines and patterns
+- ✅ **ECMAScript 2024+** - Modern JavaScript features and standards
+- ✅ **Next.js 15** - Server/Client components, App Router best practices
+- ✅ **Accessibility** - WCAG 2.1 AA compliance guidelines
+- ✅ **Performance** - Optimization patterns and techniques
+- ✅ **Security** - Input validation, sanitization, environment variables
+
+#### Code Quality Improvements
+- 📝 Comprehensive code review checklist
+- 📝 Component patterns documentation
+- 📝 Testing strategies (preparation for future implementation)
+- 📝 Git commit standards and workflow
+- 📝 Anti-patterns to avoid
+
+#### Updated Files
+- ✏️ `README.md` - Added development standards section
+- ✏️ Version bump to 2.0.1
+- ✏️ Updated date to January 2026
+
+---
+
 ## [2.0.0] - Diciembre 2024
 
 ### 🔥 CRITICAL FIX
