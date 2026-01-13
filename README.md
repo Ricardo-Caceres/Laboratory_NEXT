@@ -373,3 +373,32 @@ src/
 **Built with ❤️ using Next.js, React, and TypeScript**
 
 **Version:** 2.0.1 | **Status:** ✅ Production Ready | **Updated:** January 2026
+
+## 🧪 Testing
+
+Comprehensive testing infrastructure with unit and E2E tests:
+
+### Running Tests
+
+```bash
+# Unit Tests (Jest + React Testing Library)
+yarn test              # Watch mode
+yarn test:ci           # CI mode with coverage
+yarn test:coverage     # Generate coverage report
+
+# E2E Tests (Playwright)
+yarn playwright:install  # Install browsers (first time)
+yarn test:e2e           # Run all E2E tests
+yarn test:e2e:ui        # Interactive UI mode
+yarn test:e2e:headed    # Run with visible browser
+```
+
+### Test Coverage
+- Unit tests for components
+- E2E tests for user flows
+- Accessibility testing
+- Mobile viewport testing
+- Target coverage: 80%+
+
+See [TESTING.md](./TESTING.md) for detailed testing documentation.
+

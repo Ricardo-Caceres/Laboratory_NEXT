@@ -1,5 +1,80 @@
 # 📋 Changelog - Laboratory_NEXT
 
+## [2.1.0] - Enero 13, 2026
+
+### 🧪 TESTING INFRASTRUCTURE
+
+#### New Testing Framework
+- ➕ **Jest** - Unit & Integration testing framework
+- ➕ **Playwright** - End-to-end testing (Chromium, Firefox, WebKit)
+- ➕ **React Testing Library** - Component testing utilities
+- ➕ **@testing-library/jest-dom** - Custom Jest matchers
+
+#### Configuration Files
+- ➕ `jest.config.ts` - Jest configuration with Next.js integration
+- ➕ `jest.setup.ts` - Jest setup file
+- ➕ `playwright.config.ts` - Playwright E2E configuration
+- ➕ `.npmrc` - NPM configuration
+
+#### Test Files Created (6 total)
+
+**Unit Tests (3 files):**
+- ➕ `src/components/__tests__/Navbar.test.tsx` - Navigation component tests
+- ➕ `src/components/__tests__/CodeDisplay.test.tsx` - Code display tests
+- ➕ `src/components/__tests__/Breadcrumbs.test.tsx` - Breadcrumbs navigation tests
+
+**E2E Tests (3 files):**
+- ➕ `e2e/home.spec.ts` - Home page & navigation tests
+- ➕ `e2e/navigation.spec.ts` - Desktop/Mobile navigation flows
+- ➕ `e2e/hooks.spec.ts` - Hooks section functionality tests
+
+#### Documentation
+- ➕ `TESTING.md` - Comprehensive testing guide with examples
+- ➕ `SESSION_TESTING_IMPLEMENTATION.md` - Implementation session summary
+- ✏️ `README.md` - Added testing section
+
+#### Packages Installed (12 new)
+- `@playwright/test` ^1.57.0
+- `@testing-library/dom` ^10.4.1
+- `@testing-library/jest-dom` ^6.9.1
+- `@testing-library/react` ^16.3.1
+- `@testing-library/user-event` ^14.6.1
+- `@types/jest` ^30.0.0
+- `jest` ^30.2.0
+- `jest-cli` ^30.2.0
+- `jest-environment-jsdom` ^30.2.0
+- `ts-node` ^10.9.2
+
+#### New Scripts
+```json
+{
+  "test": "jest --watch",
+  "test:ci": "jest --ci --coverage",
+  "test:coverage": "jest --coverage",
+  "test:e2e": "playwright test",
+  "test:e2e:ui": "playwright test --ui",
+  "test:e2e:headed": "playwright test --headed",
+  "playwright:install": "playwright install"
+}
+```
+
+#### Test Coverage
+- **Unit Tests**: 3 component suites, 15+ test cases
+- **E2E Tests**: 3 feature suites, 10+ test scenarios
+- **Coverage Target**: 80%+
+- **Test Types**: Rendering, interactions, accessibility, mobile responsive
+
+#### Testing Best Practices Implemented
+- ✅ SOLID principles in test design
+- ✅ Semantic queries (getByRole, getByLabelText)
+- ✅ Accessibility testing (ARIA, keyboard nav)
+- ✅ Mobile viewport testing
+- ✅ Loading & error state testing
+- ✅ Proper mocking of Next.js hooks
+- ✅ Test isolation with beforeEach
+
+---
+
 ## [2.0.1] - Enero 2026
 
 ### 📚 DOCUMENTATION & STANDARDS
