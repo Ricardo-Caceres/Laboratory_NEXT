@@ -1,60 +1,75 @@
+/**
+ * CodeDisplay Component
+ * Displays code files with syntax highlighting
+ * 
+ * Refactored to follow SOLID principles:
+ * - Single Responsibility: Only displays code, delegates fetching and highlighting
+ * - Dependency Inversion: Depends on custom hooks
+ * - Open/Closed: Extensible via props
+ * 
+ * @example
+ * // With direct content
+ * <CodeDisplay codeContent={[{ filePath: 'file.ts', content: '...' }]} />
+ * 
+ * // With file paths (fetches content)
+ * <CodeDisplay filePaths={['src/file1.ts', 'src/file2.ts']} />
+ */
+
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
+import { useCodeContent } from '@/lib/hooks/useCodeContent';
+import { useCodeHighlight } from '@/lib/hooks/useCodeHighlight';
+import { CodeBlock } from './code/CodeBlock';
+import { LoadingSpinner } from './code/LoadingSpinner';
+import { ErrorDisplay } from './code/ErrorDisplay';
+
+interface CodeFile {
+  filePath: string;
+  content: string;
+}
 
 interface CodeDisplayProps {
-  codeContent?: { filePath: string; content: string }[];
+  codeContent?: CodeFile[];
   filePaths?: string[];
 }
 
+/**
+ * CodeDisplay Container Component
+ * Manages code fetching, highlighting, and rendering
+ */
 export default function CodeDisplay({ codeContent, filePaths }: CodeDisplayProps) {
-  const codeRefs = useRef<(HTMLElement | null)[]>([]);
-  const [loadedContent, setLoadedContent] = useState<{ filePath: string; content: string }[]>([]);
+  const { content, loading, error } = useCodeContent({ codeContent, filePaths });
+  const { codeRefs } = useCodeHighlight({ 
+    enabled: !loading && !error, 
+    content 
+  });
 
-  useEffect(() => {
-    if (filePaths && filePaths.length > 0) {
-      Promise.all(
-        filePaths.map(async (filePath) => {
-          const response = await fetch(`/api/get-file-content?path=${encodeURIComponent(filePath)}`);
-          const data = await response.json();
-          return { filePath, content: data.content || '' };
-        })
-      ).then(setLoadedContent);
-    } else if (codeContent) {
-      setLoadedContent(codeContent);
-    }
-  }, [filePaths, codeContent]);
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
-  useEffect(() => {
-    if (loadedContent.length > 0) {
-      codeRefs.current.forEach((codeRef) => {
-        if (codeRef) {
-          hljs.highlightElement(codeRef);
-        }
-      });
-    }
-  }, [loadedContent]);
+  if (error) {
+    return <ErrorDisplay error={error} />;
+  }
 
-  if (loadedContent.length === 0) {
-    return <div className="bg-gray-800 text-white p-3 sm:p-4 rounded-lg text-sm sm:text-base">Loading code...</div>;
+  if (content.length === 0) {
+    return (
+      <div className="bg-gray-800 text-slate-400 p-4 rounded-lg text-center">
+        No code to display
+      </div>
+    );
   }
 
   return (
     <div className="bg-gray-800 text-white p-3 sm:p-4 rounded-lg overflow-auto max-h-[400px] sm:max-h-[600px] lg:max-h-[calc(100vh-20rem)]">
-      {loadedContent.map((file, index) => (
-        <div key={index} className="mb-4 last:mb-0">
-          <h2 className="text-sm sm:text-lg font-bold mb-2 break-all">{file.filePath}</h2>
-          <pre className="overflow-x-auto">
-            <code
-              ref={(el) => { codeRefs.current[index] = el; }}
-              className="language-typescript text-xs sm:text-sm"
-            >
-              {file.content}
-            </code>
-          </pre>
-        </div>
+      {content.map((file, index) => (
+        <CodeBlock
+          key={file.filePath}
+          filePath={file.filePath}
+          content={file.content}
+          codeRef={(el) => { codeRefs.current[index] = el; }}
+        />
       ))}
     </div>
   );
