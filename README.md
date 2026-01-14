@@ -228,9 +228,8 @@ See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.
 - **[NEXT_STEPS.md](./NEXT_STEPS.md)** - 🎯 Next steps and commit guide
 
 ### Configuration Files
-- **[.cursorrules](./.cursorrules)** - 🤖 Cursor AI development guidelines
-- **[.claude](./.claude)** - 🧠 Claude AI project rules
-- **[.agents](./.agents)** - 🎓 AI Agents behavior guidelines
+- **[.claude](./.claude)** - 🧠 Claude AI project rules and standards
+- **[.agents](./.agents)** - 🎓 AI Agents behavior guidelines and rules
 
 ### Project Documentation
 - **[PROYECTO_MEJORADO.md](./PROYECTO_MEJORADO.md)** - Complete project summary
@@ -354,7 +353,18 @@ This project follows strict code quality standards:
 - **Next.js 15 Best Practices** - Server/Client components optimization
 - **Accessibility** - WCAG 2.1 AA compliance
 
-See [.cursorrules](./.cursorrules), [.claude](./.claude), and [.agents](./.agents) for detailed guidelines.
+See [.claude](./.claude) and [.agents](./.agents) for detailed guidelines.
+
+### ⚠️ IMPORTANT: Git Command Execution
+
+**AI assistants (Claude, etc.) do NOT execute git commands directly.**
+
+Only the project owner executes git commands manually:
+- `git add`, `git commit`, `git push`, etc.
+- AI assistants make code changes and inform when ready
+- User maintains full control of version history
+
+See `.agents` file for complete guidelines.
 
 ---
 

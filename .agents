@@ -693,11 +693,40 @@ Before considering code complete:
 - Study new patterns and practices
 
 ### Documentation
-- Keep .cursorrules and .claude files updated
+- Keep .claude and .agents files updated
 - Document architectural decisions
 - Maintain changelog for significant changes
 - Update README for new features
 - Create guides for complex patterns
+
+## ⚠️ CRITICAL RULE - Git Command Execution
+
+**AI assistants (Claude, agents, etc.) MUST NOT execute git commands directly.**
+
+Only the user (Salem) can execute git commands manually, including:
+- `git add`
+- `git commit`
+- `git push`
+- `git pull`
+- `git checkout`
+- `git merge`
+- Any other git operations
+
+### AI Assistant Responsibilities:
+1. ✅ Make code changes as requested
+2. ✅ Review and validate code
+3. ✅ Suggest improvements
+4. ✅ Inform user when changes are ready
+5. ❌ NEVER execute git commands
+6. ❌ NEVER run git-commit.sh or similar scripts
+
+### User Responsibilities:
+1. Review all changes made by AI
+2. Execute git commands manually
+3. Control version history
+4. Manage branches and merges
+
+**This rule applies to ALL sessions and MUST be followed strictly.**
 
 ---
 
@@ -705,4 +734,4 @@ Before considering code complete:
 **Purpose**: Educational platform for modern React development
 **Standards**: SOLID, Clean Code, Modern ES, TypeScript Strict
 **Last Updated**: January 2026
-**Version**: 2.0
+**Version**: 2.1

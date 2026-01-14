@@ -643,9 +643,27 @@ automatic JSON serialization and deserialization.
 Closes #123
 ```
 
+### ⚠️ CRITICAL RULE - Git Command Execution
+
+**AI assistants (Claude, etc.) MUST NOT execute git commands directly.**
+
+Only the user (Salem) can execute git commands manually, including:
+- `git add`
+- `git commit`
+- `git push`
+- `git pull`
+- Any other git operations
+
+AI assistants should:
+1. Make code changes as requested
+2. Inform the user when changes are ready
+3. Let the user execute git commands manually
+
+This rule applies to ALL sessions and MUST be followed strictly.
+
 ---
 
 **Project**: DevKit Laboratory
 **Maintainer**: Development Team
 **Last Updated**: January 2026
-**Version**: 2.0
+**Version**: 2.1
