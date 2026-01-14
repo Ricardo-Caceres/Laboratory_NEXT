@@ -422,3 +422,45 @@ yarn test:e2e:headed    # Run with visible browser
 
 See [TESTING.md](./TESTING.md) for detailed testing documentation.
 
+
+## Session Guidelines for AI Assistants
+
+### Git Operations
+**IMPORTANT**: Only the repository owner (Salem) may execute git commands manually. AI assistants should NEVER run git commands (git add, git commit, git push, etc.) in any session.
+
+If changes need to be committed:
+1. Make the requested changes to the codebase
+2. Inform the user that changes are ready
+3. User will execute git commands manually
+
+### Module Standards
+All learning modules must follow the standardized LeftPanel/RightPanel layout for:
+- ✅ Consistent accessibility & contrast  
+- ✅ Homogeneous UI/UX across all modules
+- ✅ Mobile-first responsive design
+- ✅ Proper code syntax highlighting using `<code>` components
+
+**Standard Module Pattern**:
+```tsx
+import { LeftPanel } from '@/components/layout/LeftPanel';
+import { RightPanel } from '@/components/layout/RightPanel';
+
+export default function ModulePage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <LeftPanel
+        title="Module Title"
+        description="Content in **Markdown**"
+        codeContent={[{filePath: 'file.tsx', content: `code`}]}
+      />
+      <RightPanel>
+        {/* Examples or interactive content */}
+      </RightPanel>
+    </div>
+  );
+}
+```
+
+### Package Manager
+Always use **yarn** for all package management operations (not npm).
+

@@ -1,0 +1,95 @@
+# Claude AI Assistant Instructions for Laboratory_NEXT
+
+## Critical Rules
+
+### 1. Git Operations - DO NOT EXECUTE
+**NEVER run git commands** (git add, git commit, git push, git pull, etc.)
+- Only the repository owner (Salem) executes git operations manually
+- After making changes, inform the user they're ready to commit
+- Do not create or run git automation scripts
+
+### 2. Package Manager
+- **Always use `yarn`** for package management
+- Never use npm or other package managers
+
+### 3. Module Structure Standards
+All learning modules MUST use the standardized LeftPanel/RightPanel layout:
+
+```tsx
+import { LeftPanel } from '@/components/layout/LeftPanel';
+import { RightPanel } from '@/components/layout/RightPanel';
+
+export default function ModulePage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <LeftPanel
+        title="Module Title"
+        description="Description in **Markdown** format"
+        codeContent={[
+          {
+            filePath: 'example.tsx',
+            content: `// Code example here`,
+          },
+        ]}
+      />
+      <RightPanel>
+        {/* Interactive examples or additional content */}
+      </RightPanel>
+    </div>
+  );
+}
+```
+
+### 4. Code Display Standards
+- All code snippets MUST use `<code>` component with proper syntax highlighting
+- Never use plain `<code>` tags or unstyled `<pre>` blocks
+- Code is displayed via LeftPanel's `codeContent` prop
+
+### 5. Design System
+- **No gradients**: Use solid colors only
+- **High contrast**: Ensure WCAG AA compliance minimum
+- **Consistent colors**: 
+  - Background: white/slate-50
+  - Text: slate-900 (headings), slate-700 (body)
+  - Borders: slate-200
+  - Accents: blue-600 (links, primary actions)
+
+### 6. Accessibility
+- Maintain proper heading hierarchy (h1 → h2 → h3)
+- Ensure color contrast ratios meet WCAG standards
+- Use semantic HTML
+- Include proper ARIA labels where needed
+
+## Current Project Status
+- Framework: Next.js 15+ with App Router
+- Styling: TailwindCSS
+- TypeScript: Strict mode enabled
+- Testing: Jest, React Testing Library, Playwright
+- Package Manager: Yarn
+
+## Module Organization
+Learning modules organized by category:
+- `/hooks` - React Hooks
+- `/patterns` - Design Patterns  
+- `/architectures` - Software Architectures
+- `/testing` - Testing Strategies
+- `/performance` - Performance Optimization
+- `/security` - Frontend Security
+- `/apis` - API Integration (GraphQL, REST, gRPC, etc.)
+- `/state-management` - State Management Solutions
+- And more...
+
+## When Adding New Modules
+1. Use the standard LeftPanel/RightPanel layout
+2. Include practical code examples
+3. Add Markdown documentation in description
+4. Create `_client_example.tsx` if interactive demos needed
+5. Ensure all text has proper contrast
+6. Test on mobile viewport
+
+## Session Workflow
+1. Understand the request
+2. Make changes following standards above
+3. Test if needed (yarn dev, yarn test)
+4. Report completion
+5. **DO NOT** run git commands - user handles commits
