@@ -4,6 +4,7 @@ const sections = {
   'React Hooks': {
     description: 'Comprehensive guides for all React Hooks with live examples',
     items: [
+      { name: '📚 Complete Hook Guide', href: '/hooks/react-hooks', desc: 'All React Hooks + Custom Patterns' },
       { name: 'useState', href: '/hooks/useState', desc: 'State management in functional components' },
       { name: 'useEffect', href: '/hooks/useEffect', desc: 'Side effects and lifecycle' },
       { name: 'useContext', href: '/hooks/useContext', desc: 'Consume context values' },
@@ -103,6 +104,125 @@ const sections = {
       { name: 'next/server', href: '/nextjs-apis/server', desc: 'Server utilities' },
       { name: 'next/font', href: '/nextjs-apis/font', desc: 'Font optimization' },
       { name: 'next/config', href: '/nextjs-apis/config', desc: 'Runtime configuration' },
+    ],
+  },
+  'Advanced JavaScript': {
+    description: 'Advanced JavaScript features that make you stand out',
+    items: [
+      { name: '⭐ Elite JS Features', href: '/javascript/advanced-features', desc: 'Advanced features rarely taught in courses' },
+    ],
+  },
+  'Testing': {
+    description: 'Testing frameworks and methodologies',
+    items: [
+      { name: 'Jest', href: '/testing/jest', desc: 'Zero-config testing framework' },
+      { name: 'Mocha', href: '/testing/mocha', desc: 'Flexible testing framework' },
+      { name: 'Cypress', href: '/testing/cypress', desc: 'E2E testing framework' },
+      { name: 'Karma', href: '/testing/karma', desc: 'Test runner for browsers' },
+      { name: 'TDD', href: '/testing/tdd', desc: 'Test-Driven Development' },
+      { name: 'Unit Tests', href: '/testing/unit', desc: 'Unit testing practices' },
+      { name: 'Integration Tests', href: '/testing/integration', desc: 'Integration testing' },
+      { name: 'E2E Tests', href: '/testing/e2e', desc: 'End-to-end testing' },
+    ],
+  },
+  'UI Libraries': {
+    description: 'Modern UI and animation libraries',
+    items: [
+      { name: 'Three.js', href: '/ui-libraries/three', desc: '3D graphics with WebGL' },
+      { name: 'Animation Libraries', href: '/ui-libraries/animate', desc: 'Framer Motion, GSAP, Anime.js' },
+      { name: 'Pixel & Canvas', href: '/ui-libraries/pixel', desc: 'Canvas API & pixel manipulation' },
+      { name: 'AG Grid', href: '/ui-libraries/ag-grid', desc: 'Enterprise data grid' },
+      { name: 'Storybook', href: '/ui-libraries/storybook', desc: 'Component development environment' },
+    ],
+  },
+  'GraphQL & Real-Time': {
+    description: 'GraphQL, WebSockets, and real-time communication',
+    items: [
+      { name: 'GraphQL Basics', href: '/graphql/basics', desc: 'GraphQL fundamentals' },
+      { name: 'Apollo Client', href: '/graphql/apollo-client', desc: 'GraphQL client for React' },
+      { name: 'WebSockets', href: '/real-time/websockets', desc: 'Real-time bidirectional communication' },
+      { name: 'RxJS', href: '/real-time/rxjs', desc: 'Reactive programming with Observables' },
+      { name: 'Event-Driven UI', href: '/real-time/event-driven', desc: 'Event-driven architectures' },
+      { name: 'Real-Time UI', href: '/real-time/ui-communication', desc: 'Live UI updates' },
+    ],
+  },
+  'Build Tools & Performance': {
+    description: 'Build tools and performance optimization',
+    items: [
+      { name: 'Webpack', href: '/build-tools/webpack', desc: 'Module bundler configuration' },
+      { name: 'Turbopack', href: '/build-tools/turbopack', desc: 'Next-gen bundler by Vercel' },
+      { name: 'Performance', href: '/build-tools/performance', desc: 'Optimization techniques' },
+      { name: 'SPA', href: '/build-tools/spa', desc: 'Single Page Applications' },
+    ],
+  },
+  'Data Structures & Algorithms': {
+    description: 'Computer science fundamentals',
+    items: [
+      { name: 'Basic Data Structures', href: '/data-structures/basic', desc: 'Arrays, Objects, Sets, Maps' },
+      { name: 'Advanced Data Structures', href: '/data-structures/advanced', desc: 'Trees, Graphs, Heaps' },
+      { name: 'Basic Algorithms', href: '/algorithms/basic', desc: 'Sorting, searching' },
+      { name: 'Advanced Algorithms', href: '/algorithms/advanced', desc: 'Dynamic programming, graphs' },
+      { name: 'Big O Notation', href: '/algorithms/big-o', desc: 'Algorithm complexity analysis' },
+    ],
+  },
+  'DevOps & Cloud': {
+    description: 'CI/CD, cloud platforms, and infrastructure',
+    items: [
+      { name: 'CI/CD Pipelines', href: '/cicd/pipelines', desc: 'Continuous integration & deployment' },
+      { name: 'Docker', href: '/devops/docker', desc: 'Containerization' },
+      { name: 'Prometheus', href: '/devops/prometheus', desc: 'Monitoring & alerting' },
+      { name: 'AWS', href: '/cloud/aws', desc: 'Amazon Web Services' },
+      { name: 'Azure', href: '/cloud/azure', desc: 'Microsoft Azure' },
+      { name: 'Cloud Architectures', href: '/cloud/architectures', desc: 'Cloud design patterns' },
+    ],
+  },
+  'API Protocols': {
+    description: 'Modern API communication protocols',
+    items: [
+      { name: 'Webhooks', href: '/apis/webhooks', desc: 'Event-driven HTTP callbacks' },
+      { name: 'SOAP', href: '/apis/soap', desc: 'XML-based messaging protocol' },
+      { name: 'gRPC', href: '/apis/grpc', desc: 'High-performance RPC framework' },
+    ],
+  },
+  'Mobile Development': {
+    description: 'Cross-platform mobile development',
+    items: [
+      { name: 'Capacitor.js', href: '/mobile/capacitor', desc: 'Native mobile with web tech' },
+      { name: 'Cordova.js', href: '/mobile/cordova', desc: 'Hybrid mobile apps' },
+      { name: 'PWA', href: '/pwa', desc: 'Progressive Web Apps' },
+    ],
+  },
+  'Authentication & Validation': {
+    description: 'Security and data validation',
+    items: [
+      { name: 'JWT Authentication', href: '/auth/jwt', desc: 'JSON Web Tokens' },
+      { name: 'Zod Validation', href: '/validation/zod', desc: 'TypeScript-first schema validation' },
+    ],
+  },
+  'Data Fetching': {
+    description: 'Modern data fetching libraries',
+    items: [
+      { name: 'TanStack Query', href: '/data-fetching/tanstack-query', desc: 'Powerful async state management' },
+    ],
+  },
+  'Methodologies': {
+    description: 'Development methodologies and frameworks',
+    items: [
+      { name: 'Scrum', href: '/methodologies/scrum', desc: 'Agile project management' },
+    ],
+  },
+  'Developer Tools': {
+    description: 'Essential development and monitoring tools',
+    items: [
+      { name: 'Turborepo', href: '/tools/turborepo', desc: 'High-performance monorepo build system' },
+      { name: 'DataDog', href: '/tools/datadog', desc: 'Monitoring & observability platform' },
+    ],
+  },
+  'Security & Best Practices': {
+    description: 'Security fundamentals and professional skills',
+    items: [
+      { name: '🔒 Frontend Security', href: '/security', desc: 'Essential security practices' },
+      { name: '🎯 Tech Lead Skills', href: '/soft-skills', desc: 'Leadership & soft skills for Tech Leads' },
     ],
   },
 };

@@ -62,6 +62,7 @@ export const NAVIGATION_DATA: NavigationCategory = {
   'State Management': [
     { name: 'Redux Toolkit', href: '/state-management/redux-toolkit' },
     { name: 'Zustand', href: '/state-management/zustand' },
+    { name: 'React Hooks', href: '/state-management/react-hooks' },
   ],
   'React APIs': [
     { name: 'React.createElement', href: '/react-apis/createElement' },
@@ -94,8 +95,119 @@ export const NAVIGATION_DATA: NavigationCategory = {
     { name: 'next/font', href: '/nextjs-apis/font' },
     { name: 'next/config', href: '/nextjs-apis/config' },
   ],
+  'JavaScript': [
+    { name: 'Advanced Features ⭐', href: '/javascript/advanced-features' },
+  ],
   'Guides': [
     { name: 'Redux Toolkit', href: '/guides/state-management/redux-toolkit' },
     { name: 'Zustand', href: '/guides/state-management/zustand' },
+  ],
+  'GraphQL & APIs': [
+    { name: 'GraphQL Basics', href: '/graphql/basics' },
+    { name: 'Apollo Client', href: '/graphql/apollo-client' },
+    { name: 'GraphQL Queries', href: '/graphql/queries' },
+    { name: 'GraphQL Mutations', href: '/graphql/mutations' },
+    { name: 'Webhooks', href: '/apis/webhooks' },
+    { name: 'SOAP', href: '/apis/soap' },
+    { name: 'gRPC', href: '/apis/grpc' },
+  ],
+  'Real-Time': [
+    { name: 'WebSockets', href: '/real-time/websockets' },
+    { name: 'RxJS Observables', href: '/real-time/rxjs' },
+    { name: 'Real-Time UI', href: '/real-time/ui-communication' },
+    { name: 'Event-Driven UI', href: '/real-time/event-driven' },
+  ],
+  'Build Tools': [
+    { name: 'Webpack Basics', href: '/build-tools/webpack' },
+    { name: 'Turbopack', href: '/build-tools/turbopack' },
+    { name: 'SPA Concepts', href: '/build-tools/spa' },
+    { name: 'Performance Optimization', href: '/build-tools/performance' },
+  ],
+  'UI Libraries': [
+    { name: 'AG Grid', href: '/ui-libraries/ag-grid' },
+    { name: 'Storybook', href: '/ui-libraries/storybook' },
+    { name: 'Three.js', href: '/ui-libraries/three' },
+    { name: 'Animate.css', href: '/ui-libraries/animate' },
+    { name: 'PixiJS', href: '/ui-libraries/pixel' },
+  ],
+  'DevOps & Tools': [
+    { name: 'Docker Basics', href: '/devops/docker' },
+    { name: 'Prometheus Monitoring', href: '/devops/prometheus' },
+    { name: 'DataDog', href: '/tools/datadog' },
+    { name: 'Turborepo', href: '/tools/turborepo' },
+  ],
+  'Data Fetching & ORMs': [
+    { name: 'TanStack Query', href: '/data-fetching/tanstack-query' },
+    { name: 'Prisma ORM', href: '/data-fetching/orm-prisma' },
+  ],
+  'Authentication': [
+    { name: 'JWT Authentication', href: '/auth/jwt' },
+  ],
+  'CI/CD': [
+    { name: 'CI/CD Pipelines', href: '/cicd/pipelines' },
+  ],
+  'Cloud': [
+    { name: 'AWS Basics', href: '/cloud/aws' },
+    { name: 'Azure Basics', href: '/cloud/azure' },
+    { name: 'Cloud Architectures', href: '/cloud/architectures' },
+  ],
+  'Data Structures': [
+    { name: 'Basic Structures', href: '/data-structures/basic' },
+    { name: 'Advanced Structures', href: '/data-structures/advanced' },
+  ],
+  'Algorithms': [
+    { name: 'Basic Algorithms', href: '/algorithms/basic' },
+    { name: 'Advanced Algorithms', href: '/algorithms/advanced' },
+    { name: 'Big O Notation', href: '/algorithms/big-o' },
+  ],
+  'Software Design': [
+    { name: 'Design Principles', href: '/design/principles' },
+    { name: 'Accessibility (WCAG)', href: '/design/accessibility' },
+  ],
+  'Progressive Web Apps': [
+    { name: 'PWA Basics', href: '/pwa/basics' },
+  ],
+  'Methodologies': [
+    { name: 'Scrum Framework', href: '/methodologies/scrum' },
+  ],
+  'Testing': [
+    { name: 'TDD', href: '/testing/tdd' },
+    { name: 'Unit Testing', href: '/testing/unit' },
+    { name: 'Integration Testing', href: '/testing/integration' },
+    { name: 'E2E Testing', href: '/testing/e2e' },
+    { name: 'Jest', href: '/testing/jest' },
+    { name: 'Mocha', href: '/testing/mocha' },
+    { name: 'Cypress', href: '/testing/cypress' },
+    { name: 'Karma', href: '/testing/karma' },
+    { name: 'Enzyme', href: '/testing/enzyme' },
+    { name: 'Enzyme + Jest', href: '/testing/enzyme-jest' },
+    { name: 'React Testing Library', href: '/testing/react-testing-library' },
+  ],
+  'Mobile Development': [
+    { name: 'Capacitor.js', href: '/mobile/capacitor' },
+    { name: 'Cordova.js', href: '/mobile/cordova' },
+  ],
+  'TypeScript': [
+    { name: 'TypeScript Basics', href: '/typescript/basics' },
+    { name: 'Advanced TypeScript', href: '/typescript/advanced' },
+    { name: 'Generics', href: '/typescript/generics' },
+    { name: 'Type Guards', href: '/typescript/type-guards' },
+    { name: 'Utility Types', href: '/typescript/utility-types' },
+    { name: 'Mapped Types', href: '/typescript/mapped-types' },
+    { name: 'Conditional Types', href: '/typescript/conditional-types' },
+    { name: 'Decorators', href: '/typescript/decorators' },
+  ],
+  'Security': [
+    { name: 'Frontend Security', href: '/security/frontend' },
+  ],
+  'Validation': [
+    { name: 'Zod Validation', href: '/validation/zod' },
+  ],
+  'Performance': [
+    { name: 'Rate Limiting', href: '/performance/rate-limiting' },
+  ],
+  'Soft Skills': [
+    { name: 'Tech Lead Skills', href: '/soft-skills/tech-lead' },
+    { name: 'Stakeholder Management', href: '/soft-skills/stakeholders' },
   ],
 };
