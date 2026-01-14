@@ -17,6 +17,16 @@ export default function ToolsPage() {
       title: 'DataDog',
       description: 'Monitoreo y observabilidad de aplicaciones',
       href: '/tools/datadog'
+    },
+    {
+      title: 'Documentation Tools',
+      description: 'Herramientas para crear documentación técnica profesional (Docusaurus, VitePress, Nextra, TypeDoc)',
+      href: '/tools/documentation'
+    },
+    {
+      title: 'Artillery',
+      description: 'Load testing y performance testing para APIs, WebSockets y microservicios',
+      href: '/tools/artillery'
     }
   ];
 
