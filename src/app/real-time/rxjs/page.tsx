@@ -9,121 +9,282 @@ export default function RxJSPage() {
     <div className="flex flex-col lg:flex-row min-h-screen">
       <LeftPanel
         title="RxJS con React/Next.js - Guía Completa"
-        description="**RxJS** (Reactive Extensions for JavaScript) es una biblioteca para programación reactiva usando Observables. Permite manejar flujos de datos asíncronos complejos de manera declarativa y componible.
+        description="**RxJS (Reactive Extensions for JavaScript)** es una biblioteca para programación reactiva usando Observables. Permite manejar flujos de datos asíncronos complejos de manera declarativa.
 
-# 📚 Conceptos Fundamentales
 
-**Observable**: Fuente de datos que emite valores a lo largo del tiempo (como un stream)
-**Observer**: Consumidor que reacciona a los valores emitados (next, error, complete)
-**Subscription**: Conexión activa entre Observable y Observer
-**Operators**: Funciones puras que transforman, filtran o combinan Observables
-**Subject**: Observable que también es Observer (puede emitir y suscribirse)
+📚 CONCEPTOS FUNDAMENTALES
 
-# 🎯 ¿Por Qué Usar RxJS con React/Next.js?
+**Observable**
+Fuente de datos que emite valores a lo largo del tiempo (stream). Similar a un array, pero los valores llegan asíncronamente.
 
-## ✅ Beneficios Principales
+**Observer**
+Consumidor que reacciona a valores emitidos. Implementa callbacks: next, error, complete.
+
+**Subscription**
+Conexión activa entre Observable y Observer. Debe hacerse unsubscribe para evitar memory leaks.
+
+**Operators**
+Funciones puras que transforman, filtran o combinan Observables. Se encadenan en pipelines usando pipe().
+
+**Subject**
+Observable que también es Observer. Puede emitir valores y suscribirse a otros Observables.
+
+
+🎯 BENEFICIOS DE RXJS CON REACT
 
 **1. Gestión Compleja de Estado Asíncrono**
+
 - Maneja múltiples streams de datos simultáneos
-- Coordina llamadas API dependientes de forma elegante
+- Coordina llamadas API dependientes elegantemente
 - Gestiona race conditions automáticamente
+- Composición de operaciones asíncronas
 
 **2. Composición Declarativa**
-- Pipelines de transformación legibles
-- Separación de lógica de negocio del UI
+
+- Pipelines de transformación legibles y expresivos
+- Separación clara de lógica de negocio del UI
 - Código más testeable y mantenible
+- Reutilización de operadores
 
 **3. Control Avanzado de Eventos**
-- Debouncing/throttling automático
+
+- Debouncing y throttling automático para inputs
 - Cancelación de requests automática
-- Retry logic y error handling robusto
+- Retry logic robusto con exponential backoff
+- Error handling centralizado y componible
 
-**4. Websockets & Real-time**
-- Integración natural con WebSockets, SSE
-- Backpressure handling
-- Reconnection automática
+**4. WebSockets y Real-time**
 
-**5. Performance**
-- Memory leaks prevention (auto-unsubscribe)
-- Share computations entre suscriptores
-- Lazy evaluation
+- Integración natural con WebSockets y Server-Sent Events
+- Manejo automático de backpressure
+- Reconnection automática con retry configurable
+- Sincronización de múltiples fuentes de datos
 
-## ❌ Desventajas y Consideraciones
+**5. Performance Optimizado**
 
-**1. Curva de Aprendizaje Empinada**
-- 100+ operadores diferentes
+- Prevención de memory leaks con auto-unsubscribe
+- Compartir computations entre múltiples suscriptores
+- Lazy evaluation (solo ejecuta cuando hay suscriptor)
+- Optimización de re-renders en componentes React
+
+
+⚠️ CONSIDERACIONES IMPORTANTES
+
+**Curva de Aprendizaje Pronunciada**
+
+- Más de 100+ operadores diferentes para aprender
 - Conceptos de programación funcional reactiva
-- Debugging complejo (marble diagrams)
+- Debugging complejo que requiere marble diagrams
+- Tiempo de onboarding significativo para nuevos desarrolladores
 
-**2. Bundle Size**
-- ~50KB minified (mitigable con tree-shaking)
+**Bundle Size**
+
+- Aproximadamente 50KB minified
+- Mitigable con tree-shaking en webpack/vite
 - Alternativas más ligeras: most.js, xstream
 
-**3. Over-engineering**
-- Para casos simples, useState/useEffect son suficientes
+**Riesgo de Over-engineering**
+
+- Para casos simples, useState y useEffect son suficientes
 - No todo necesita ser un Observable
+- Agregar complejidad innecesaria dificulta mantenimiento
+- Evalúa si el problema justifica usar RxJS
 
-**4. Integración con React**
-- Requiere hooks personalizados
-- No es nativo de React (diferente a useState)
+**Integración con React**
+
+- Requiere crear hooks personalizados
+- No es nativo de React (filosofía diferente a useState)
 - Puede causar re-renders innecesarios si no se optimiza
+- Necesita manejo cuidadoso del lifecycle de componentes
 
-**5. TypeScript Complexity**
-- Tipos genéricos complejos
-- Inferencia a veces falla
 
-# 📍 ¿Cuándo Usar RxJS?
+📍 CUÁNDO USAR RXJS
 
-## ✅ USA RxJS Cuando:
+✅ USA RXJS PARA:
 
-- **Autocomplete/Search**: Debouncing + cancelación + orden de respuestas
-- **Drag & Drop**: Múltiples eventos del mouse coordinados
-- **Real-time Dashboards**: WebSocket + polling + transformaciones
-- **Form Validation**: Validación asíncrona con dependencias
-- **Infinite Scroll**: Combinando scroll events + API calls
-- **Chat Applications**: Mensajes en tiempo real + presence
-- **Multiplayer Games**: Estado sincronizado + predicción
-- **Data Synchronization**: Offline-first con retry logic
+**Autocomplete y Search Avanzado**
+- Debouncing de inputs del usuario
+- Cancelación automática de requests anteriores
+- Manejo correcto del orden de respuestas
+- Evita race conditions
 
-## ❌ NO Uses RxJS Cuando:
+**Drag and Drop Complejo**
+- Coordinación de múltiples eventos del mouse
+- Cálculos en tiempo real de posición
+- Gestión de estado durante el drag
+- Composición de eventos touchstart, mousemove, etc
 
-- Simple fetch de datos (usa SWR, React Query, o fetch)
-- Formularios básicos (Formik, React Hook Form)
-- Eventos simples onClick (event handlers normales)
-- Proyectos pequeños sin complejidad asíncrona
-- Tu equipo no está familiarizado con RxJS
+**Dashboards en Tiempo Real**
+- Combinación de WebSocket más polling
+- Transformaciones y agregaciones de datos
+- Actualización reactiva del UI
+- Manejo de múltiples fuentes simultáneas
 
-# 🔄 RxJS vs Alternativas en React/Next.js
+**Validación de Formularios Compleja**
+- Validación asíncrona con dependencias entre campos
+- Validación cross-field
+- Feedback en tiempo real mientras se escribe
+- Debouncing de validaciones costosas
 
-**RxJS vs React Query/SWR**:
-- RxJS: Control total, múltiples fuentes, transformaciones complejas
-- React Query: Cache automático, revalidación, mejor DX para REST APIs
+**Infinite Scroll**
+- Combinación de scroll events más API calls
+- Debouncing y throttling configurables
+- Manejo automático de loading states
+- Cancelación de requests al scrollear rápido
 
-**RxJS vs Zustand/Redux**:
-- RxJS: Streams asíncronos, eventos temporales
-- Zustand/Redux: Estado global sincrónico
+**Aplicaciones de Chat**
+- Mensajes en tiempo real vía WebSocket
+- Presence indicators (usuarios online/offline)
+- Typing indicators mientras se escribe
+- Sincronización de estado
 
-**RxJS vs Promises/Async-Await**:
-- RxJS: Múltiples valores, cancelable, composición
-- Promises: Un solo valor, no cancelable, más simple
+**Sincronización de Datos**
+- Aplicaciones offline-first
+- Retry logic con exponential backoff
+- Conflict resolution automático
+- Queue de operaciones pendientes
 
-# 🏗️ Patrones en Next.js
 
-**Server Components**: No uses RxJS (no hay cliente)
-**Client Components**: Perfecto para lógica compleja
-**API Routes**: Útil para agregar múltiples fuentes
-**Middleware**: No recomendado (edge runtime limitado)
-**App Router**: Compatible, pero prefiere Server Actions para mutaciones simples
+❌ NO USES RXJS PARA:
 
-# 💡 Mejores Prácticas
+**Simple Fetch de Datos**
+- Usa SWR o React Query en su lugar
+- Mejor DX para REST APIs simples
+- Cache automático y sincronización incluidos
+- Menos boilerplate
 
-1. **Usa hooks personalizados**: Encapsula lógica RxJS
-2. **Cleanup automático**: Retorna unsubscribe en useEffect
-3. **ShareReplay**: Evita requests duplicados
-4. **TakeUntil**: Cancela al desmontar componente
-5. **Avoid nested subscriptions**: Usa operators (switchMap, mergeMap)
-6. **TypeScript**: Define tipos de tus Observables
-7. **Testing**: Usa TestScheduler para tests determinísticos"
+**Formularios Básicos**
+- Formik o React Hook Form son mejores opciones
+- Menos código para casos comunes
+- Validación más simple y directa
+- Mejor integración con React
+
+**Eventos Simples onClick**
+- Event handlers normales de React son suficientes
+- No requiere la complejidad de Observables
+- Más directo y fácil de entender
+
+**Proyectos Pequeños**
+- Sin complejidad asíncrona significativa
+- Overhead no justificado
+- Mantenimiento más simple sin RxJS
+- Menor tamaño de bundle
+
+**Equipo Sin Experiencia**
+- Si tu equipo no conoce RxJS
+- Curva de aprendizaje afecta productividad inicial
+- Considera alternativas más simples primero
+- Invierte tiempo en capacitación si decides usarlo
+
+
+🔄 RXJS VS ALTERNATIVAS
+
+**RxJS vs React Query / SWR**
+
+RxJS:
+- Control total sobre el flujo de datos
+- Múltiples fuentes de datos combinadas
+- Transformaciones complejas con operadores
+- Mayor complejidad y curva de aprendizaje
+
+React Query / SWR:
+- Cache automático y sincronización
+- Mejor DX para REST APIs simples
+- Revalidación automática
+- Menor boilerplate y más rápido de implementar
+
+
+**RxJS vs Zustand / Redux**
+
+RxJS:
+- Perfecto para streams asíncronos y eventos temporales
+- No es state management per se
+- Manejo de flujos de datos reactivos
+- Composición de operaciones asíncronas
+
+Zustand / Redux:
+- Estado global sincrónico
+- Actualizaciones predecibles
+- DevTools para debugging
+- Arquitectura clara de estado
+
+
+**RxJS vs Promises / Async-Await**
+
+RxJS:
+- Múltiples valores a lo largo del tiempo
+- Cancelable (importante para cleanup)
+- Composición rica con operadores
+- Lazy evaluation
+
+Promises / Async-Await:
+- Un solo valor (resolve una vez)
+- No cancelable
+- Sintaxis más simple y familiar
+- Eager evaluation
+
+
+🏗️ PATRONES EN NEXT.JS
+
+**Server Components** ❌
+No uses RxJS aquí. No hay código cliente ni interactividad. Los Observables requieren runtime del navegador.
+
+**Client Components** ✅
+Perfecto para lógica compleja. Usa hooks personalizados para encapsular. Ideal para manejo de eventos y estado asíncrono.
+
+**API Routes** 🟡
+Útil para agregar múltiples fuentes. Combinar datos de diferentes APIs. Transformaciones complejas antes de responder.
+
+**Middleware** ❌
+No recomendado. Edge runtime tiene limitaciones. Mejor usar lógica simple y directa.
+
+**App Router** ✅
+Compatible y funciona bien. Prefiere Server Actions para mutaciones simples. Usa RxJS en Client Components para lógica compleja.
+
+
+💡 MEJORES PRÁCTICAS
+
+**1. Encapsula en Hooks Personalizados**
+- Crea hooks reutilizables que encapsulen lógica RxJS
+- Separa concerns y mejora testability
+- Hace el código más limpio y mantenible
+- Facilita testing unitario
+
+**2. Cleanup Automático Siempre**
+- Retorna unsubscribe en useEffect sin falta
+- Evita memory leaks críticos
+- Usa takeUntil para cancelar automáticamente
+- Patrón destroy$ subject recomendado
+
+**3. ShareReplay para Evitar Duplicados**
+- Comparte resultados entre múltiples suscriptores
+- Evita requests HTTP duplicados e innecesarios
+- Mejora performance significativamente
+- Especialmente útil para datos que no cambian
+
+**4. TakeUntil al Desmontar Componente**
+- Cancela streams cuando el componente se desmonta
+- Patrón común con un Subject de destroy
+- Previene actualizaciones de estado en componentes desmontados
+- Evita errores y warnings en consola
+
+**5. Evita Nested Subscriptions**
+- Usa operadores como switchMap, mergeMap, concatMap
+- Código más plano y legible
+- Mejor manejo de errores
+- Performance mejorado
+
+**6. TypeScript Siempre**
+- Define tipos explícitos para tus Observables
+- Mejor autocomplete y detección de errores
+- Documentación implícita del código
+- Refactoring más seguro
+
+**7. Testing con TestScheduler**
+- Usa TestScheduler para tests determinísticos
+- Marble testing para flujos complejos
+- Tests más rápidos y confiables
+- Debugging más fácil de flujos asíncronos"
         codeContent={[
           {
             filePath: 'rxjs/1-basic-observable.ts',
