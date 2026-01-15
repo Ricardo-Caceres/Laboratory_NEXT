@@ -9,16 +9,40 @@ export const metadata: Metadata = {
 export default function SoftSkillsPage() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-4xl font-bold mb-4">Tech Lead Skills</h1>
-        <p className="text-lg" style={{ color: 'var(--foreground)' }}>
-          Habilidades universales que todo Tech Lead debe dominar - técnicas, sociales y de liderazgo.
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="text-5xl">🎯</span>
+          <h1 className="text-4xl font-bold">Tech Lead Skills</h1>
+        </div>
+        <p className="text-lg leading-relaxed max-w-3xl" style={{ color: 'var(--foreground)', opacity: 0.9 }}>
+          Habilidades técnicas, sociales y de liderazgo que todo Tech Lead debe dominar 
+          para guiar equipos hacia la excelencia técnica y construir productos de clase mundial.
         </p>
+        <div className="flex gap-3 flex-wrap">
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            💻 Technical Excellence
+          </span>
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            👥 Team Leadership
+          </span>
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            🗣️ Communication
+          </span>
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            📊 Project Management
+          </span>
+        </div>
       </div>
 
       <section className="space-y-6">
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Habilidades Técnicas</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid var(--primary)' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">💻</span>
+            <h2 className="text-2xl font-bold">Habilidades Técnicas</h2>
+          </div>
+          <p className="mb-4 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+            Competencias técnicas esenciales para liderar arquitectura y decisiones tecnológicas
+          </p>
           
           <div className="space-y-4">
             <div>
@@ -67,8 +91,14 @@ export default function SoftSkillsPage() {
           </div>
         </div>
 
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Habilidades de Liderazgo</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #10b981' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">👥</span>
+            <h2 className="text-2xl font-bold">Habilidades de Liderazgo</h2>
+          </div>
+          <p className="mb-4 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+            Capacidades para inspirar, desarrollar y empoderar equipos de alto rendimiento
+          </p>
           
           <div className="space-y-4">
             <div>
@@ -138,8 +168,14 @@ Preguntas clave:
           </div>
         </div>
 
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Comunicación Efectiva</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #f59e0b' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🗣️</span>
+            <h2 className="text-2xl font-bold">Comunicación Efectiva</h2>
+          </div>
+          <p className="mb-4 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+            Habilidades para comunicar ideas técnicas de forma clara a diferentes audiencias
+          </p>
           
           <div className="space-y-4">
             <div>
@@ -201,8 +237,14 @@ Preguntas clave:
           </div>
         </div>
 
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Gestión de Proyectos</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #8b5cf6' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">📊</span>
+            <h2 className="text-2xl font-bold">Gestión de Proyectos</h2>
+          </div>
+          <p className="mb-4 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+            Metodologías y técnicas para entregar proyectos exitosos en tiempo y forma
+          </p>
           
           <div className="space-y-4">
             <div>

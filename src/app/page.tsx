@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const sections = {
   'React Hooks': {
-    description: 'Comprehensive guides for all React Hooks with live examples',
+    description: '🪝 Guías completas de todos los React Hooks con ejemplos en vivo y patrones reutilizables',
     items: [
       { name: '📚 Complete Hook Guide', href: '/hooks/react-hooks', desc: 'All React Hooks + Custom Patterns' },
       { name: 'useState', href: '/hooks/useState', desc: 'State management in functional components' },
@@ -24,7 +24,7 @@ const sections = {
     ],
   },
   'Design Patterns': {
-    description: 'Common React design patterns and best practices',
+    description: '🎨 Patrones de diseño esenciales de React y mejores prácticas para código escalable',
     items: [
       { name: 'Compound Components', href: '/patterns/compound-components', desc: 'Flexible component composition' },
       { name: 'Higher-Order Component', href: '/patterns/higher-order-component', desc: 'Component enhancement' },
@@ -50,7 +50,7 @@ const sections = {
     ],
   },
   'Architectures': {
-    description: 'Modern frontend architecture patterns',
+    description: '🏗️ Arquitecturas modernas de frontend para aplicaciones empresariales robustas',
     items: [
       { name: 'Atomic Design', href: '/architectures/atomic-design', desc: 'Component hierarchy system' },
       { name: 'Feature-Sliced Design', href: '/architectures/feature-sliced-design', desc: 'Architecture by features' },
@@ -63,14 +63,14 @@ const sections = {
     ],
   },
   'State Management': {
-    description: 'State management solutions and examples',
+    description: '📦 Soluciones profesionales de gestión de estado con Redux Toolkit y Zustand',
     items: [
       { name: 'Redux Toolkit', href: '/state-management/redux-toolkit', desc: 'Modern Redux with toolkit' },
       { name: 'Zustand', href: '/state-management/zustand', desc: 'Simple and scalable state' },
     ],
   },
   'React APIs': {
-    description: 'Core React API references with examples',
+    description: '⚛️ Referencias completas de APIs core de React con ejemplos prácticos',
     items: [
       { name: 'React.createElement', href: '/react-apis/createElement', desc: 'Create React elements' },
       { name: 'React.Children', href: '/react-apis/Children', desc: 'Manipulate children' },
@@ -91,7 +91,7 @@ const sections = {
     ],
   },
   'Next.js APIs': {
-    description: 'Next.js specific APIs and features',
+    description: '▲ APIs específicas de Next.js para aplicaciones full-stack optimizadas',
     items: [
       { name: 'next/link', href: '/nextjs-apis/link', desc: 'Client-side navigation' },
       { name: 'next/router', href: '/nextjs-apis/router', desc: 'Routing utilities' },
@@ -107,13 +107,13 @@ const sections = {
     ],
   },
   'Advanced JavaScript': {
-    description: 'Advanced JavaScript features that make you stand out',
+    description: '⚡ Features avanzadas de JavaScript que te diferencian como desarrollador elite',
     items: [
       { name: '⭐ Elite JS Features', href: '/javascript/advanced-features', desc: 'Advanced features rarely taught in courses' },
     ],
   },
   'Testing': {
-    description: 'Testing frameworks and methodologies',
+    description: '🧪 Frameworks y metodologías de testing para aplicaciones robustas y confiables',
     items: [
       { name: 'Jest', href: '/testing/jest', desc: 'Zero-config testing framework' },
       { name: 'Mocha', href: '/testing/mocha', desc: 'Flexible testing framework' },
@@ -126,7 +126,7 @@ const sections = {
     ],
   },
   'UI Libraries': {
-    description: 'Modern UI and animation libraries',
+    description: '✨ Bibliotecas modernas de UI y animación para experiencias visuales impactantes',
     items: [
       { name: 'Three.js', href: '/ui-libraries/three', desc: '3D graphics with WebGL' },
       { name: 'Animation Libraries', href: '/ui-libraries/animate', desc: 'Framer Motion, GSAP, Anime.js' },
@@ -136,7 +136,7 @@ const sections = {
     ],
   },
   'GraphQL & Real-Time': {
-    description: 'GraphQL, WebSockets, and real-time communication',
+    description: '🔄 GraphQL, WebSockets y comunicación en tiempo real para apps interactivas',
     items: [
       { name: 'GraphQL Basics', href: '/graphql/basics', desc: 'GraphQL fundamentals' },
       { name: 'Apollo Client', href: '/graphql/apollo-client', desc: 'GraphQL client for React' },
@@ -147,7 +147,7 @@ const sections = {
     ],
   },
   'Build Tools & Performance': {
-    description: 'Build tools and performance optimization',
+    description: '⚙️ Herramientas de build y técnicas de optimización para máximo rendimiento',
     items: [
       { name: 'Webpack', href: '/build-tools/webpack', desc: 'Module bundler configuration' },
       { name: 'Turbopack', href: '/build-tools/turbopack', desc: 'Next-gen bundler by Vercel' },
@@ -156,7 +156,7 @@ const sections = {
     ],
   },
   'Data Structures & Algorithms': {
-    description: 'Computer science fundamentals',
+    description: '📊 Fundamentos de ciencias de la computación esenciales para interviews técnicas',
     items: [
       { name: 'Basic Data Structures', href: '/data-structures/basic', desc: 'Arrays, Objects, Sets, Maps' },
       { name: 'Advanced Data Structures', href: '/data-structures/advanced', desc: 'Trees, Graphs, Heaps' },
@@ -166,7 +166,7 @@ const sections = {
     ],
   },
   'DevOps & Cloud': {
-    description: 'CI/CD, cloud platforms, and infrastructure',
+    description: '☁️ CI/CD, plataformas cloud e infraestructura como código para deploys modernos',
     items: [
       { name: 'CI/CD Pipelines', href: '/cicd/pipelines', desc: 'Continuous integration & deployment' },
       { name: 'Docker', href: '/devops/docker', desc: 'Containerization' },
@@ -177,7 +177,7 @@ const sections = {
     ],
   },
   'API Protocols': {
-    description: 'Modern API communication protocols',
+    description: '🌐 Protocolos modernos de comunicación API para sistemas distribuidos',
     items: [
       { name: 'Webhooks', href: '/apis/webhooks', desc: 'Event-driven HTTP callbacks' },
       { name: 'SOAP', href: '/apis/soap', desc: 'XML-based messaging protocol' },
@@ -185,7 +185,7 @@ const sections = {
     ],
   },
   'Mobile Development': {
-    description: 'Cross-platform mobile development',
+    description: '📱 Desarrollo móvil cross-platform con tecnologías web modernas',
     items: [
       { name: 'Capacitor.js', href: '/mobile/capacitor', desc: 'Native mobile with web tech' },
       { name: 'Cordova.js', href: '/mobile/cordova', desc: 'Hybrid mobile apps' },
@@ -193,33 +193,33 @@ const sections = {
     ],
   },
   'Authentication & Validation': {
-    description: 'Security and data validation',
+    description: '🔐 Seguridad y validación de datos con las mejores prácticas de la industria',
     items: [
       { name: 'JWT Authentication', href: '/auth/jwt', desc: 'JSON Web Tokens' },
       { name: 'Zod Validation', href: '/validation/zod', desc: 'TypeScript-first schema validation' },
     ],
   },
   'Data Fetching': {
-    description: 'Modern data fetching libraries',
+    description: '🔄 Bibliotecas modernas de data fetching con caching inteligente y sincronización',
     items: [
       { name: 'TanStack Query', href: '/data-fetching/tanstack-query', desc: 'Powerful async state management' },
     ],
   },
   'Methodologies': {
-    description: 'Development methodologies and frameworks',
+    description: '📋 Metodologías ágiles y frameworks de desarrollo para equipos de alto rendimiento',
     items: [
       { name: 'Scrum', href: '/methodologies/scrum', desc: 'Agile project management' },
     ],
   },
   'Developer Tools': {
-    description: 'Essential development and monitoring tools',
+    description: '🛠️ Herramientas esenciales de desarrollo y monitoreo para productividad máxima',
     items: [
       { name: 'Turborepo', href: '/tools/turborepo', desc: 'High-performance monorepo build system' },
       { name: 'DataDog', href: '/tools/datadog', desc: 'Monitoring & observability platform' },
     ],
   },
   'Security & Best Practices': {
-    description: 'Security fundamentals and professional skills',
+    description: '🛡️ Fundamentos de seguridad y habilidades profesionales para líderes técnicos',
     items: [
       { name: '🔒 Frontend Security', href: '/security', desc: 'Essential security practices' },
       { name: '🎯 Tech Lead Skills', href: '/soft-skills', desc: 'Leadership & soft skills for Tech Leads' },
@@ -236,8 +236,9 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
             DevKit Laboratory
           </h1>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto">
-            Comprehensive examples and guides for React Hooks, Design Patterns, Architectures, and Next.js APIs
+          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Guías completas y ejemplos en vivo de React Hooks, Patrones de Diseño, Arquitecturas 
+            y APIs de Next.js. Todo lo que necesitas para dominar el desarrollo frontend moderno.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 text-cyan-800">
@@ -258,9 +259,9 @@ export default function Home() {
         {/* Sections */}
         {Object.entries(sections).map(([sectionName, section]) => (
           <div key={sectionName} className="mb-12">
-            <div className="mb-6">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">{sectionName}</h2>
-              <p className="text-slate-600">{section.description}</p>
+            <div className="mb-6 space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">{sectionName}</h2>
+              <p className="text-slate-600 text-base leading-relaxed max-w-4xl">{section.description}</p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -268,12 +269,12 @@ export default function Home() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group block p-5 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-slate-200 hover:border-cyan-500"
+                  className="group block p-5 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-slate-200 hover:border-cyan-500 hover:scale-[1.02]"
                 >
-                  <h3 className="font-semibold text-slate-900 group-hover:text-cyan-600 transition-colors mb-1 text-sm sm:text-base">
+                  <h3 className="font-semibold text-slate-900 group-hover:text-cyan-600 transition-colors mb-2 text-sm sm:text-base">
                     {item.name}
                   </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm line-clamp-2">
+                  <p className="text-slate-600 text-xs sm:text-sm line-clamp-2 leading-relaxed">
                     {item.desc}
                   </p>
                 </Link>
@@ -284,8 +285,8 @@ export default function Home() {
 
         {/* Footer */}
         <div className="mt-16 text-center text-slate-600 text-sm border-t border-slate-200 pt-8">
-          <p>Built with React 19, Next.js 15, and Tailwind CSS 4</p>
-          <p className="mt-2">All examples include live demos and source code</p>
+          <p className="font-medium">Built with React 19, Next.js 15, and Tailwind CSS 4</p>
+          <p className="mt-2">✨ Todos los ejemplos incluyen demos en vivo y código fuente documentado</p>
         </div>
       </div>
     </div>

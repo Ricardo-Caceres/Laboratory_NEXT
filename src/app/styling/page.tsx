@@ -238,11 +238,12 @@ utilities/ → Helpers
   return (
     <div className="min-h-screen" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
       <div className="max-w-7xl mx-auto p-6">
-        <h1 className="text-4xl font-bold mb-2" style={{ color: 'var(--primary)' }}>
+        <h1 className="text-4xl font-bold mb-3" style={{ color: 'var(--primary)' }}>
           🎨 CSS/SCSS Architecture & Modern Styling
         </h1>
-        <p className="text-lg mb-6" style={{ opacity: 0.8 }}>
-          Estrategias, paradigmas y arquitecturas CSS modernas
+        <p className="text-lg mb-6 max-w-3xl leading-relaxed" style={{ opacity: 0.9 }}>
+          Domina estrategias, paradigmas y arquitecturas CSS modernas. Desde metodologías probadas 
+          hasta soluciones de última generación para aplicaciones escalables.
         </p>
 
         <div className="flex gap-2 mb-6 border-b" style={{ borderColor: 'var(--border)' }}>

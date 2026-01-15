@@ -9,19 +9,45 @@ export const metadata: Metadata = {
 export default function SecurityPage() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-4xl font-bold mb-4">Frontend Security</h1>
-        <p className="text-lg" style={{ color: 'var(--foreground)' }}>
-          Prácticas de seguridad fundamentales que todo desarrollador frontend debe conocer.
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="text-5xl">🔒</span>
+          <h1 className="text-4xl font-bold">Frontend Security</h1>
+        </div>
+        <p className="text-lg leading-relaxed max-w-3xl" style={{ color: 'var(--foreground)', opacity: 0.9 }}>
+          Domina las prácticas de seguridad fundamentales que todo desarrollador frontend debe conocer 
+          para proteger aplicaciones y datos de usuarios contra vulnerabilidades comunes.
         </p>
+        <div className="flex gap-4 flex-wrap">
+          <span className="px-3 py-1 rounded-full text-sm" style={{ background: 'var(--primary)', color: 'var(--background)' }}>
+            🛡️ XSS Protection
+          </span>
+          <span className="px-3 py-1 rounded-full text-sm" style={{ background: 'var(--primary)', color: 'var(--background)' }}>
+            🔐 Auth Best Practices
+          </span>
+          <span className="px-3 py-1 rounded-full text-sm" style={{ background: 'var(--primary)', color: 'var(--background)' }}>
+            ⚡ CSP Headers
+          </span>
+        </div>
       </div>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Vulnerabilidades Comunes</h2>
+      <section className="space-y-6">
+        <div className="space-y-2">
+          <h2 className="text-3xl font-bold">Vulnerabilidades Comunes</h2>
+          <p style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+            Aprende a identificar, prevenir y mitigar las amenazas más críticas en desarrollo frontend
+          </p>
+        </div>
         
         <div className="space-y-4">
-          <div style={{ background: 'var(--panel)', padding: '1rem', borderRadius: '0.5rem' }}>
-            <h3 className="font-bold mb-2">1. XSS (Cross-Site Scripting)</h3>
+          <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #ef4444' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">⚠️</span>
+              <h3 className="text-xl font-bold">1. XSS (Cross-Site Scripting)</h3>
+            </div>
+            <p className="mb-3 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+              Inyección de scripts maliciosos en páginas web confiables
+            </p>
             <pre style={{ background: 'var(--background)', padding: '1rem', borderRadius: '0.25rem', overflow: 'auto' }}>
 {`// ❌ VULNERABLE
 function UserComment({ comment }) {
@@ -49,8 +75,14 @@ const data = JSON.parse(userInput);`}
             </pre>
           </div>
 
-          <div style={{ background: 'var(--panel)', padding: '1rem', borderRadius: '0.5rem' }}>
-            <h3 className="font-bold mb-2">2. CSRF (Cross-Site Request Forgery)</h3>
+          <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #f59e0b' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">🔄</span>
+              <h3 className="text-xl font-bold">2. CSRF (Cross-Site Request Forgery)</h3>
+            </div>
+            <p className="mb-3 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+              Ataques que fuerzan acciones no autorizadas en aplicaciones autenticadas
+            </p>
             <pre style={{ background: 'var(--background)', padding: '1rem', borderRadius: '0.25rem', overflow: 'auto' }}>
 {`// ✅ Usar CSRF tokens
 async function deleteAccount() {
@@ -76,8 +108,14 @@ if (request.headers.origin !== 'https://yourdomain.com') {
             </pre>
           </div>
 
-          <div style={{ background: 'var(--panel)', padding: '1rem', borderRadius: '0.5rem' }}>
-            <h3 className="font-bold mb-2">3. Inyección de Código</h3>
+          <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #8b5cf6' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">💉</span>
+              <h3 className="text-xl font-bold">3. Inyección de Código</h3>
+            </div>
+            <p className="mb-3 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+              Inserción de código malicioso en consultas o comandos del sistema
+            </p>
             <pre style={{ background: 'var(--background)', padding: '1rem', borderRadius: '0.25rem', overflow: 'auto' }}>
 {`// ❌ VULNERABLE - SQL Injection
 const query = \`SELECT * FROM users WHERE id = \${userId}\`;
@@ -97,8 +135,14 @@ if (!/^[a-zA-Z0-9-]+$/.test(safeRepo)) {
             </pre>
           </div>
 
-          <div style={{ background: 'var(--panel)', padding: '1rem', borderRadius: '0.5rem' }}>
-            <h3 className="font-bold mb-2">4. Autenticación Segura</h3>
+          <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #10b981' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">🔐</span>
+              <h3 className="text-xl font-bold">4. Autenticación Segura</h3>
+            </div>
+            <p className="mb-3 text-sm" style={{ color: 'var(--foreground)', opacity: 0.8 }}>
+              Mejores prácticas para manejo seguro de credenciales y tokens
+            </p>
             <pre style={{ background: 'var(--background)', padding: '1rem', borderRadius: '0.25rem', overflow: 'auto' }}>
 {`// ❌ NUNCA almacenar passwords en localStorage
 localStorage.setItem('password', password); // ❌

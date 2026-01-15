@@ -3,30 +3,51 @@ import Link from 'next/link';
 export default function TypeScriptPage() {
   return (
     <div className="min-h-screen p-8" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
-      <h1 className="text-4xl font-bold mb-6">TypeScript: De Básico a Elite</h1>
+      <div className="space-y-4 mb-8">
+        <div className="flex items-center gap-3">
+          <span className="text-5xl">📘</span>
+          <h1 className="text-4xl font-bold">TypeScript: De Básico a Elite</h1>
+        </div>
+        <p className="text-lg leading-relaxed max-w-3xl" style={{ opacity: 0.9 }}>
+          Domina TypeScript desde fundamentos hasta patrones avanzados. Aprende a escribir 
+          código type-safe, escalable y mantenible con el superset de JavaScript más popular.
+        </p>
+      </div>
       
       <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         <Link 
           href="/typescript/basics"
-          className="p-6 rounded-lg"
+          className="p-6 rounded-lg transition-all hover:translate-x-1"
           style={{ background: 'var(--panel)', border: '2px solid var(--border)' }}
         >
-          <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--primary)' }}>TypeScript Basics</h3>
-          <p>Fundamentos: tipos primitivos, interfaces, clases, type guards</p>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-2xl">📚</span>
+            <h3 className="text-xl font-bold" style={{ color: 'var(--primary)' }}>TypeScript Basics</h3>
+          </div>
+          <p style={{ opacity: 0.9 }}>Fundamentos esenciales: tipos primitivos, interfaces, clases y type guards</p>
         </Link>
         
         <Link 
           href="/typescript/advanced"
-          className="p-6 rounded-lg"
+          className="p-6 rounded-lg transition-all hover:translate-x-1"
           style={{ background: 'var(--panel)', border: '2px solid var(--border)' }}
         >
-          <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--primary)' }}>TypeScript Advanced</h3>
-          <p>Generics, conditional types, mapped types, template literals</p>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-2xl">🚀</span>
+            <h3 className="text-xl font-bold" style={{ color: 'var(--primary)' }}>TypeScript Advanced</h3>
+          </div>
+          <p style={{ opacity: 0.9 }}>Patrones avanzados: generics, conditional types, mapped types y template literals</p>
         </Link>
       </div>
       
-      <section className="mb-8 p-6 rounded-lg" style={{ background: 'var(--panel)' }}>
-        <h2 className="text-2xl font-semibold mb-4" style={{ color: 'var(--primary)' }}>1. Tipos Básicos y Anotaciones</h2>
+      <section className="mb-8 p-6 rounded-lg" style={{ background: 'var(--panel)', borderLeft: '4px solid var(--primary)' }}>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-2xl">🎯</span>
+          <h2 className="text-2xl font-semibold" style={{ color: 'var(--primary)' }}>1. Tipos Básicos y Anotaciones</h2>
+        </div>
+        <p className="mb-3 text-sm" style={{ opacity: 0.8 }}>
+          Fundamentos del sistema de tipos: primitivos, arrays, tuples y enums
+        </p>
         <pre className="p-4 rounded text-sm overflow-x-auto" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
 {`// Tipos primitivos
 let name: string = "John";
