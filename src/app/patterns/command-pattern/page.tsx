@@ -1,91 +1,303 @@
+import { LeftPanel } from '@/components/layout/LeftPanel';
+import { RightPanel } from '@/components/layout/RightPanel';
+
 export default function CommandPatternPage() {
   return (
-    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-8rem)]">
-      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-4 sm:p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">Command Pattern</h1>
-          <div className="text-sm sm:text-base text-gray-300 space-y-4">
-            <p>
-              <strong className="text-cyan-400">Command Pattern</strong> encapsula una solicitud como un objeto, permitiendo parametrizar clientes con diferentes solicitudes, encolar solicitudes y soportar operaciones reversibles (undo/redo).
-            </p>
-            
-            <div className="bg-slate-700/50 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-white mb-2">Características principales:</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-300">
-                <li>Desacopla emisor de receptor</li>
-                <li>Soporta operaciones undo/redo</li>
-                <li>Permite encolar y registrar comandos</li>
-                <li>Facilita crear macros de comandos</li>
-              </ul>
-            </div>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <LeftPanel
+        title="Command Pattern"
+        description="⚡ **Command Pattern** - Encapsula acciones como objetos ejecutables
 
-            <div className="bg-slate-700/50 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-white mb-2">Casos de uso:</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-300">
-                <li>Sistemas de undo/redo en editores</li>
-                <li>Gestión de transacciones</li>
-                <li>Sistemas de cola de tareas</li>
-                <li>Event sourcing y CQRS</li>
-                <li>Redux actions en React</li>
-              </ul>
-            </div>
+El Command Pattern es un patrón comportamental GoF que convierte solicitudes en objetos independientes con toda la información necesaria. Es el fundamento de sistemas undo/redo, transacciones, event sourcing y Redux.
 
-            <div className="bg-orange-900/30 p-4 rounded-lg border border-orange-700">
-              <p className="text-orange-200 text-sm">
-                <strong>Ejemplo:</strong> En Redux, las actions son comandos que encapsulan cambios de estado. El dispatcher ejecuta estos comandos y el reducer actualiza el estado.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-gradient-to-br from-orange-50 via-white to-amber-50 p-6">
-        <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
-          <div className="text-center mb-6">
-            <div className="inline-block p-3 bg-orange-100 rounded-full mb-4">
-              <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Command Pattern</h2>
-            <p className="text-gray-600">Encapsulate requests as objects</p>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <p className="text-sm text-gray-700 mb-3">
-                El patrón Command transforma solicitudes en objetos independientes con toda la información necesaria.
-              </p>
-              <div className="bg-white rounded p-3 font-mono text-xs overflow-x-auto border border-gray-300">
-                <pre className="text-gray-800">{`// Command Interface
-class Command {
-  execute() {}
-  undo() {}
+**🎯 ¿Cuándo usarlo?**
+- Implementar **undo/redo** en editores o aplicaciones
+- Crear **sistemas de transacciones** reversibles
+- Implementar **cola de tareas** o job queues
+- Arquitecturas **Event Sourcing** y **CQRS**
+- **Redux actions** en aplicaciones React
+- **Macros** que ejecutan secuencias de operaciones
+
+**🔑 Conceptos Clave:**
+- **Command**: Interfaz con método <code>execute()</code> y <code>undo()</code>
+- **ConcreteCommand**: Implementación específica del comando
+- **Invoker**: Ejecuta comandos sin conocer detalles
+- **Receiver**: Objeto que realiza la acción real
+- **Client**: Crea comandos y los asocia a invokers
+
+**✅ Ventajas:**
+- 🔄 **Undo/Redo**: Fácil implementar reversión de operaciones
+- 🔓 **Open/Closed**: Nuevos comandos sin modificar código existente
+- 📝 **Logging**: Registra historial de comandos ejecutados
+- 📦 **Queuing**: Cola comandos para ejecución async
+- 🧪 **Testeable**: Fácil testear comandos de forma aislada
+
+**📐 Estructura:**
+\`\`\`typescript
+interface Command {
+  execute(): void;
+  undo(): void;
+}
+
+class ConcreteCommand implements Command {
+  constructor(private receiver: Receiver) {}
+  
+  execute() {
+    this.receiver.action();
+  }
+  
+  undo() {
+    this.receiver.reverseAction();
+  }
+}
+
+class Invoker {
+  private history: Command[] = [];
+  
+  executeCommand(cmd: Command) {
+    cmd.execute();
+    this.history.push(cmd);
+  }
+  
+  undo() {
+    this.history.pop()?.undo();
+  }
+}
+\`\`\`
+
+**💡 Casos de Uso Reales:**
+- **Photoshop/Figma**: Cada operación (resize, rotate, color) es un Command
+- **Git**: Commits son Commands, revert es undo
+- **Redux**: Actions son Commands, reducers son Receivers
+- **VS Code**: Multi-cursor edits son Commands ejecutados en batch
+- **Database**: Transacciones como Commands ejecutables/reversibles
+
+**🆚 Command vs Strategy:**
+- **Command**: Encapsula operaciones con undo/redo
+- **Strategy**: Intercambia algoritmos sin undo
+
+**Ejemplo del código:**
+Sistema de undo/redo para un editor de texto con comandos <code>InsertText</code>, <code>DeleteText</code>, y <code>ReplaceText</code>."
+        codeContent={[
+          {
+            filePath: 'patterns/command-undo-redo.ts',
+            content: `// ✅ Command Pattern: Undo/Redo System
+interface Command {
+  execute(): void;
+  undo(): void;
+}
+
+// Text Editor Receiver
+class TextEditor {
+  private content = '';
+  
+  insert(text: string, position: number) {
+    this.content = 
+      this.content.slice(0, position) + 
+      text + 
+      this.content.slice(position);
+  }
+  
+  delete(position: number, length: number) {
+    this.content = 
+      this.content.slice(0, position) + 
+      this.content.slice(position + length);
+  }
+  
+  getText() { return this.content; }
 }
 
 // Concrete Commands
-class AddCommand extends Command {
-  constructor(value) {
-    super();
-    this.value = value;
+class InsertTextCommand implements Command {
+  constructor(
+    private editor: TextEditor,
+    private text: string,
+    private position: number
+  ) {}
+  
+  execute() {
+    this.editor.insert(this.text, this.position);
   }
-  execute(state) { return state + this.value; }
-  undo(state) { return state - this.value; }
+  
+  undo() {
+    this.editor.delete(this.position, this.text.length);
+  }
 }
 
-// Invoker
-class Calculator {
-  constructor() { this.history = []; }
-  execute(command, state) {
-    this.history.push(command);
-    return command.execute(state);
+class DeleteTextCommand implements Command {
+  private deletedText = '';
+  
+  constructor(
+    private editor: TextEditor,
+    private position: number,
+    private length: number
+  ) {}
+  
+  execute() {
+    this.deletedText = this.editor.getText()
+      .slice(this.position, this.position + this.length);
+    this.editor.delete(this.position, this.length);
   }
-}`}</pre>
-              </div>
+  
+  undo() {
+    this.editor.insert(this.deletedText, this.position);
+  }
+}
+
+// Invoker with History
+class CommandManager {
+  private history: Command[] = [];
+  private currentIndex = -1;
+  
+  execute(command: Command) {
+    command.execute();
+    // Remove forward history
+    this.history = this.history.slice(0, this.currentIndex + 1);
+    this.history.push(command);
+    this.currentIndex++;
+  }
+  
+  undo() {
+    if (this.currentIndex >= 0) {
+      this.history[this.currentIndex].undo();
+      this.currentIndex--;
+    }
+  }
+  
+  redo() {
+    if (this.currentIndex < this.history.length - 1) {
+      this.currentIndex++;
+      this.history[this.currentIndex].execute();
+    }
+  }
+}
+
+// Usage
+const editor = new TextEditor();
+const manager = new CommandManager();
+
+manager.execute(new InsertTextCommand(editor, 'Hello', 0));
+manager.execute(new InsertTextCommand(editor, ' World', 5));
+console.log(editor.getText()); // "Hello World"
+
+manager.undo(); // Remove " World"
+console.log(editor.getText()); // "Hello"
+
+manager.redo(); // Re-add " World"
+console.log(editor.getText()); // "Hello World"`,
+          },
+          {
+            filePath: 'patterns/command-redux.ts',
+            content: `// Redux as Command Pattern
+type State = { count: number };
+
+// Commands (Actions)
+interface Action {
+  type: string;
+  payload?: any;
+}
+
+class IncrementCommand implements Action {
+  type = 'INCREMENT';
+  constructor(public payload: number = 1) {}
+}
+
+class DecrementCommand implements Action {
+  type = 'DECREMENT';
+  constructor(public payload: number = 1) {}
+}
+
+// Receiver (Reducer)
+function counterReducer(state: State = { count: 0 }, action: Action): State {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + action.payload };
+    case 'DECREMENT':
+      return { count: state.count - action.payload };
+    default:
+      return state;
+  }
+}
+
+// Invoker (Store)
+class Store {
+  private state: State;
+  private history: Action[] = [];
+  
+  constructor(private reducer: typeof counterReducer, initialState: State) {
+    this.state = initialState;
+  }
+  
+  dispatch(action: Action) {
+    this.state = this.reducer(this.state, action);
+    this.history.push(action);
+  }
+  
+  getState() {
+    return this.state;
+  }
+  
+  getHistory() {
+    return this.history;
+  }
+}
+
+// Usage
+const store = new Store(counterReducer, { count: 0 });
+store.dispatch(new IncrementCommand(5));
+store.dispatch(new IncrementCommand(3));
+store.dispatch(new DecrementCommand(2));
+console.log(store.getState()); // { count: 6 }
+console.log(store.getHistory()); // All commands executed`,
+          },
+          {
+            filePath: 'patterns/command-macro.ts',
+            content: `// Macro Command: Execute multiple commands
+class MacroCommand implements Command {
+  constructor(private commands: Command[]) {}
+  
+  execute() {
+    this.commands.forEach(cmd => cmd.execute());
+  }
+  
+  undo() {
+    // Undo in reverse order
+    [...this.commands].reverse().forEach(cmd => cmd.undo());
+  }
+}
+
+// Usage: Create a "Save & Exit" macro
+const saveAndExit = new MacroCommand([
+  new SaveDocumentCommand(doc),
+  new CloseWindowCommand(window),
+  new LogActivityCommand('Document closed')
+]);
+
+manager.execute(saveAndExit); // Executes all 3 commands
+manager.undo(); // Undoes all 3 in reverse`,
+          }
+        ]}
+      />
+      <RightPanel>
+        <div className="flex items-center justify-center min-h-[400px] p-8 bg-gradient-to-br from-orange-50 to-amber-50">
+          <div className="text-center max-w-md">
+            <div className="inline-block p-4 bg-orange-100 rounded-full mb-4">
+              <svg className="w-12 h-12 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Command Pattern</h2>
+            <p className="text-gray-600 mb-6">Encapsulate actions as executable objects with undo/redo support</p>
+            <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200">
+              <code className="text-sm text-gray-800 block">
+                manager.execute(command)<br/>
+                manager.undo()<br/>
+                manager.redo()
+              </code>
             </div>
           </div>
         </div>
-      </div>
+      </RightPanel>
     </div>
   );
 }

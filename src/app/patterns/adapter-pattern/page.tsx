@@ -1,62 +1,197 @@
-import AdapterPatternExample from './_client_example';
+import { LeftPanel } from '@/components/layout/LeftPanel';
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
 
-const description = `
-**Adapter Pattern** es un patrón de diseño estructural que permite que interfaces incompatibles trabajen juntas actuando como un puente entre ellas.
+const ClientExample = dynamic(() => import('./_client_example'));
 
-Características principales:
-- **Compatibilidad:** Convierte la interfaz de una clase en otra que el cliente espera
-- **Reutilización:** Permite reutilizar clases existentes sin modificarlas
-- **Flexibilidad:** Facilita la integración de componentes de terceros
-- **Desacoplamiento:** Mantiene el código del cliente independiente de las implementaciones específicas
+export default function AdapterPatternPage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <LeftPanel
+        title="Adapter Pattern"
+        description="🔌 **Adapter Pattern** - El puente entre interfaces incompatibles
 
-Casos de uso comunes:
-- Integrar APIs legacy con código moderno
-- Adaptar bibliotecas de terceros a tu interfaz
-- Migrar entre versiones de APIs
-- Convertir formatos de datos (JSON, XML, etc.)
-- Integrar servicios externos con diferentes interfaces
+El Adapter Pattern es un patrón estructural GoF que convierte la interfaz de una clase en otra que los clientes esperan. Permite que clases con interfaces incompatibles trabajen juntas sin modificar su código fuente.
 
-**Ventajas:**
-- Principio de Responsabilidad Única
-- Principio Abierto/Cerrado
-- Separa la lógica de conversión del código de negocio
-- Facilita el testing mediante adapters mock
+**🎯 ¿Cuándo usarlo?**
+- Integrar **APIs legacy** con código moderno
+- Adaptar **bibliotecas de terceros** a tu interfaz
+- Migrar entre **versiones de APIs** gradualmente
+- Convertir **formatos de datos** (REST ↔ GraphQL, JSON ↔ XML)
+- Integrar **servicios externos** con diferentes contratos
 
-**Sintaxis:**
+**🔑 Conceptos Clave:**
+- **Adaptee**: La clase/interfaz existente que necesita adaptación
+- **Target**: La interfaz que el cliente espera
+- **Adapter**: La clase que convierte Adaptee → Target
+- **Client**: Código que trabaja con la interfaz Target
+
+**✅ Ventajas:**
+- ✨ **Single Responsibility**: Separa lógica de conversión del negocio
+- 🔓 **Open/Closed**: Introduce nuevos adapters sin modificar código existente
+- 🧪 **Testeable**: Fácil crear mock adapters para testing
+- 🔄 **Reutilización**: Aprovecha código legacy sin reescribirlo
+
+**📐 Estructura:**
 \`\`\`typescript
-class Adapter {
-  adapt(legacyObject: LegacyType): ModernType {
-    return {
-      modernField: legacyObject.legacy_field
-    };
+// Target interface
+interface ModernAPI {
+  getData(): Data;
+}
+
+// Adaptee (legacy)
+class LegacyAPI {
+  getLegacyData(): LegacyData;
+}
+
+// Adapter
+class APIAdapter implements ModernAPI {
+  constructor(private legacy: LegacyAPI) {}
+  
+  getData(): Data {
+    const legacy = this.legacy.getLegacyData();
+    return this.convert(legacy);
   }
 }
 \`\`\`
 
-En este ejemplo, adaptamos datos de una API legacy (con formato user_name, user_email) a un formato moderno (name, email) sin modificar la API original ni el código cliente.
-`;
+**💡 Casos de Uso Reales:**
+- **Stripe**: Adaptar v1 API a v2 sin breaking changes
+- **AWS SDK**: Adaptar v2 a v3 con diferentes interfaces
+- **React**: Adaptar class components a functional components
+- **Database**: Adaptar SQL queries a ORM syntax
 
-const filePaths = [
-  'src/app/patterns/adapter-pattern/_client_example.tsx',
-];
+**🆚 Adapter vs Facade:**
+- **Adapter**: Convierte una interfaz a otra (1:1)
+- **Facade**: Simplifica múltiples interfaces en una (N:1)
 
-export default function AdapterPatternPage() {
-  return (
-    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-8rem)]">
-      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-4 sm:p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">Adapter Pattern</h1>
-          <div className="text-sm sm:text-base text-gray-300 whitespace-pre-line">
-            {description}
-          </div>
-        </div>
-      </div>
-      
-      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-gray-100 p-4 sm:p-6 min-h-[400px] lg:min-h-0">
-        <div className="w-full max-w-4xl">
-          <AdapterPatternExample />
-        </div>
-      </div>
+**Ejemplo del código:**
+Adaptamos una API legacy con formato <code>user_name, user_email</code> a formato moderno <code>name, email, id</code> sin modificar la API original ni el código cliente."
+        codeContent={[
+          {
+            filePath: 'patterns/adapter-basic.ts',
+            content: `// ❌ Problema: API legacy con formato incompatible
+interface LegacyUser {
+  user_name: string;
+  user_email: string;
+  user_age: number;
+}
+
+// ✅ Solución: Nueva interfaz esperada
+interface ModernUser {
+  name: string;
+  email: string;
+  age: number;
+  id: string;
+}
+
+// 🔌 Adapter: Convierte legacy → modern
+class UserAdapter {
+  static adapt(legacyUser: LegacyUser): ModernUser {
+    return {
+      name: legacyUser.user_name,
+      email: legacyUser.user_email,
+      age: legacyUser.user_age,
+      id: crypto.randomUUID()
+    };
+  }
+
+  static adaptMany(users: LegacyUser[]): ModernUser[] {
+    return users.map(this.adapt);
+  }
+}
+
+// Legacy API (no se modifica)
+class LegacyAPIService {
+  static getUsers(): LegacyUser[] {
+    return [
+      { user_name: 'John', user_email: 'john@example.com', user_age: 30 }
+    ];
+  }
+}
+
+// Cliente moderno usa el adapter
+const legacyUsers = LegacyAPIService.getUsers();
+const modernUsers = UserAdapter.adaptMany(legacyUsers);
+console.log(modernUsers[0].name); // ✅ Works!`,
+          },
+          {
+            filePath: 'patterns/adapter-api-migration.ts',
+            content: `// Real-world: Migrar de REST a GraphQL
+interface RESTResponse {
+  user_id: number;
+  first_name: string;
+  last_name: string;
+  email_address: string;
+}
+
+interface GraphQLUser {
+  id: string;
+  fullName: string;
+  email: string;
+}
+
+class GraphQLAdapter {
+  static fromREST(rest: RESTResponse): GraphQLUser {
+    return {
+      id: rest.user_id.toString(),
+      fullName: \`\${rest.first_name} \${rest.last_name}\`,
+      email: rest.email_address
+    };
+  }
+  
+  static toREST(gql: GraphQLUser): RESTResponse {
+    const [first, ...last] = gql.fullName.split(' ');
+    return {
+      user_id: parseInt(gql.id),
+      first_name: first,
+      last_name: last.join(' '),
+      email_address: gql.email
+    };
+  }
+}
+
+// Migración gradual
+async function fetchUser(id: string) {
+  const restData = await fetch(\`/api/users/\${id}\`).then(r => r.json());
+  return GraphQLAdapter.fromREST(restData);
+}`,
+          },
+          {
+            filePath: 'patterns/adapter-class-to-functional.tsx',
+            content: `// Adaptar class component a hook
+import { Component } from 'react';
+
+// Legacy class component
+class LegacyCounter extends Component {
+  state = { count: 0 };
+  increment = () => this.setState({ count: this.state.count + 1 });
+  render() {
+    return <button onClick={this.increment}>{this.state.count}</button>;
+  }
+}
+
+// Modern functional adapter
+function useCounter(initial = 0) {
+  const [count, setCount] = useState(initial);
+  const increment = () => setCount(c => c + 1);
+  return { count, increment };
+}
+
+// Adapter component
+function CounterAdapter() {
+  const { count, increment } = useCounter(0);
+  return <button onClick={increment}>{count}</button>;
+}
+
+// Ahora podemos reemplazar gradualmente
+export default CounterAdapter;`,
+          }
+        ]}
+      />
+      <RightPanel>
+        <ClientExample />
+      </RightPanel>
     </div>
   );
 }
