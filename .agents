@@ -24,6 +24,33 @@ Assist in developing and maintaining an educational platform that demonstrates m
 - **Styling**: Tailwind CSS 4.0
 - **Package Manager**: Yarn 1.22.22
 
+### 🚨 CRITICAL: Package Manager Rules
+
+**⚠️ MANDATORY: Use YARN for all package operations**
+
+```bash
+# ✅ CORRECT - Always use these
+yarn install
+yarn add package-name
+yarn remove package-name  
+yarn dev
+yarn build
+yarn test
+yarn lint
+
+# ❌ FORBIDDEN - Never use these
+npm install   # WRONG!
+npm i         # WRONG!
+npm run dev   # WRONG!
+npm ...       # NEVER!
+pnpm ...      # NEVER!
+bun ...       # NEVER!
+```
+
+**Why this matters**: Using npm creates package-lock.json which conflicts with yarn.lock, causing dependency hell and breaking the project.
+
+**Before running ANY command**: Check if it's a package manager command. If yes, use yarn.
+
 ### State Management
 - Redux Toolkit 2.9.0 (global state examples)
 - Zustand 5.0.8 (lightweight state examples)

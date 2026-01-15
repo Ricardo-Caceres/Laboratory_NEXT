@@ -43,6 +43,26 @@ This is an educational platform showcasing React Hooks, Design Patterns, and Sof
 }
 ```
 
+## 🚨 CRITICAL: Package Manager
+
+**⚠️ USE YARN ONLY - NEVER USE NPM**
+
+```bash
+# ✅ ALWAYS USE YARN
+yarn install
+yarn add [package]
+yarn dev
+yarn build
+yarn test
+
+# ❌ NEVER USE NPM
+npm install    # FORBIDDEN!
+npm run dev    # FORBIDDEN!
+npm ...        # FORBIDDEN!
+```
+
+**This is non-negotiable. Using npm will break the project.**
+
 ## ECMAScript Standards (2024+)
 
 ### Required Modern Features

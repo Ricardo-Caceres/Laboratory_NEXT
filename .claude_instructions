@@ -1,16 +1,39 @@
 # Claude AI Assistant Instructions for Laboratory_NEXT
 
-## Critical Rules
+## 🚨 CRITICAL RULES - READ FIRST
 
-### 1. Git Operations - DO NOT EXECUTE
+### 1. Package Manager: YARN ONLY - NO EXCEPTIONS
+
+**⚠️ ALWAYS USE YARN - NEVER USE NPM**
+
+```bash
+# ✅ CORRECT COMMANDS
+yarn install          # Install dependencies
+yarn add [package]    # Add dependency
+yarn dev             # Start dev server
+yarn build           # Build for production
+yarn test            # Run tests
+yarn lint            # Run linter
+
+# ❌ ABSOLUTELY FORBIDDEN - DO NOT USE
+npm install          # WRONG! Use yarn install
+npm i                # WRONG! Use yarn
+npm run dev          # WRONG! Use yarn dev
+npm run build        # WRONG! Use yarn build
+npm ...              # NEVER USE NPM!
+pnpm ...             # NEVER USE PNPM!
+bun ...              # NEVER USE BUN!
+```
+
+**Reason**: This project uses Yarn. Using npm creates package-lock.json which conflicts with yarn.lock and causes dependency issues.
+
+**If you need to run a script, check package.json first, then use `yarn [script-name]`**
+
+### 2. Git Operations - DO NOT EXECUTE
 **NEVER run git commands** (git add, git commit, git push, git pull, etc.)
 - Only the repository owner (Salem) executes git operations manually
 - After making changes, inform the user they're ready to commit
 - Do not create or run git automation scripts
-
-### 2. Package Manager
-- **Always use `yarn`** for package management
-- Never use npm or other package managers
 
 ### 3. Module Structure Standards
 All learning modules MUST use the standardized LeftPanel/RightPanel layout:

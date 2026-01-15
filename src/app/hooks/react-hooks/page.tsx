@@ -3,22 +3,47 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'React Hooks - Guía Completa',
-  description: 'Guía comprehensiva de todos los React Hooks'
+  description: '🪝 React Hooks - La feature que revolucionó React en 2019. Guía exhaustiva de todos los hooks (useState, useEffect, useContext, useReducer, useMemo, useCallback y más) con patterns, best practices y casos de uso reales para dominar desarrollo funcional moderno'
 };
 
 export default function ReactHooksPage() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-4xl font-bold mb-4">React Hooks - Guía Completa</h1>
-        <p className="text-lg" style={{ color: 'var(--foreground)' }}>
-          Referencia completa de todos los hooks de React con patrones y best practices.
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="text-5xl">🪝</span>
+          <h1 className="text-4xl font-bold">React Hooks - Guía Completa</h1>
+        </div>
+        <p className="text-lg leading-relaxed max-w-3xl" style={{ color: 'var(--foreground)', opacity: 0.9 }}>
+          Referencia exhaustiva de TODOS los React Hooks (básicos, performance, avanzados) con patterns, 
+          best practices y casos de uso reales. Desde useState hasta el nuevo hook "use" de React 19. 
+          Domina el desarrollo funcional moderno que reemplazó class components.
         </p>
+        <div className="flex gap-3 flex-wrap">
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--success)', color: 'white' }}>
+            ⚛️ React 19 Ready
+          </span>
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            📚 15+ Hooks
+          </span>
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            🎯 Live Examples
+          </span>
+          <span className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--panel)', border: '1px solid var(--primary)' }}>
+            💡 Best Practices
+          </span>
+        </div>
       </div>
 
       <section className="space-y-6">
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Basic Hooks</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #3b82f6' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">⚡</span>
+            <h2 className="text-2xl font-bold">Basic Hooks - Los Fundamentos</h2>
+          </div>
+          <p className="mb-4" style={{ color: 'var(--foreground)', opacity: 0.85 }}>
+            Los 3 hooks que usarás en el 90% de componentes. Dominando estos, ya eres productivo.
+          </p>
           
           <div className="space-y-4">
             <Link href="/hooks/useState" className="block p-4" style={{ background: 'var(--background)', borderRadius: '0.5rem' }}>
@@ -38,8 +63,14 @@ export default function ReactHooksPage() {
           </div>
         </div>
 
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Performance Hooks</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #10b981' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🚀</span>
+            <h2 className="text-2xl font-bold">Performance Hooks - Optimización Crítica</h2>
+          </div>
+          <p className="mb-4" style={{ color: 'var(--foreground)', opacity: 0.85 }}>
+            Previene re-renders innecesarios y optimiza cálculos pesados. Esenciales para apps de producción.
+          </p>
           
           <div className="space-y-4">
             <Link href="/hooks/useMemo" className="block p-4" style={{ background: 'var(--background)', borderRadius: '0.5rem' }}>
@@ -64,8 +95,14 @@ export default function ReactHooksPage() {
           </div>
         </div>
 
-        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-          <h2 className="text-2xl font-bold mb-4">Advanced Hooks</h2>
+        <div style={{ background: 'var(--panel)', padding: '1.5rem', borderRadius: '0.5rem', borderLeft: '4px solid #8b5cf6' }}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🧠</span>
+            <h2 className="text-2xl font-bold">Advanced Hooks - Para Casos Complejos</h2>
+          </div>
+          <p className="mb-4" style={{ color: 'var(--foreground)', opacity: 0.85 }}>
+            Estado complejo, refs, efectos especiales y subscriptions. Cuando basic hooks no son suficientes.
+          </p>
           
           <div className="space-y-4">
             <Link href="/hooks/useReducer" className="block p-4" style={{ background: 'var(--background)', borderRadius: '0.5rem' }}>

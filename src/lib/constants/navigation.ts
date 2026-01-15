@@ -7,6 +7,18 @@
 
 import type { NavigationCategory } from '../types/navigation';
 
+// Category groups for better organization
+export const CATEGORY_GROUPS = {
+  'Core': ['React Hooks', 'Patterns', 'Architectures', 'State Management'],
+  'Development': ['JavaScript', 'TypeScript', 'Testing', 'Build Tools'],
+  'Backend & APIs': ['GraphQL & APIs', 'Real-Time', 'Data Fetching & ORMs', 'Authentication'],
+  'Infrastructure': ['DevOps & Tools', 'Cloud', 'CI/CD', 'Security'],
+  'Specialized': ['UI Libraries', 'Mobile Development', 'PWA', 'Performance'],
+  'Fundamentals': ['Data Structures', 'Algorithms', 'Software Design'],
+  'Next.js & React': ['React APIs', 'Next.js APIs'],
+  'Other': ['Guides', 'Validation', 'Soft Skills', 'Methodologies'],
+} as const;
+
 export const NAVIGATION_DATA: NavigationCategory = {
   'React Hooks': [
     { name: 'useState', href: '/hooks/useState' },

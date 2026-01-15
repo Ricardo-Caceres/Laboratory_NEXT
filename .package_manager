@@ -1,0 +1,60 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 CRITICAL: PACKAGE MANAGER CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THIS PROJECT USES: YARN 1.22.22
+
+⚠️  ABSOLUTELY MANDATORY RULES ⚠️
+
+✅ ALWAYS USE YARN:
+   yarn install
+   yarn add [package]
+   yarn remove [package]
+   yarn dev
+   yarn build
+   yarn test
+   yarn [any-script-from-package.json]
+
+❌ NEVER EVER USE:
+   npm install    ← WRONG!
+   npm i          ← WRONG!
+   npm run dev    ← WRONG!
+   npm ...        ← NEVER!
+   pnpm ...       ← NEVER!
+   bun ...        ← NEVER!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHY THIS MATTERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Using npm creates package-lock.json
+2. This conflicts with yarn.lock
+3. Causes dependency version mismatches
+4. Breaks the build
+5. Creates hard-to-debug issues
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FOR AI ASSISTANTS (Claude, Copilot, etc.)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before executing ANY command:
+1. Check if it involves package management
+2. If YES → use "yarn" instead of "npm"
+3. If NO → proceed normally
+
+Example transformations:
+npm install          → yarn install
+npm i lodash         → yarn add lodash
+npm run dev          → yarn dev
+npm run build        → yarn build
+npm test             → yarn test
+npm ci               → yarn install --frozen-lockfile
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This rule applies to ALL sessions and MUST be followed without exception.
+
+If you're an AI and you see this file: NEVER suggest or run npm commands.
+ALWAYS use yarn for package operations.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
