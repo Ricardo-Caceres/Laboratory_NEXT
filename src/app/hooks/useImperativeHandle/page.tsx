@@ -1,71 +1,27 @@
-import ParentComponent from './_client_example';
-import HookPageLayout from '../../../components/HookPageLayout';
+import ImperativeHandleExample from './_client_example';
+import dynamic from 'next/dynamic';
 
-const description = `
-**useImperativeHandle** es un Hook avanzado que personaliza el valor de la instancia que se expone a los componentes padres cuando se usa con forwardRef. Permite controlar exactamente qué métodos o propiedades son accesibles desde el componente padre.
-
-Características principales:
-- **Control de API:** Define qué se expone al componente padre
-- **Encapsulación:** Oculta la implementación interna
-- **Customización de ref:** Crea una interfaz personalizada
-- **Abstracción:** Permite exponer solo métodos específicos
-
-Casos de uso comunes:
-- Librerías de componentes que necesitan exponer APIs específicas
-- Componentes de formulario con métodos de validación
-- Componentes con lógica compleja que necesitan control externo
-- Integración con librerías imperativas de terceros
-- Componentes multimedia (video, audio) con controles personalizados
-
-**Sintaxis:**
-\`useImperativeHandle(ref, () => ({ /* API personalizada */ }), [deps]);\`
-
-**Requisitos:**
-- Debe usarse con \`React.forwardRef\`
-- El componente padre debe pasar un ref
-
-**Patrón típico:**
-\`\`\`typescript
-const Component = forwardRef((props, ref) => {
-  useImperativeHandle(ref, () => ({
-    focus: () => { /* lógica */ },
-    reset: () => { /* lógica */ }
-  }));
-  return <div>...</div>;
-});
-\`\`\`
-
-**Ventajas:**
-- Mayor control sobre la API expuesta
-- Mejor encapsulación
-- Facilita el testing
-- Documentación más clara de capacidades
-
-**Cuándo NO usarlo:**
-- Para la mayoría de casos (usa props y callbacks normales)
-- Cuando puedes resolver el problema con props
-- Si no necesitas acceso imperativo desde el padre
-
-**Importante:**
-- Prefiere el flujo de datos declarativo (props/state)
-- Usa este Hook solo cuando realmente necesites acceso imperativo
-- Documenta bien la API que expones
-
-En este ejemplo, demostramos cómo useImperativeHandle permite que un componente padre controle el focus de un input en un componente hijo, exponiendo solo el método \`focusInput\` en lugar de toda la referencia del DOM.
-`;
-
-const filePaths = [
-  'src/app/hooks/useImperativeHandle/_client_example.tsx',
-  'src/app/hooks/useImperativeHandle/MyInput.tsx',
-];
+const UseImperativeHandleDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.UseImperativeHandleDescription })));
 
 export default function UseImperativeHandlePage() {
   return (
-    <HookPageLayout
-      title="useImperativeHandle Hook"
-      description={description}
-      filePaths={filePaths}
-      ClientExample={ParentComponent}
-    />
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">
+            useImperativeHandle Hook
+          </h1>
+          <div className="text-sm sm:text-base">
+            <UseImperativeHandleDescription />
+          </div>
+        </div>
+      </div>
+      
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-[var(--background)] p-4 sm:p-6 min-h-[400px] lg:min-h-0">
+        <div className="w-full max-w-4xl">
+          <ImperativeHandleExample />
+        </div>
+      </div>
+    </div>
   );
 }

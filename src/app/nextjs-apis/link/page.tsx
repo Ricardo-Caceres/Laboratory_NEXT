@@ -1,37 +1,17 @@
-'use client';
-
-import Link from 'next/link';
-
-export default function NavigationExample() {
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const LinkDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.LinkDescription })));
+export default function LinkPage() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Next.js Link Example</h1>
-      <nav className="mt-4">
-        <ul className="list-disc list-inside">
-          <li className="mb-2">
-            <Link className="text-blue-500 hover:underline" href="/">
-              Home
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link className="text-blue-500 hover:underline" href="/nextjs-apis/link/about">
-              About (Prefetched)
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link className="text-blue-500 hover:underline" href="/nextjs-apis/link/contact" prefetch={false}>
-              Contact (No Prefetch)
-            </Link>
-          </li>
-          <li>
-            <Link href="/nextjs-apis/link/dashboard">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
-                Go to Dashboard
-              </button>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">Next.js Link</h1>
+          <div className="text-sm sm:text-base"><LinkDescription /></div>
+        </div>
+      </div>
+      <RightPanel><ClientExample /></RightPanel>
     </div>
   );
 }

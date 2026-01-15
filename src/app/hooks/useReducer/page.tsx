@@ -1,66 +1,27 @@
 import Counter from './_client_example';
-import HookPageLayout from '../../../components/HookPageLayout';
+import dynamic from 'next/dynamic';
 
-const description = `
-**useReducer** es un Hook alternativo a useState para manejar lógica de estado compleja. Es similar al patrón reducer de Redux y es especialmente útil cuando el estado tiene múltiples sub-valores o cuando las actualizaciones dependen del estado anterior.
-
-Características principales:
-- **Estado complejo:** Ideal para estados con múltiples valores relacionados
-- **Lógica centralizada:** Toda la lógica de actualización en un solo lugar (reducer)
-- **Predecibilidad:** Las actualizaciones son más predecibles y fáciles de testear
-- **Acciones tipadas:** Facilita el uso con TypeScript
-
-Casos de uso comunes:
-- Formularios complejos con múltiples campos
-- Estado con lógica de actualización compleja
-- Estados que dependen de valores anteriores
-- Cuando necesitas dispatch en lugar de setState
-- Máquinas de estado simples
-
-**Sintaxis:**
-\`const [state, dispatch] = useReducer(reducer, initialState);\`
-
-**Componentes:**
-1. **Reducer:** Función que recibe (state, action) y retorna nuevo estado
-2. **Initial state:** Estado inicial del componente
-3. **Dispatch:** Función para enviar acciones al reducer
-
-**Cuándo usar useReducer vs useState:**
-- **useReducer:** Estado complejo, múltiples sub-valores, lógica compleja
-- **useState:** Estado simple, valores independientes
-
-**Patrón del Reducer:**
-\`\`\`typescript
-function reducer(state, action) {
-  switch (action.type) {
-    case 'ACTION_TYPE':
-      return { ...state, /* cambios */ };
-    default:
-      return state;
-  }
-}
-\`\`\`
-
-**Ventajas:**
-- Mejor organización del código
-- Más fácil de testear
-- Facilita el debugging
-- Buena preparación para Redux
-
-En este ejemplo, demostramos cómo usar useReducer para manejar un contador con múltiples acciones (incrementar, decrementar, reset) de forma organizada.
-`;
-
-const filePaths = [
-  'src/app/hooks/useReducer/_client_example.tsx',
-];
+const UseReducerDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.UseReducerDescription })));
 
 export default function UseReducerPage() {
   return (
-    <HookPageLayout
-      title="useReducer Hook"
-      description={description}
-      filePaths={filePaths}
-      ClientExample={Counter}
-    />
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">
+            useReducer Hook
+          </h1>
+          <div className="text-sm sm:text-base">
+            <UseReducerDescription />
+          </div>
+        </div>
+      </div>
+      
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-[var(--background)] p-4 sm:p-6 min-h-[400px] lg:min-h-0">
+        <div className="w-full max-w-4xl">
+          <Counter />
+        </div>
+      </div>
+    </div>
   );
 }

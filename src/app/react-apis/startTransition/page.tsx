@@ -1,13 +1,17 @@
-import { readFileSync } from 'fs';
-import path from 'path';
-import StartTransitionExample from './_client_example';
-
-export default function StartTransitionPage() {
-  const filePath = 'src/app/react-apis/startTransition/_client_example.tsx';
-  const codeContent = [{
-    filePath: filePath,
-    content: readFileSync(path.join(process.cwd(), filePath), 'utf-8'),
-  }];
-
-  return <StartTransitionExample codeContent={codeContent} />;
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const startTransitionDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.startTransitionDescription })));
+export default function startTransitionPage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">startTransition</h1>
+          <div className="text-sm sm:text-base"><startTransitionDescription /></div>
+        </div>
+      </div>
+      <RightPanel><ClientExample /></RightPanel>
+    </div>
+  );
 }

@@ -1,86 +1,27 @@
-import HookPageLayout from '../../../components/HookPageLayout';
-import UseHookExample from './_client_example';
+import UseExample from './_client_example';
+import dynamic from 'next/dynamic';
 
-const description = `
-**use** es un Hook revolucionario de React 19 que permite "unwrap" recursos como Promises y Contexts directamente en la lógica de renderizado. Simplifica el manejo de datos asíncronos y contextos, funcionando de manera diferente a otros Hooks.
+const UseDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.UseDescription })));
 
-Características principales:
-- **Promises:** Lee valores de Promises directamente
-- **Context:** Consume contextos sin useContext
-- **Condicional:** Puede usarse dentro de condicionales y loops (a diferencia de otros Hooks)
-- **Suspense:** Se integra automáticamente con Suspense boundaries
-
-Casos de uso comunes:
-- Leer datos de Promises directamente en el render
-- Consumir contextos de forma más flexible
-- Data fetching simplificado
-- Integración con React Server Components
-
-**Sintaxis con Promise:**
-\`const value = use(promise);\`
-
-**Sintaxis con Context:**
-\`const value = use(MyContext);\`
-
-**Diferencias con otros Hooks:**
-- **Puede usarse condicionalmente:** \`if (condition) { use(promise); }\`
-- **Puede usarse en loops:** \`items.map(() => use(...))\`
-- **No requiere useEffect para data fetching**
-- **Integración nativa con Suspense**
-
-**Con Promises:**
-- Suspende el componente mientras la Promise está pending
-- Renderiza el valor cuando la Promise se resuelve
-- Lanza el error si la Promise se rechaza
-
-**Con Context:**
-- Similar a useContext pero más flexible
-- Puede usarse condicionalmente
-- Busca el Provider más cercano
-
-**Ventajas:**
-- Código más simple y legible
-- Menos boilerplate para async data
-- Mejor integración con Suspense
-- Más flexible que otros Hooks
-
-**Cuándo usarlo:**
-- Datos asíncronos en React 19+
-- Cuando trabajas con Suspense
-- Para simplificar data fetching
-- Con React Server Components
-
-**Importante:**
-- Requiere React 19+
-- Funciona mejor con Suspense boundaries
-- Las Promises deben ser cacheadas/estables
-- No crear nuevas Promises en cada render
-
-**Patrón típico:**
-\`\`\`typescript
-function Component() {
-  const data = use(fetchData()); // Suspende hasta que se resuelva
-  return <div>{data}</div>;
-}
-
-// Wrappear con Suspense
-<Suspense fallback={<Loading />}>
-  <Component />
-</Suspense>
-\`\`\`
-
-En este ejemplo, demostramos cómo el Hook use permite leer el valor de una Promise directamente, suspendiendo el componente automáticamente mientras se carga.
-`;
-
-const filePaths = ['src/app/hooks/use/_client_example.tsx'];
-
-export default function UseHookPage() {
+export default function UsePage() {
   return (
-    <HookPageLayout
-      title="use Hook (React 19)"
-      description={description}
-      filePaths={filePaths}
-      ClientExample={UseHookExample}
-    />
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">
+            use Hook (React 19)
+          </h1>
+          <div className="text-sm sm:text-base">
+            <UseDescription />
+          </div>
+        </div>
+      </div>
+      
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-[var(--background)] p-4 sm:p-6 min-h-[400px] lg:min-h-0">
+        <div className="w-full max-w-4xl">
+          <UseExample />
+        </div>
+      </div>
+    </div>
   );
 }

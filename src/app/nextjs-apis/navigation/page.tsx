@@ -1,33 +1,17 @@
-'use client';
-
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-
-export default function NavigationHooksExample() {
-  const router = useRouter();
-
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const NavigationDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.NavigationDescription })));
+export default function NavigationPage() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Next.js Navigation Hooks Example</h1>
-      <nav className="mt-4">
-        <ul className="list-disc list-inside">
-          <li className="mb-2">
-            <Link className="text-blue-500 hover:underline" href="/nextjs-apis/navigation/dashboard">
-              Go to Dashboard
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link className="text-blue-500 hover:underline" href="/nextjs-apis/navigation/products/123?category=electronics">
-              Go to Product 123 (Electronics)
-            </Link>
-          </li>
-          <li>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" onClick={() => router.push('/nextjs-apis/navigation/settings')}>
-              Go to Settings (Programmatic)
-            </button>
-          </li>
-        </ul>
-      </nav>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">Navigation Hooks</h1>
+          <div className="text-sm sm:text-base"><NavigationDescription /></div>
+        </div>
+      </div>
+      <RightPanel><ClientExample /></RightPanel>
     </div>
   );
 }

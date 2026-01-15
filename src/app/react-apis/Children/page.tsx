@@ -1,54 +1,17 @@
-import React from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { readFileSync } from 'fs';
-import path from 'path';
-
-interface ListProps {
-  children: React.ReactNode;
-}
-
-function MyList({ children }: ListProps) {
-  const childrenCount = React.Children.count(children);
-
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const ChildrenDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.ChildrenDescription })));
+export default function ChildrenPage() {
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">List ({childrenCount} items)</h2>
-      <ul className="list-disc list-inside">
-        {React.Children.map(children, (child, index) => {
-          if (React.isValidElement(child)) {
-            return <li key={child.key || `item-${index}`}>{child}</li>;
-          }
-          return null;
-        })}
-      </ul>
-    </div>
-  );
-}
-
-export default function ChildrenExample() {
-  const filePath = 'src/app/react-apis/Children/page.tsx';
-  const codeContent = [{
-    filePath: filePath,
-    content: readFileSync(path.join(process.cwd(), filePath), 'utf-8'),
-  }];
-
-  return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
-        <div className="container mx-auto py-8">
-          <h1 className="text-2xl font-bold mb-4">React.Children Example</h1>
-          <p className="text-lg mb-4">`React.Children` proporciona utilidades para procesar la prop `children` de un componente, especialmente cuando es opaca o una colección.</p>
-          <MyList>
-            <p>First item</p>
-            <span>Second item</span>
-            <div>Third item</div>
-            {[<p key="a">Item A</p>, <p key="b">Item B</p>]}
-          </MyList>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">Children</h1>
+          <div className="text-sm sm:text-base"><ChildrenDescription /></div>
         </div>
       </div>
+      <RightPanel><ClientExample /></RightPanel>
     </div>
   );
 }

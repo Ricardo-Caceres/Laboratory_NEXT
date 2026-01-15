@@ -1,33 +1,17 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-
-export default function RouterExample() {
-  const router = useRouter();
-
-  const navigateToAbout = () => {
-    router.push('/nextjs-apis/router/about');
-  };
-
-  const navigateToProduct = () => {
-    router.push('/nextjs-apis/router/product/123?name=Example Product');
-  };
-
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const RouterDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.RouterDescription })));
+export default function RouterPage() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Home Page (next/navigation example)</h1>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2" onClick={navigateToAbout}>
-        Go to About Page
-      </button>
-      <br />
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2" onClick={navigateToProduct}>
-        Go to Product Page (with query params)
-      </button>
-      <br />
-      <Link className="text-blue-500 hover:underline" href="/nextjs-apis/router/dynamic-route/456">
-        Go to Dynamic Route (456)
-      </Link>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">useRouter Hook</h1>
+          <div className="text-sm sm:text-base"><RouterDescription /></div>
+        </div>
+      </div>
+      <RightPanel><ClientExample /></RightPanel>
     </div>
   );
 }

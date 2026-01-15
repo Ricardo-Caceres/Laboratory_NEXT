@@ -1,47 +1,26 @@
-import CleanArchitectureExample from './_client_example';
-import ArchitecturePageLayout from '../../../components/ArchitecturePageLayout';
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
 
-const description = `
-**Clean Architecture** es un patrón arquitectónico que separa el código en capas concéntricas con la regla de dependencia: las capas internas no deben conocer ni depender de las capas externas.
-
-Características principales:
-- **Independencia de Frameworks:** El negocio no depende de bibliotecas externas
-- **Testeable:** La lógica de negocio puede probarse sin UI, DB o elementos externos
-- **Independencia de UI:** La UI puede cambiar sin afectar el resto del sistema
-- **Independencia de Base de Datos:** Puedes cambiar de BD sin afectar las reglas de negocio
-- **Independencia de Agentes Externos:** Las reglas de negocio no saben nada del mundo exterior
-
-Capas (de adentro hacia afuera):
-1. **Entities (Domain):** Reglas de negocio empresariales
-2. **Use Cases (Application):** Reglas de negocio específicas de la aplicación
-3. **Interface Adapters:** Convertidores entre casos de uso y agentes externos
-4. **Frameworks & Drivers (Infrastructure):** DB, UI, Web, Devices
-
-Regla de Dependencia:
-- El código solo puede depender hacia adentro
-- Las capas internas no conocen las externas
-- Las estructuras de datos fluyen hacia adentro
-
-**Ventajas:**
-- Alta mantenibilidad y escalabilidad
-- Facilita el testing unitario
-- Cambios en tecnología no afectan la lógica de negocio
-- Código desacoplado y modular
-
-En este ejemplo, creamos un sistema de gestión de usuarios con capas claramente separadas: Entities (User), Use Cases (CreateUser, GetAllUsers), y Repository (InMemoryUserRepository).
-`;
-
-const filePaths = [
-  'src/app/architectures/clean-architecture/_client_example.tsx',
-];
+const ClientExample = dynamic(() => import('./_client_example'));
+const CleanArchitectureDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.CleanArchitectureDescription })));
 
 export default function CleanArchitecturePage() {
   return (
-    <ArchitecturePageLayout
-      title="Clean Architecture"
-      description={description}
-      filePaths={filePaths}
-      ClientExample={CleanArchitectureExample}
-    />
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">
+            Clean Architecture
+          </h1>
+          <div className="text-sm sm:text-base">
+            <CleanArchitectureDescription />
+          </div>
+        </div>
+      </div>
+      
+      <RightPanel>
+        <ClientExample />
+      </RightPanel>
+    </div>
   );
 }

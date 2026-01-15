@@ -1,20 +1,17 @@
-import { readFileSync } from 'fs';
-import path from 'path';
-import LazySuspenseExample from './_client_example';
-
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const LazySuspenseDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.LazySuspenseDescription })));
 export default function LazySuspensePage() {
-  const pagePath = 'src/app/react-apis/lazy-suspense/_client_example.tsx';
-  const heavyComponentPath = 'src/app/react-apis/lazy-suspense/HeavyComponent.tsx';
-  const codeContent = [
-    {
-      filePath: pagePath,
-      content: readFileSync(path.join(process.cwd(), pagePath), 'utf-8'),
-    },
-    {
-      filePath: heavyComponentPath,
-      content: readFileSync(path.join(process.cwd(), heavyComponentPath), 'utf-8'),
-    },
-  ];
-
-  return <LazySuspenseExample codeContent={codeContent} />;
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">lazy + Suspense</h1>
+          <div className="text-sm sm:text-base"><LazySuspenseDescription /></div>
+        </div>
+      </div>
+      <RightPanel><ClientExample /></RightPanel>
+    </div>
+  );
 }

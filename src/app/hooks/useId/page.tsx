@@ -1,67 +1,27 @@
-import AccessibleInput from './_client_example';
-import HookPageLayout from '../../../components/HookPageLayout';
+import IdExample from './_client_example';
+import dynamic from 'next/dynamic';
 
-const description = `
-**useId** es un Hook de React 18+ que genera IDs únicos y estables que son consistentes entre el servidor y el cliente. Es especialmente útil para accesibilidad y evita problemas de hidratación en aplicaciones con Server-Side Rendering (SSR).
-
-Características principales:
-- **IDs únicos:** Genera IDs que son únicos en toda la aplicación
-- **Consistencia SSR:** Los IDs son iguales en servidor y cliente
-- **Sin conflictos:** Evita colisiones de IDs entre componentes
-- **Accesibilidad:** Perfecto para atributos aria- y relaciones HTML
-
-Casos de uso comunes:
-- Conectar labels con inputs (htmlFor/id)
-- Atributos ARIA (aria-describedby, aria-labelledby)
-- Formularios accesibles
-- Componentes reutilizables que necesitan IDs
-- Evitar IDs hardcodeados
-
-**Sintaxis:**
-\`const id = useId();\`
-
-**Generación de múltiples IDs:**
-\`\`\`typescript
-const id = useId();
-const inputId = id + '-input';
-const labelId = id + '-label';
-\`\`\`
-
-**Por qué NO usar otras alternativas:**
-- **Math.random():** Diferente en servidor y cliente (error de hidratación)
-- **Contador global:** Puede causar conflictos con código paralelo
-- **IDs hardcodeados:** No reutilizables, pueden duplicarse
-
-**Ventajas:**
-- Garantiza consistencia en SSR/Hydration
-- Seguro para renderizado concurrente
-- Funciona con React Server Components
-- Optimizado para performance
-
-**Cuándo usarlo:**
-- Necesitas conectar elementos HTML (label/input)
-- Implementas patrones de accesibilidad ARIA
-- Creas componentes de librería reutilizables
-- Trabajas con SSR o React Server Components
-
-**Importante:**
-- useId NO es para generar keys en listas (usa datos estables)
-- Los IDs generados son strings con formato específico de React
-- No uses el ID para CSS selectors (usa clases)
-- El ID es estable durante la vida del componente
-
-En este ejemplo, demostramos cómo useId conecta un label con un input de forma accesible, asegurando que la relación funcione correctamente tanto en SSR como en el cliente.
-`;
-
-const filePaths = ['src/app/hooks/useId/_client_example.tsx'];
+const UseIdDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.UseIdDescription })));
 
 export default function UseIdPage() {
   return (
-    <HookPageLayout
-      title="useId Hook"
-      description={description}
-      filePaths={filePaths}
-      ClientExample={AccessibleInput}
-    />
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">
+            useId Hook
+          </h1>
+          <div className="text-sm sm:text-base">
+            <UseIdDescription />
+          </div>
+        </div>
+      </div>
+      
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-[var(--background)] p-4 sm:p-6 min-h-[400px] lg:min-h-0">
+        <div className="w-full max-w-4xl">
+          <IdExample />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -78,15 +78,21 @@ export function StyledText({ text }: StyledTextProps) {
     // Flush current list before processing non-list line
     if (currentList.length > 0) {
       elements.push(
-        <ul key={`ul-${index}`} className="list-disc pl-6 mb-4 space-y-1">
+        <ul key={`ul-${index}`} className="list-disc pl-6 mb-6 space-y-2">
           {currentList}
         </ul>
       );
       currentList = [];
     }
 
-    // Skip empty lines
+    // Handle empty lines - add spacing divider
     if (trimmedLine === '') {
+      // Add spacing element if there's content before
+      if (elements.length > 0) {
+        elements.push(
+          <div key={`space-${index}`} className="h-6"></div>
+        );
+      }
       return;
     }
 
@@ -94,13 +100,14 @@ export function StyledText({ text }: StyledTextProps) {
     const isTitle = isListTitleLine(lines, index);
 
     // Add spacing before section titles
-    const marginTop = isTitle && elements.length > 0 ? 'mt-6' : '';
+    const marginTop = isTitle && elements.length > 0 ? 'mt-8' : '';
+    const marginBottom = isTitle ? 'mb-4' : 'mb-3';
 
     // Render regular paragraph
     elements.push(
       <p
         key={index}
-        className={`mb-3 leading-relaxed ${
+        className={`${marginBottom} leading-relaxed ${
           isTitle
             ? `font-bold text-[var(--foreground)] text-lg ${marginTop}`
             : 'text-[var(--foreground)] opacity-90'
@@ -116,11 +123,11 @@ export function StyledText({ text }: StyledTextProps) {
   // Flush any remaining list items
   if (currentList.length > 0) {
     elements.push(
-      <ul key="ul-final" className="list-disc pl-6 mb-4 space-y-1">
+      <ul key="ul-final" className="list-disc pl-6 mb-6 space-y-2">
         {currentList}
       </ul>
     );
   }
 
-  return <div className="space-y-2">{elements}</div>;
+  return <div className="space-y-1">{elements}</div>;
 }

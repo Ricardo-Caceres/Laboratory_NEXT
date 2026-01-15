@@ -1,40 +1,17 @@
-'use client';
-
-import Image from 'next/image';
-
-
-export default function ImageExample() {
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const ImageDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.ImageDescription })));
+export default function ImagePage() {
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Next.js Image Optimization</h1>
-
-      <h2 className="text-xl font-semibold mt-4 mb-2">Local Image (Static Import)</h2>
-      <Image
-        src="/next.svg"
-        alt="Next.js Logo (Local)"
-        width={200}
-        height={100}
-        priority
-      />
-
-      <h2 className="text-xl font-semibold mt-4 mb-2">External Image (URL)</h2>
-      <Image
-        src="https://via.placeholder.com/300x200.png?text=External+Image"
-        alt="Placeholder Image (External)"
-        width={300}
-        height={200}
-        loading="lazy"
-      />
-
-      <h2 className="text-xl font-semibold mt-4 mb-2">Image with `fill` prop</h2>
-      <div className="relative w-96 h-64 border border-red-500">
-        <Image
-          src="https://via.placeholder.com/600x400.png?text=Fill+Image"
-          alt="Fill Image"
-          fill
-          style={{ objectFit: 'cover' }}
-        />
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">Next.js Image Component</h1>
+          <div className="text-sm sm:text-base"><ImageDescription /></div>
+        </div>
       </div>
+      <RightPanel><ClientExample /></RightPanel>
     </div>
   );
 }

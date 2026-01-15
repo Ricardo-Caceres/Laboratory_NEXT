@@ -1,20 +1,17 @@
-import { readFileSync } from 'fs';
-import path from 'path';
-import PortalExample from './_client_example';
-
-export default function PortalExamplePage() {
-  const pagePath = 'src/app/react-apis/createPortal/_client_example.tsx';
-  const modalPath = 'src/app/react-apis/createPortal/Modal.tsx';
-  const codeContent = [
-    {
-      filePath: pagePath,
-      content: readFileSync(path.join(process.cwd(), pagePath), 'utf-8'),
-    },
-    {
-      filePath: modalPath,
-      content: readFileSync(path.join(process.cwd(), modalPath), 'utf-8'),
-    },
-  ];
-
-  return <PortalExample codeContent={codeContent} />;
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
+const ClientExample = dynamic(() => import('./_client_example'));
+const createPortalDescription = dynamic(() => import('./_description').then(mod => ({ default: mod.createPortalDescription })));
+export default function createPortalPage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
+        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">createPortal</h1>
+          <div className="text-sm sm:text-base"><createPortalDescription /></div>
+        </div>
+      </div>
+      <RightPanel><ClientExample /></RightPanel>
+    </div>
+  );
 }
