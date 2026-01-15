@@ -65,6 +65,7 @@ export const NAVIGATION_DATA: NavigationCategory = {
     { name: 'Atomic Design', href: '/architectures/atomic-design' },
     { name: 'Feature-Sliced Design', href: '/architectures/feature-sliced-design' },
     { name: 'Micro Frontends', href: '/architectures/micro-frontends' },
+    { name: 'Monorepo', href: '/architectures/monorepo' },
     { name: 'Clean Architecture', href: '/architectures/clean-architecture' },
     { name: 'Hexagonal Architecture', href: '/architectures/hexagonal-architecture' },
     { name: 'Layered Architecture', href: '/architectures/layered-architecture' },

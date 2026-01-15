@@ -55,6 +55,7 @@ const sections = {
       { name: 'Atomic Design', href: '/architectures/atomic-design', desc: 'Component hierarchy system' },
       { name: 'Feature-Sliced Design', href: '/architectures/feature-sliced-design', desc: 'Architecture by features' },
       { name: 'Micro Frontends', href: '/architectures/micro-frontends', desc: 'Independently deployable apps' },
+      { name: 'Monorepo', href: '/architectures/monorepo', desc: 'Single repository for multiple projects' },
       { name: 'Clean Architecture', href: '/architectures/clean-architecture', desc: 'Dependency rule architecture' },
       { name: 'Hexagonal Architecture', href: '/architectures/hexagonal-architecture', desc: 'Ports & adapters pattern' },
       { name: 'Layered Architecture', href: '/architectures/layered-architecture', desc: 'Separation by layers' },
@@ -229,14 +230,14 @@ const sections = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[var(--background)] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--foreground)] mb-4">
             DevKit Laboratory
           </h1>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-[var(--foreground)] opacity-80 max-w-3xl mx-auto leading-relaxed">
             Guías completas y ejemplos en vivo de React Hooks, Patrones de Diseño, Arquitecturas 
             y APIs de Next.js. Todo lo que necesitas para dominar el desarrollo frontend moderno.
           </p>
@@ -260,8 +261,8 @@ export default function Home() {
         {Object.entries(sections).map(([sectionName, section]) => (
           <div key={sectionName} className="mb-12">
             <div className="mb-6 space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">{sectionName}</h2>
-              <p className="text-slate-600 text-base leading-relaxed max-w-4xl">{section.description}</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)]">{sectionName}</h2>
+              <p className="text-[var(--foreground)] opacity-80 text-base leading-relaxed max-w-4xl">{section.description}</p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -269,12 +270,12 @@ export default function Home() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group block p-5 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-slate-200 hover:border-cyan-500 hover:scale-[1.02]"
+                  className="group block p-5 bg-[var(--panel)] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-[var(--border)] hover:border-[var(--primary)] hover:scale-[1.02]"
                 >
-                  <h3 className="font-semibold text-slate-900 group-hover:text-cyan-600 transition-colors mb-2 text-sm sm:text-base">
+                  <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors mb-2 text-sm sm:text-base">
                     {item.name}
                   </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm line-clamp-2 leading-relaxed">
+                  <p className="text-[var(--foreground)] opacity-75 text-xs sm:text-sm line-clamp-2 leading-relaxed">
                     {item.desc}
                   </p>
                 </Link>
@@ -284,7 +285,7 @@ export default function Home() {
         ))}
 
         {/* Footer */}
-        <div className="mt-16 text-center text-slate-600 text-sm border-t border-slate-200 pt-8">
+        <div className="mt-16 text-center text-[var(--foreground)] opacity-75 text-sm border-t border-[var(--border)] pt-8">
           <p className="font-medium">Built with React 19, Next.js 15, and Tailwind CSS 4</p>
           <p className="mt-2">✨ Todos los ejemplos incluyen demos en vivo y código fuente documentado</p>
         </div>
