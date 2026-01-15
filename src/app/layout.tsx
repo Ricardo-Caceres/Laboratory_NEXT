@@ -3,6 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 // Configure Google Fonts
 const inter = Inter({
@@ -28,15 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${robotoMono.variable} antialiased`}
       >
-        <Navbar />
-        <Breadcrumbs />
-        <main className="min-h-[calc(100vh-8rem)]">
-          {children}
-        </main>
+        <ThemeProvider>
+          <Navbar />
+          <Breadcrumbs />
+          <main className="min-h-[calc(100vh-8rem)]">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

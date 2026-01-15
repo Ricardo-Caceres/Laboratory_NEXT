@@ -125,7 +125,7 @@ function SearchDemo() {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [searches, setSearches] = useState<string[]>([]);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     // Simula debounceTime(500)
@@ -285,7 +285,7 @@ function MouseTrackingDemo() {
 function WebSocketSimulation() {
   const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState<Array<{ id: number; text: string; time: string }>>([]);
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const connect = () => {
     setConnected(true);

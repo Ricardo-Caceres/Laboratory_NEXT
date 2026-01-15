@@ -20,6 +20,7 @@ import { DesktopNav } from './navigation/DesktopNav';
 import { MobileNav } from './navigation/MobileNav';
 import { MobileMenuButton } from './navigation/MobileMenuButton';
 import { SearchBar } from './navigation/SearchBar';
+import { ThemeToggle } from './navigation/ThemeToggle';
 
 /**
  * Navbar Container Component
@@ -86,10 +87,14 @@ export default function Navbar() {
             hasSearchQuery={!!searchQuery}
           />
 
-          <MobileMenuButton
-            isOpen={mobileMenuOpen}
-            onClick={toggleMobileMenu}
-          />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            
+            <MobileMenuButton
+              isOpen={mobileMenuOpen}
+              onClick={toggleMobileMenu}
+            />
+          </div>
         </div>
       </div>
 

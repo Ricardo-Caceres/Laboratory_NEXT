@@ -312,7 +312,8 @@ export function AdvancedJSDemo() {
       addOutput('🦘 TRAMPOLINING: Recursión sin stack overflow');
       addOutput('─'.repeat(60));
       
-      const trampoline = <T>(fn: (...args: any[]) => T | (() => T)) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const trampoline = function<T>(fn: (...args: any[]) => T | (() => T)) {
         return (...args: any[]): T => {
           let result: any = fn(...args);
           while (typeof result === 'function') {

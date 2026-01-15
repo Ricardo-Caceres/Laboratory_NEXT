@@ -1,17 +1,13 @@
 /**
  * StyledText Component
- * Renders formatted text with markdown-like styling
+ * Renders formatted text with markdown-like styling and improved spacing
  * 
  * Features:
  * - Bold text: **text**
  * - List items: - item
  * - Colored titles (text ending with :)
  * - Auto-detects list titles
- * 
- * Refactored to follow SOLID principles:
- * - Single Responsibility: Only renders styled text
- * - Uses utility functions for parsing logic
- * - Small, focused functions
+ * - Smart spacing between sections
  * 
  * @example
  * <StyledText text="**Bold** text\n- List item\nTitle:\n- Another item" />
@@ -56,29 +52,33 @@ const renderLine = (
 
 /**
  * StyledText Component
- * Parses and renders formatted text
+ * Parses and renders formatted text with improved spacing
  */
 export function StyledText({ text }: StyledTextProps) {
   const lines = text.split('\n');
   const elements: React.ReactNode[] = [];
   let currentList: React.ReactNode[] = [];
+  let previousWasListTitle = false;
 
   lines.forEach((line, index) => {
+    const trimmedLine = line.trim();
+    
     // Handle list items
     if (isListItem(line)) {
       const content = getListItemContent(line);
       currentList.push(
-        <li key={index} className="mb-1">
+        <li key={index} className="mb-2 leading-relaxed">
           {renderLine(content, index, false)}
         </li>
       );
+      previousWasListTitle = false;
       return;
     }
 
     // Flush current list before processing non-list line
     if (currentList.length > 0) {
       elements.push(
-        <ul key={`ul-${index}`} className="list-disc pl-5 mb-2">
+        <ul key={`ul-${index}`} className="list-disc pl-6 mb-4 space-y-1">
           {currentList}
         </ul>
       );
@@ -86,36 +86,41 @@ export function StyledText({ text }: StyledTextProps) {
     }
 
     // Skip empty lines
-    if (line.trim() === '') {
+    if (trimmedLine === '') {
       return;
     }
 
     // Check if this line is a list title
     const isTitle = isListTitleLine(lines, index);
 
+    // Add spacing before section titles
+    const marginTop = isTitle && elements.length > 0 ? 'mt-6' : '';
+
     // Render regular paragraph
     elements.push(
       <p
         key={index}
-        className={
+        className={`mb-3 leading-relaxed ${
           isTitle
-            ? 'font-bold text-[var(--foreground)] text-lg mb-2'
-            : 'mb-2 text-[var(--foreground)]'
-        }
+            ? `font-bold text-[var(--foreground)] text-lg ${marginTop}`
+            : 'text-[var(--foreground)] opacity-90'
+        }`}
       >
         {renderLine(line, index, isTitle)}
       </p>
     );
+
+    previousWasListTitle = isTitle;
   });
 
   // Flush any remaining list items
   if (currentList.length > 0) {
     elements.push(
-      <ul key="ul-final" className="list-disc pl-5 mb-2">
+      <ul key="ul-final" className="list-disc pl-6 mb-4 space-y-1">
         {currentList}
       </ul>
     );
   }
 
-  return <>{elements}</>;
+  return <div className="space-y-2">{elements}</div>;
 }

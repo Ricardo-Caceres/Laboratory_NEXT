@@ -2,33 +2,57 @@ import ParentComponent from './_client_example';
 import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
-**useCallback** es un Hook de optimización que devuelve una versión memoizada de una función callback. Previene la recreación innecesaria de funciones en cada renderizado, lo cual es especialmente útil cuando pasas callbacks a componentes hijos optimizados.
+**useCallback** es un Hook de optimización que devuelve una versión memoizada de una función callback. Previene la recreación innecesaria de funciones en cada renderizado.
 
-Características principales:
+**¿Por qué es importante?**
+
+En JavaScript, cada vez que un componente se re-renderiza, se crean nuevas instancias de todas sus funciones. Esto puede causar re-renderizados innecesarios en componentes hijos si usan \`React.memo\` o \`useEffect\` que dependen de esas funciones.
+
+**Características principales:**
+
 - **Memoización de funciones:** La función solo se recrea cuando sus dependencias cambian
+- **Identidad referencial estable:** Mantiene la misma referencia entre renders
 - **Optimización de rendimiento:** Evita re-renderizados innecesarios en componentes hijos
-- **Identidad referencial:** Mantiene la misma referencia de función entre renders
-- **Combinación con React.memo:** Máximo beneficio al usarlo con componentes memoizados
+- **Integración con React.memo:** Máximo beneficio al usarlo con componentes memoizados
 
-Casos de uso comunes:
-- Pasar callbacks a componentes hijos optimizados con React.memo
-- Funciones que son dependencias de otros Hooks (useEffect, useMemo)
-- Event handlers en componentes de listas grandes
-- Callbacks en custom hooks
+**Casos de uso reales:**
+
+- Pasar callbacks a componentes hijos optimizados con \`React.memo\`
+- Funciones que son dependencias de otros Hooks (\`useEffect\`, \`useMemo\`)
+- Event handlers en listas grandes (evitar recrear funciones por cada item)
+- Callbacks en custom hooks que no deben cambiar frecuentemente
+- Funciones que se pasan a bibliotecas externas
 
 **Sintaxis:**
+
 \`const memoizedCallback = useCallback(() => { /* función */ }, [deps]);\`
 
-**Cuándo usarlo:**
-- El callback se pasa a un componente hijo optimizado
-- El callback es una dependencia de otro Hook
-- La función es costosa de crear
+**Diferencia clave con useMemo:**
 
-**Cuándo NO usarlo:**
-- En funciones simples sin pasar a componentes hijos
-- Cuando la optimización no es necesaria
+- **useCallback:** Memoriza la función misma
+- **useMemo:** Memoriza el resultado de ejecutar una función
 
-En este ejemplo, demostramos cómo useCallback previene re-renderizados innecesarios en componentes hijos cuando se usa junto con React.memo.
+\`useCallback(fn, deps)\` es equivalente a \`useMemo(() => fn, deps)\`
+
+**Cuándo SÍ usarlo:**
+
+- El callback se pasa a un componente hijo optimizado con \`React.memo\`
+- El callback es una dependencia de \`useEffect\` o \`useMemo\`
+- La función se crea en un componente que se renderiza frecuentemente
+- Estás experimentando problemas de rendimiento medibles
+
+**Cuándo NO usarlo (over-optimization):**
+
+- Funciones simples que no se pasan a componentes hijos
+- Cuando no hay componentes hijos memoizados
+- Como optimización prematura sin medir el rendimiento
+- En event handlers simples que no causan problemas
+
+**Regla de oro:**
+
+"Optimiza cuando tengas un problema de rendimiento real, no por defecto"
+
+En este ejemplo, demostramos cómo \`useCallback\` previene re-renderizados innecesarios en componentes hijos cuando se usa junto con \`React.memo\`.
 `;
 
 const filePaths = [

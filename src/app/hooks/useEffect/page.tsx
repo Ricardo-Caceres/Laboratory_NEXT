@@ -2,30 +2,53 @@ import DataFetcher from './_client_example';
 import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
-**useEffect** es el Hook para manejar efectos secundarios (side effects) en componentes funcionales. Reemplaza los métodos del ciclo de vida como componentDidMount, componentDidUpdate y componentWillUnmount.
+**useEffect** es el Hook para manejar efectos secundarios (side effects) en componentes funcionales. Reemplaza los métodos del ciclo de vida como \`componentDidMount\`, \`componentDidUpdate\` y \`componentWillUnmount\`.
 
-Características principales:
-- **Efectos secundarios:** Operaciones que afectan el mundo exterior (API calls, suscripciones, timers)
+**¿Qué son los efectos secundarios?**
+
+Los efectos secundarios son operaciones que afectan algo fuera del alcance de la función: llamadas a APIs, manipulación del DOM, suscripciones, timers, etc. En React, estos deben manejarse de forma especial para mantener la predictibilidad.
+
+**Características principales:**
+
 - **Sincronización:** Mantiene tu componente sincronizado con sistemas externos
-- **Limpieza:** Permite limpiar recursos cuando el componente se desmonta
-- **Dependencias:** Controla cuándo se ejecuta el efecto mediante un array de dependencias
+- **Ejecución asíncrona:** Se ejecuta después de que React actualiza el DOM
+- **Limpieza automática:** Puedes retornar una función de cleanup
+- **Control de ejecución:** El array de dependencias controla cuándo se ejecuta
+- **Agrupación (batching):** React puede agrupar múltiples efectos
 
-Casos de uso comunes:
+**Casos de uso comunes:**
+
 - Obtener datos de una API (data fetching)
-- Suscripciones a eventos o servicios externos
+- Suscripciones a eventos (WebSocket, event listeners)
 - Manipulación directa del DOM
-- Temporizadores y intervalos
-- Sincronización con servicios de terceros
+- Temporizadores y intervalos (setTimeout, setInterval)
+- Sincronización con servicios de terceros (analytics, ads)
+- Actualizar el título del documento
 
 **Sintaxis:**
+
 \`useEffect(() => { /* efecto */ return () => { /* limpieza */ }; }, [deps]);\`
 
-**Array de dependencias:**
-- Sin array: Se ejecuta después de cada renderizado
-- Array vacío []: Se ejecuta solo una vez (al montar)
-- Con dependencias [a, b]: Se ejecuta cuando a o b cambian
+**Array de dependencias - Muy importante:**
 
-En este ejemplo, demostramos cómo usar useEffect para obtener datos de una API cuando el componente se monta.
+- **Sin array:** Se ejecuta después de CADA renderizado (raramente útil)
+- **Array vacío []:** Se ejecuta SOLO UNA VEZ al montar el componente
+- **Con deps [a, b]:** Se ejecuta cuando \`a\` o \`b\` cambian
+
+**Reglas de limpieza:**
+
+- Siempre limpia suscripciones, timers y event listeners
+- La función de limpieza se ejecuta ANTES del próximo efecto
+- También se ejecuta cuando el componente se desmonta
+
+**Buenas prácticas:**
+
+- Un efecto por responsabilidad (no mezclar lógica no relacionada)
+- Siempre incluye todas las dependencias que uses
+- Evita efectos que dependan de sí mismos (loops infinitos)
+- Usa ESLint plugin para detectar dependencias faltantes
+
+En este ejemplo, demostramos cómo usar useEffect para obtener datos de una API cuando el componente se monta, y cómo limpiar correctamente recursos.
 `;
 
 const filePaths = [
