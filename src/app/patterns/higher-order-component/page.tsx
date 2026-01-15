@@ -1,12 +1,17 @@
-import MyPage from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { LeftPanel } from '@/components/layout/LeftPanel';
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
 
-const description = `
-🎭 **Higher-Order Component (HOC)** - El patrón de composición funcional que transformó React antes de los Hooks
+const ClientExample = dynamic(() => import('./_client_example'));
 
-El patrón de Componente de Orden Superior es una técnica avanzada y poderosa en React para reutilizar lógica de componentes mediante composición funcional. Los HOCs son funciones puras que toman un componente como entrada y devuelven un nuevo componente "mejorado" con props, comportamientos o capacidades adicionales, sin modificar el componente original.
+export default function HigherOrderComponentPage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <LeftPanel
+        title="Higher-Order Component (HOC)"
+        description="🎭 **Higher-Order Component (HOC)** - El patrón de composición funcional que transformó React antes de los Hooks
+
+El patrón de Componente de Orden Superior es una técnica avanzada y poderosa en React para reutilizar lógica de componentes mediante composición funcional. Los HOCs son funciones puras que toman un componente como entrada y devuelven un nuevo componente mejorado con props, comportamientos o capacidades adicionales, sin modificar el componente original.
 
 **🎯 ¿Qué problema resuelve?**
 Antes de React Hooks (pre-2019), los HOCs eran LA solución estándar para compartir lógica entre componentes. ¿Necesitas autenticación en 10 componentes? ¿Logging? ¿Conexión a Redux? ¿Manejo de suscripciones? Los HOCs te permitían escribir esa lógica UNA vez y aplicarla a CUALQUIER componente mediante composición.
@@ -14,11 +19,8 @@ Antes de React Hooks (pre-2019), los HOCs eran LA solución estándar para compa
 **⚙️ ¿Cómo funciona?**
 En este ejemplo, 'withAuth' es un HOC que añade lógica de autenticación a cualquier componente que envuelva. Recibe un componente (WrappedComponent), retorna un nuevo componente que verifica autenticación, y solo renderiza el componente original si el usuario está autenticado. Es una función que recibe una función (componente) y retorna una función (componente mejorado).
 
-Patrón típico:
-\`\`\`typescript
-const EnhancedComponent = withHOC(OriginalComponent);
-// withAuth(Dashboard), withLogging(UserProfile), withData(ProductList)
-\`\`\`
+**Patrón típico:**
+<code>const EnhancedComponent = withHOC(OriginalComponent);</code>
 
 **✨ Beneficios Clave:**
 - **♻️ Máxima Reutilización:** Escribe lógica cross-cutting UNA vez, aplícala a N componentes. Zero duplicación.
@@ -50,114 +52,182 @@ En aplicaciones modernas, Custom Hooks han reemplazado a HOCs para la mayoría d
 - ✅ HOCs: Útiles cuando necesitas interceptar el ciclo completo de renderizado, o envolver componentes de terceros que no controlas
 
 **🔥 Tips Pro:**
-- Usa \`displayName\` para debugging: \`EnhancedComponent.displayName = \`withAuth(\${Component.name})\`\`
-- Copia static methods con \`hoist-non-react-statics\`
-- Pasa props no relacionadas al componente envuelto (\`...otherProps\`)
+- Usa <code>displayName</code> para debugging
+- Copia static methods con <code>hoist-non-react-statics</code>
+- Pasa props no relacionadas al componente envuelto
 - Considera usar Hooks para nuevos proyectos, HOCs para legacy o casos específicos
 - HOCs aún son relevantes en 2024 para: Error Boundaries, component interception, third-party library integration
 
 **💡 Evolución:**
-HOCs → Render Props → Hooks. Cada uno resolvió problemas del anterior. HOCs siguen siendo valiosos en el toolbox de desarrolladores senior.
-`;
+HOCs → Render Props → Hooks. Cada uno resolvió problemas del anterior. HOCs siguen siendo valiosos en el toolbox de desarrolladores senior."
+        codeContent={[
+          {
+            filePath: 'patterns/hoc-basic.tsx',
+            content: `// Higher-Order Component básico
+import { ComponentType } from 'react';
 
-
-const filePaths = [
-  'src/app/patterns/higher-order-component/_client_example.tsx',
-];
-
-async function getCodeContent() {
-  const codeContent = await Promise.all(
-    filePaths.map(async (filePath) => {
-      const fullPath = path.join(process.cwd(), filePath);
-      const content = await fs.readFile(fullPath, 'utf-8');
-      return { filePath, content };
-    })
-  );
-  return codeContent;
-}
-
-function StyledText({ text }: { text: string }) {
-  const renderLineContent = (lineText: string, lineIndex: number) => {
-    // First, handle existing bold text (**)
-    const parts = lineText.split(/(\*(.*?)\*)/g);
-    const processedParts = parts.map((part, partPartIndex) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return (
-          <strong key={`${lineIndex}-${partPartIndex}`} className="font-bold text-cyan-400">
-            {part.slice(2, -2)}
-          </strong>
-        );
-      }
-      // Now, handle text before a colon if it's not already bold
-      const colonParts = part.split(/([^:]+?:)/g); // Split by text ending with a colon
-      return colonParts.map((colonPart, colonPartIndex) => {
-        if (colonPart.endsWith(':') && colonPart.length > 1) { // Ensure it's not just a colon
-          return (
-            <span key={`${lineIndex}-${partPartIndex}-${colonPartIndex}`} className="font-bold text-blue-500">
-              {colonPart}
-            </span>
-          );
-        }
-        return <span key={`${lineIndex}-${partPartIndex}-${colonPartIndex}`}>{colonPart}</span>;
-      });
-    });
-    return processedParts;
-  };
-
-  const lines = text.split('\n');
-  const elements: React.ReactNode[] = [];
-  let currentList: React.ReactNode[] = [];
-
-  lines.forEach((line, index) => {
-    if (line.trim().startsWith('- ')) {
-      const listItemContent = line.trim().substring(2);
-      currentList.push(
-        <li key={index} className="mb-1">
-          {renderLineContent(listItemContent, index)}
-        </li>
-      );
-    } else {
-      if (currentList.length > 0) {
-        elements.push(<ul key={`ul-${index - 1}`} className="list-disc pl-5 mb-2">{currentList}</ul>);
-        currentList = [];
-      }
-      // Check if this line is a list title
-      const isListTitle = (index + 1 < lines.length && lines[index + 1].trim().startsWith('- '));
-      // Handle empty lines or lines that are just whitespace
-      if (line.trim() !== '') {
-        elements.push(
-          <p key={index} className={isListTitle ? "font-bold text-white text-lg mb-2" : "mb-2"}>
-            {renderLineContent(line, index)}
-          </p>
-        );
-      }
+// HOC que añade autenticación
+function withAuth<P extends object>(
+  WrappedComponent: ComponentType<P>
+) {
+  return function AuthenticatedComponent(props: P) {
+    const isAuthenticated = checkAuth(); // Lógica compartida
+    
+    if (!isAuthenticated) {
+      return <div>Please log in</div>;
     }
-  });
-
-  // Add any remaining list items
-  if (currentList.length > 0) {
-    elements.push(<ul key={`ul-final`} className="list-disc pl-5 mb-2">{currentList}</ul>);
-  }
-
-  return <>{elements}</>;
+    
+    // Renderiza el componente original con todas sus props
+    return <WrappedComponent {...props} />;
+  };
 }
 
-export default async function HigherOrderComponentPage() {
-  const codeContent = await getCodeContent();
+// Componente simple
+function Dashboard() {
+  return <div>Dashboard Content</div>;
+}
 
-  return (
-    <div className="flex min-h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">Higher-Order Component Pattern</h2>
-        <div className="mb-4">
-          <StyledText text={description} />
-        </div>
-        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
-        <MyPage />
-      </div>
+// Componente mejorado con autenticación
+const ProtectedDashboard = withAuth(Dashboard);
+
+// Uso
+<ProtectedDashboard />
+
+// ✨ El componente Dashboard no sabe nada de autenticación
+// ✨ La lógica de auth está centralizada y reutilizable`,
+          },
+          {
+            filePath: 'patterns/hoc-props-injection.tsx',
+            content: `// HOC que inyecta props
+function withUserData<P extends object>(
+  WrappedComponent: ComponentType<P & { user: User }>
+) {
+  return function WithUserDataComponent(props: P) {
+    const [user, setUser] = useState<User | null>(null);
+    
+    useEffect(() => {
+      // Fetch user data
+      fetchUser().then(setUser);
+    }, []);
+    
+    if (!user) return <div>Loading...</div>;
+    
+    // Inyecta prop 'user' al componente
+    return <WrappedComponent {...props} user={user} />;
+  };
+}
+
+// Componente que recibe user como prop
+function UserProfile({ user }: { user: User }) {
+  return <div>Welcome, {user.name}!</div>;
+}
+
+// HOC inyecta automáticamente la prop 'user'
+const ProfileWithData = withUserData(UserProfile);
+
+// Uso - no necesitas pasar 'user' manualmente
+<ProfileWithData />`,
+          },
+          {
+            filePath: 'patterns/hoc-composition.tsx',
+            content: `// Composición de múltiples HOCs
+import { compose } from 'redux'; // o tu propia implementación
+
+// Múltiples HOCs
+const withAuth = (Component) => (props) => {
+  // Lógica de autenticación
+  return <Component {...props} isAuth={true} />;
+};
+
+const withLogging = (Component) => (props) => {
+  useEffect(() => {
+    console.log('Component rendered', props);
+  });
+  return <Component {...props} />;
+};
+
+const withTheme = (Component) => (props) => {
+  const theme = useTheme();
+  return <Component {...props} theme={theme} />;
+};
+
+// Componente base
+function Dashboard(props) {
+  return <div>Dashboard</div>;
+}
+
+// Composición manual (anidación)
+const Enhanced = withAuth(withLogging(withTheme(Dashboard)));
+
+// Composición con compose (más elegante)
+const Enhanced = compose(
+  withAuth,
+  withLogging,
+  withTheme
+)(Dashboard);
+
+// Uso
+<Enhanced />
+
+// ✨ Dashboard recibe props de los 3 HOCs
+// ✨ Lógica de auth, logging y theme reutilizable`,
+          },
+          {
+            filePath: 'patterns/hoc-vs-hooks.tsx',
+            content: `// HOC vs Custom Hook - Mismo objetivo, diferente approach
+
+// ❌ Approach antiguo con HOC
+function withWindowSize(Component) {
+  return function WithWindowSize(props) {
+    const [size, setSize] = useState({ width: 0, height: 0 });
+    
+    useEffect(() => {
+      const handleResize = () => {
+        setSize({ width: window.innerWidth, height: window.innerHeight });
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    return <Component {...props} windowSize={size} />;
+  };
+}
+
+const MyComponentWithSize = withWindowSize(MyComponent);
+
+// ✅ Approach moderno con Custom Hook
+function useWindowSize() {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  return size;
+}
+
+function MyComponent() {
+  const windowSize = useWindowSize();
+  return <div>Width: {windowSize.width}</div>;
+}
+
+// ✨ Hooks: Más simple, sin wrapper, mejor TypeScript
+// ✨ HOCs: Útiles para wrapping completo del componente`,
+          }
+        ]}
+      />
+      <RightPanel>
+        <ClientExample />
+      </RightPanel>
     </div>
   );
 }
+
+export const metadata = {
+  title: 'Higher-Order Component (HOC) | React Patterns',
+  description: 'Patrón de Componente de Orden Superior - Función que toma un componente y devuelve un componente mejorado con lógica adicional'
+};

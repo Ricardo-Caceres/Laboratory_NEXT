@@ -1,59 +1,49 @@
-import MouseTracker from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { LeftPanel } from '@/components/layout/LeftPanel';
+import { RightPanel } from '@/components/layout/RightPanel';
+import dynamic from 'next/dynamic';
 
-const description = `
-🎨 **Render Props Pattern** - El puente entre HOCs y Hooks que democratizó la compartición de lógica en React
+const ClientExample = dynamic(() => import('./_client_example'));
+
+export default function RenderPropsPage() {
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <LeftPanel
+        title="Render Props Pattern"
+        description="🎨 **Render Props Pattern** - El puente entre HOCs y Hooks que democratizó la compartición de lógica en React
 
 El patrón de Render Props es una técnica elegante y poderosa para compartir código entre componentes de React utilizando una prop cuya función es renderizar elementos. En lugar de pasar un componente ya renderizado o envolver con un HOC, pasas una FUNCIÓN que devuelve JSX, dándote control total sobre el renderizado mientras compartes lógica compleja.
 
 **🎯 ¿Qué problema resuelve?**
-Imagina que tienes lógica reutilizable (tracking de mouse, data fetching, form state) que necesitas en múltiples componentes pero cada uno la renderiza diferente. HOCs te fuerzan a una estructura rígida. Render Props te dan flexibilidad total: "Te doy los datos, tú decides cómo mostrarlos".
+Imagina que tienes lógica reutilizable (tracking de mouse, data fetching, form state) que necesitas en múltiples componentes pero cada uno la renderiza diferente. HOCs te fuerzan a una estructura rígida. Render Props te dan flexibilidad total: Te doy los datos, tú decides cómo mostrarlos.
 
 **⚙️ ¿Cómo funciona?**
-En este ejemplo, el componente 'Mouse' no renderiza nada por sí mismo - es un "componente lógico". Rastrea la posición del mouse y pasa esos datos a través de su prop 'render'. El componente 'MouseTracker' utiliza esta prop para definir exactamente cómo quiere mostrar esa posición, desacoplando completamente la lógica (tracking) de la presentación (visualización).
+En este ejemplo, el componente Mouse no renderiza nada por sí mismo - es un componente lógico. Rastrea la posición del mouse y pasa esos datos a través de su prop render. El componente MouseTracker utiliza esta prop para definir exactamente cómo quiere mostrar esa posición, desacoplando completamente la lógica (tracking) de la presentación (visualización).
 
-Patrón típico:
-\`\`\`jsx
-<DataProvider render={data => (
-  <YourCustomUI data={data} />
-)} />
-\`\`\`
+**Patrón típico:**
+<code>&lt;DataProvider render={data =&gt; &lt;YourCustomUI data={data} /&gt;} /&gt;</code>
 
 **✨ Beneficios Clave:**
 - **🎭 Máxima Flexibilidad:** El componente consumidor tiene control ABSOLUTO sobre qué y cómo renderizar. Zero restricciones.
 - **♻️ Reutilización Sin Acoplamiento:** La lógica está completamente desacoplada de la presentación. Un componente, infinitas representaciones.
-- **🔍 Transparencia:** A diferencia de HOCs, puedes ver exactamente qué se está pasando. No hay "magia" oculta en wrappers.
+- **🔍 Transparencia:** A diferencia de HOCs, puedes ver exactamente qué se está pasando. No hay magia oculta en wrappers.
 - **🧩 Composición Natural:** Se combina perfectamente con otros componentes y patrones sin crear wrapper hell.
 - **💉 Dependency Injection:** Es esencialmente inyección de dependencias para el renderizado. El componente padre inyecta la estrategia de renderizado.
-- **🎯 Props Explícitas:** Los datos fluyen de forma explícita y visible, no como props "mágicamente" inyectadas por HOCs.
+- **🎯 Props Explícitas:** Los datos fluyen de forma explícita y visible, no como props mágicamente inyectadas por HOCs.
 
 **🏢 Casos de Uso Reales:**
-- **React Router v4-v5:** <Route render={({ match }) => <Component match={match} />} />
-- **Formik (antes de Hooks):** <Formik render={formikProps => <Form {...formikProps} />} />
-- **React Motion:** <Motion render={interpolatedStyle => <div style={interpolatedStyle} />} />
+- **React Router v4-v5:** &lt;Route render={({ match }) =&gt; &lt;Component match={match} /&gt;} /&gt;
+- **Formik (antes de Hooks):** &lt;Formik render={formikProps =&gt; &lt;Form {...formikProps} /&gt;} /&gt;
+- **React Motion:** &lt;Motion render={interpolatedStyle =&gt; &lt;div style={interpolatedStyle} /&gt;} /&gt;
 - **Downshift:** Biblioteca de accesibilidad que usa render props extensivamente
-- **React Apollo (GraphQL):** <Query query={QUERY} render={({ data }) => <View data={data} />} />
+- **React Apollo (GraphQL):** &lt;Query query={QUERY} render={({ data }) =&gt; &lt;View data={data} /&gt;} /&gt;
 
 **🎨 Variantes del Patrón:**
-1. **Render Prop Clásica:**
-   \`\`\`jsx
-   <Mouse render={mouse => <Display {...mouse} />} />
-   \`\`\`
-
-2. **Children as Function (más común):**
-   \`\`\`jsx
-   <Mouse>{mouse => <Display {...mouse} />}</Mouse>
-   \`\`\`
-
-3. **Named Function Props:**
-   \`\`\`jsx
-   <DataFetcher renderLoading={() => <Spinner />} renderSuccess={data => <List data={data} />} />
-   \`\`\`
+1. **Render Prop Clásica:** <code>&lt;Mouse render={mouse =&gt; &lt;Display {...mouse} /&gt;} /&gt;</code>
+2. **Children as Function:** <code>&lt;Mouse&gt;{mouse =&gt; &lt;Display {...mouse} /&gt;}&lt;/Mouse&gt;</code>
+3. **Named Function Props:** <code>&lt;DataFetcher renderLoading={() =&gt; &lt;Spinner /&gt;} renderSuccess={data =&gt; &lt;List data={data} /&gt;} /&gt;</code>
 
 **⚠️ Consideraciones de Performance:**
-- **Cuidado con inline functions:** \`render={() => <Component />}\` crea nueva función cada render
+- **Cuidado con inline functions:** <code>render={() =&gt; &lt;Component /&gt;}</code> crea nueva función cada render
 - **Solución:** Extrae a una función estable o usa useCallback (en el consumidor)
 - **Pure Components:** Los componentes que usan render props pueden romper PureComponent si no se memorizan
 
@@ -63,12 +53,7 @@ En 2024, Custom Hooks han ganado popularidad porque:
 - ✅ Render Props: Útiles cuando necesitas renderizado condicional complejo, o composición visual explícita
 
 **🔥 Tips Pro:**
-- Usa TypeScript genéricos para type-safe render props:
-  \`\`\`typescript
-  interface Props<T> {
-    render: (data: T) => React.ReactNode;
-  }
-  \`\`\`
+- Usa TypeScript genéricos para type-safe render props
 - Considera proporcionar tanto render prop como hook para máxima flexibilidad
 - Nombre tus render props descriptivamente: renderItem, renderHeader, renderEmpty
 - Documenta claramente qué props recibe la render function
@@ -80,107 +65,193 @@ En 2024, Custom Hooks han ganado popularidad porque:
 4. **Migración gradual:** Transición de código legacy sin refactorizar todo a Hooks
 
 **🧠 Concepto Mental:**
-Piensa en Render Props como "Hollywood Principle" - "Don't call us, we'll call you". El componente te llama con datos, tú decides qué hacer con ellos.
-`;
+Piensa en Render Props como Hollywood Principle - Don't call us, we'll call you. El componente te llama con datos, tú decides qué hacer con ellos."
+        codeContent={[
+          {
+            filePath: 'patterns/render-props-basic.tsx',
+            content: `// Render Props básico - Mouse Tracker
+import { useState, useEffect } from 'react';
 
-
-const filePaths = [
-  'src/app/patterns/render-props/_client_example.tsx',
-];
-
-async function getCodeContent() {
-  const codeContent = await Promise.all(
-    filePaths.map(async (filePath) => {
-      const fullPath = path.join(process.cwd(), filePath);
-      const content = await fs.readFile(fullPath, 'utf-8');
-      return { filePath, content };
-    })
-  );
-  return codeContent;
+// Componente que proporciona lógica de mouse tracking
+function Mouse({ render }: { render: (mouse: { x: number; y: number }) => JSX.Element }) {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  
+  // El componente delega el renderizado al consumidor
+  return render(position);
 }
 
-function StyledText({ text }: { text: string }) {
-  const renderLineContent = (lineText: string, lineIndex: number) => {
-    // First, handle existing bold text (**)
-    const parts = lineText.split(/(\*(.*?)\*)/g);
-    const processedParts = parts.map((part, partPartIndex) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return (
-          <strong key={`${lineIndex}-${partPartIndex}`} className="font-bold text-cyan-400">
-            {part.slice(2, -2)}
-          </strong>
-        );
-      }
-      // Now, handle text before a colon if it's not already bold
-      const colonParts = part.split(/([^:]+?:)/g); // Split by text ending with a colon
-      return colonParts.map((colonPart, colonPartIndex) => {
-        if (colonPart.endsWith(':') && colonPart.length > 1) { // Ensure it's not just a colon
-          return (
-            <span key={`${lineIndex}-${partPartIndex}-${colonPartIndex}`} className="font-bold text-blue-500">
-              {colonPart}
-            </span>
-          );
-        }
-        return <span key={`${lineIndex}-${partPartIndex}-${colonPartIndex}`}>{colonPart}</span>;
-      });
-    });
-    return processedParts;
-  };
-
-  const lines = text.split('\n');
-  const elements: React.ReactNode[] = [];
-  let currentList: React.ReactNode[] = [];
-
-  lines.forEach((line, index) => {
-    if (line.trim().startsWith('- ')) {
-      const listItemContent = line.trim().substring(2);
-      currentList.push(
-        <li key={index} className="mb-1">
-          {renderLineContent(listItemContent, index)}
-        </li>
-      );
-    } else {
-      if (currentList.length > 0) {
-        elements.push(<ul key={`ul-${index - 1}`} className="list-disc pl-5 mb-2">{currentList}</ul>);
-        currentList = [];
-      }
-      // Check if this line is a list title
-      const isListTitle = (index + 1 < lines.length && lines[index + 1].trim().startsWith('- '));
-      // Handle empty lines or lines that are just whitespace
-      if (line.trim() !== '') {
-        elements.push(
-          <p key={index} className={isListTitle ? "font-bold text-white text-lg mb-2" : "mb-2"}>
-            {renderLineContent(line, index)}
-          </p>
-        );
-      }
-    }
-  });
-
-  // Add any remaining list items
-  if (currentList.length > 0) {
-    elements.push(<ul key={`ul-final`} className="list-disc pl-5 mb-2">{currentList}</ul>);
-  }
-
-  return <>{elements}</>;
-}
-
-export default async function RenderPropsPage() {
-  const codeContent = await getCodeContent();
-
+// Uso - control total sobre cómo mostrar los datos
+function App() {
   return (
-    <div className="flex min-h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-4">Render Props Pattern</h2>
-        <div className="mb-4">
-          <StyledText text={description} />
-        </div>
-        <h3 className="text-xl font-bold mb-2">Code Example:</h3>
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
-        <MouseTracker />
-      </div>
+    <div>
+      <Mouse 
+        render={({ x, y }) => (
+          <div>Mouse position: {x}, {y}</div>
+        )} 
+      />
     </div>
   );
 }
+
+// ✨ La lógica de tracking está separada de la presentación
+// ✨ Puedes usar Mouse con diferentes UIs`,
+          },
+          {
+            filePath: 'patterns/render-props-children.tsx',
+            content: `// Children as Function - Variante más común
+import { useState, useEffect } from 'react';
+
+type MousePosition = { x: number; y: number };
+
+function Mouse({ children }: { children: (pos: MousePosition) => JSX.Element }) {
+  const [position, setPosition] = useState<MousePosition>({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
+  }, []);
+  
+  return children(position);
+}
+
+// Uso - sintaxis más limpia
+function App() {
+  return (
+    <Mouse>
+      {({ x, y }) => (
+        <div style={{ 
+          position: 'absolute', 
+          left: x, 
+          top: y,
+          transform: 'translate(-50%, -50%)'
+        }}>
+          📍
+        </div>
+      )}
+    </Mouse>
+  );
+}
+
+// ✨ Sintaxis más intuitiva que render prop
+// ✨ Mismo poder, mejor DX`,
+          },
+          {
+            filePath: 'patterns/render-props-data-fetching.tsx',
+            content: `// Render Props para Data Fetching
+import { useState, useEffect } from 'react';
+
+type DataFetcherProps<T> = {
+  url: string;
+  renderLoading?: () => JSX.Element;
+  renderError?: (error: Error) => JSX.Element;
+  renderSuccess: (data: T) => JSX.Element;
+};
+
+function DataFetcher<T>({ 
+  url, 
+  renderLoading, 
+  renderError, 
+  renderSuccess 
+}: DataFetcherProps<T>) {
+  const [state, setState] = useState<{
+    loading: boolean;
+    error: Error | null;
+    data: T | null;
+  }>({ loading: true, error: null, data: null });
+  
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => setState({ loading: false, error: null, data }))
+      .catch(error => setState({ loading: false, error, data: null }));
+  }, [url]);
+  
+  if (state.loading) return renderLoading?.() || <div>Loading...</div>;
+  if (state.error) return renderError?.(state.error) || <div>Error!</div>;
+  if (state.data) return renderSuccess(state.data);
+  return null;
+}
+
+// Uso con múltiples render props
+<DataFetcher
+  url="/api/users"
+  renderLoading={() => <Spinner />}
+  renderError={(error) => <ErrorMessage error={error} />}
+  renderSuccess={(users) => <UserList users={users} />}
+/>
+
+// ✨ Múltiples puntos de customización
+// ✨ Cada estado puede renderizarse diferente`,
+          },
+          {
+            filePath: 'patterns/render-props-vs-hooks.tsx',
+            content: `// Render Props vs Custom Hook - Comparación
+
+// ❌ Approach con Render Props
+function MouseWithRenderProp() {
+  return (
+    <Mouse>
+      {({ x, y }) => (
+        <div>
+          <p>Mouse: {x}, {y}</p>
+        </div>
+      )}
+    </Mouse>
+  );
+}
+
+// ✅ Approach con Custom Hook
+function useMouse() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
+  }, []);
+  
+  return position;
+}
+
+function MouseWithHook() {
+  const { x, y } = useMouse();
+  return <div>Mouse: {x}, {y}</div>;
+}
+
+// 🎯 Cuándo usar cada uno:
+// Render Props: Necesitas control sobre el renderizado visual
+// Custom Hooks: Solo necesitas la lógica/datos
+
+// 💡 Mejor de ambos mundos: Ofrece ambos!
+function Mouse({ children }: { children?: (pos: MousePosition) => JSX.Element }) {
+  const position = useMouse(); // Hook interno
+  return children ? children(position) : null;
+}`,
+          }
+        ]}
+      />
+      <RightPanel>
+        <ClientExample />
+      </RightPanel>
+    </div>
+  );
+}
+
+export const metadata = {
+  title: 'Render Props Pattern | React Patterns',
+  description: 'Patrón de Render Props - Compartir código entre componentes usando una prop cuya función es renderizar elementos'
+};
