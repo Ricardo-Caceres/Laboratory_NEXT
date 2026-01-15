@@ -19,5 +19,5 @@ export default async function ContainerPresentationalPage() {
 
 export const metadata = {
   title: 'Container/Presentational Pattern | Design Patterns',
-  description: 'Learn about separating business logic from presentation with Container and Presentational components',
+  description: '🎭 Separation of Concerns en React - Divide componentes en Container (lógica/data) y Presentational (UI pura). Facilita testing, reutilización y mantenimiento. Patrón fundamental pre-Hooks que sigue siendo relevante en arquitecturas complejas',
 };

@@ -77,7 +77,27 @@ export default function ClientExample({ codeContent }: { codeContent: { filePath
                 </svg>
               </div>
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Custom Hooks Pattern</h1>
-              <p className="text-base sm:text-lg text-gray-600">Reusable stateful logic</p>
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
+                🪝 **Custom Hooks** - La revolución que cambió React forever en 2019
+                <br/><br/>
+                Los Custom Hooks son la forma moderna y más poderosa de reutilizar lógica stateful en React. Permiten extraer comportamiento complejo (data fetching, subscriptions, timers, localStorage) en funciones reutilizables que cualquier componente puede consumir con una simple línea de código.
+                <br/><br/>
+                **🎯 Por qué son game-changers:**
+                <br/>
+                ✅ Zero wrapper hell - No más HOCs anidados o render props
+                <br/>
+                ✅ Composición natural - Combina hooks como bloques de LEGO
+                <br/>
+                ✅ TypeScript-first - Inferencia automática de tipos
+                <br/>
+                ✅ Testabilidad - Testea hooks aisladamente con @testing-library/react-hooks
+                <br/><br/>
+                **En este ejemplo:**
+                <br/>
+                📡 <strong>useFetch</strong> - Data fetching con loading/error states automáticos
+                <br/>
+                💾 <strong>useLocalStorage</strong> - Sincronización automática con localStorage
+              </p>
             </div>
 
             <div className="space-y-6">
@@ -131,13 +151,34 @@ export default function ClientExample({ codeContent }: { codeContent: { filePath
             </div>
 
             <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-              <h3 className="font-semibold text-gray-900 mb-2">Pattern Benefits:</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>✓ Extract reusable logic from components</li>
-                <li>✓ Share stateful logic without HOCs or render props</li>
-                <li>✓ Compose multiple hooks together</li>
-                <li>✓ Easier to test and maintain</li>
+              <h3 className="font-semibold text-gray-900 mb-3">🔥 Pattern Benefits:</h3>
+              <ul className="text-sm text-gray-700 space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span><strong>Máxima Reutilización:</strong> Escribe lógica UNA vez, úsala en N componentes</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span><strong>Composición Perfecta:</strong> Combina múltiples hooks sin anidación compleja</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span><strong>Testing Simplificado:</strong> Testea hooks aisladamente con renderHook()</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span><strong>Type-Safe:</strong> TypeScript infiere tipos automáticamente</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span><strong>Código Limpio:</strong> Elimina HOCs, render props y class components</span>
+                </li>
               </ul>
+              <div className="mt-4 pt-4 border-t border-green-300">
+                <p className="text-xs text-gray-600 italic">
+                  💡 Pro Tip: Nombra tus hooks con "use" prefix. Es una convención que permite a React y linters validar las Rules of Hooks.
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -12,5 +12,5 @@ export default async function ObserverPatternPage() {
 
 export const metadata = {
   title: 'Observer Pattern | Design Patterns',
-  description: 'Implement the Observer pattern for event-driven architecture',
+  description: '📡 El patrón fundamental para arquitecturas event-driven - Permite que objetos se suscriban a cambios sin acoplamiento directo. Base de RxJS, EventEmitter, Redux y la mayoría de sistemas reactivos modernos',
 };

@@ -12,5 +12,5 @@ export default async function SingletonPatternPage() {
 
 export const metadata = {
   title: 'Singleton Pattern | Design Patterns',
-  description: 'Ensure a class has only one instance with global access point',
+  description: '🔒 El patrón clásico de GoF para garantizar UNA única instancia global - Perfecto para config managers, loggers, caches y connection pools en JavaScript/TypeScript',
 };

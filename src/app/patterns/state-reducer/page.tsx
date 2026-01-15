@@ -15,5 +15,5 @@ export default async function StateReducerPage() {
 
 export const metadata = {
   title: 'State Reducer Pattern | Design Patterns',
-  description: 'Give users control over internal state management with the State Reducer pattern',
+  description: '⚙️ Inversion of Control para gestión de estado - Da a los usuarios control total sobre cómo se comporta tu componente complejo mientras mantienes defaults sensatos',
 };
