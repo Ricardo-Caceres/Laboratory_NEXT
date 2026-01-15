@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, Suspense, use } from 'react';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **use** es un Hook revolucionario de React 19 que permite "unwrap" recursos como Promises y Contexts directamente en la lógica de renderizado. Simplifica el manejo de datos asíncronos y contextos, funcionando de manera diferente a otros Hooks.
@@ -87,35 +87,38 @@ function DataDisplay() {
   return <p className="text-lg mt-4 p-4 bg-green-100 rounded">{data}</p>;
 }
 
-export default function UseHookExample() {
+function UseHookExample() {
   const [showData, setShowData] = useState(false);
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">use Hook (React 19)</h1>
-          <StyledText text={description} />
-        </div>
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100 p-8">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold mb-4">use Hook Demo</h2>
-          <p className="text-lg mb-4">Click the button to load data asynchronously using the use Hook with Suspense.</p>
-          <button 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" 
-            onClick={() => setShowData(true)}
-            disabled={showData}
-          >
-            {showData ? 'Data Loaded' : 'Load Data'}
-          </button>
-          {showData && (
-            <Suspense fallback={<p className="text-lg mt-4 text-blue-600">Loading data...</p>}>
-              <DataDisplay />
-            </Suspense>
-          )}
-        </div>
-      </div>
+    <div className="container mx-auto">
+      <h2 className="text-2xl font-bold mb-4">use Hook Demo (React 19)</h2>
+      <p className="text-lg mb-4">Click the button to load data asynchronously using the use Hook with Suspense.</p>
+      <button 
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" 
+        onClick={() => setShowData(true)}
+        disabled={showData}
+      >
+        {showData ? 'Data Loaded' : 'Load Data'}
+      </button>
+      {showData && (
+        <Suspense fallback={<p className="text-lg mt-4 text-blue-600">Loading data...</p>}>
+          <DataDisplay />
+        </Suspense>
+      )}
     </div>
+  );
+}
+
+const filePaths = ['src/app/hooks/use/page.tsx'];
+
+export default function UseHookPage() {
+  return (
+    <HookPageLayout
+      title="use Hook (React 19)"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={UseHookExample}
+    />
   );
 }

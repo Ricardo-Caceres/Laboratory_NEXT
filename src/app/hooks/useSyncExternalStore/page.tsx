@@ -1,6 +1,5 @@
 import OnlineStatus from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useSyncExternalStore** es un Hook especializado que permite suscribirse a stores externos de forma segura con Server-Side Rendering y Concurrent Features. Es fundamental para integraciones con state managers y fuentes de datos externas.
@@ -64,19 +63,15 @@ const data = useSyncExternalStore(subscribe, getSnapshot);
 En este ejemplo, demostramos cómo useSyncExternalStore se suscribe al estado online/offline del navegador de forma segura y eficiente.
 `;
 
+const filePaths = ['src/app/hooks/useSyncExternalStore/_client_example.tsx'];
+
 export default function UseSyncExternalStorePage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useSyncExternalStore Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useSyncExternalStore/_client_example.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <OnlineStatus />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useSyncExternalStore Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={OnlineStatus}
+    />
   );
 }

@@ -1,6 +1,5 @@
 import TransitionExample from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useTransition** es un Hook de React 18+ que permite marcar actualizaciones de estado como no urgentes (transiciones). Mantiene la UI responsiva durante renderizados costosos, permitiendo que React interrumpa el trabajo no urgente para manejar interacciones del usuario.
@@ -67,19 +66,18 @@ startTransition(() => {
 En este ejemplo, demostramos cómo useTransition mantiene el input responsivo mientras se filtra una lista de 10,000 elementos. El estado de \`isPending\` muestra un indicador de carga durante la transición.
 `;
 
+const filePaths = [
+  'src/app/hooks/useTransition/_client_example.tsx',
+  'src/app/hooks/useTransition/SlowList.tsx'
+];
+
 export default function UseTransitionPage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useTransition Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useTransition/_client_example.tsx', 'src/app/hooks/useTransition/SlowList.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <TransitionExample />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useTransition Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={TransitionExample}
+    />
   );
 }

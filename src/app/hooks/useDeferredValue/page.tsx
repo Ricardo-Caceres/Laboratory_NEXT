@@ -1,6 +1,5 @@
 import DeferredValueExample from './_client_example';
-import CodeDisplay from '../../../components/CodeDisplay';
-import { StyledText } from '../../../components/StyledText';
+import HookPageLayout from '../../../components/HookPageLayout';
 
 const description = `
 **useDeferredValue** es un Hook de React 18+ que permite diferir la actualización de una parte no crítica de la UI. Ayuda a mantener la interfaz responsiva durante actualizaciones costosas, permitiendo que las interacciones del usuario se procesen primero.
@@ -56,19 +55,18 @@ const deferredInput = useDeferredValue(input);
 En este ejemplo, demostramos cómo useDeferredValue mantiene el input responsivo mientras se filtra una lista grande. El valor diferido se usa para el filtrado costoso, mientras el input se actualiza instantáneamente.
 `;
 
+const filePaths = [
+  'src/app/hooks/useDeferredValue/_client_example.tsx',
+  'src/app/hooks/useDeferredValue/SlowList.tsx'
+];
+
 export default function UseDeferredValuePage() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-3xl font-bold text-white mb-4">useDeferredValue Hook</h1>
-          <StyledText text={description} />
-        </div>
-        <CodeDisplay filePaths={['src/app/hooks/useDeferredValue/_client_example.tsx', 'src/app/hooks/useDeferredValue/SlowList.tsx']} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-gray-100">
-        <DeferredValueExample />
-      </div>
-    </div>
+    <HookPageLayout
+      title="useDeferredValue Hook"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={DeferredValueExample}
+    />
   );
 }
