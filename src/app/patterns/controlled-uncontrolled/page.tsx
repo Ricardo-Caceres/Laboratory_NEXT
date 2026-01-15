@@ -70,14 +70,14 @@ function UncontrolledInput() {
     console.log(inputRef.current?.value);
   };
   
-  return <input ref={inputRef} defaultValue=\"\" />;
+  return <input ref={inputRef} defaultValue='' />;
 }
 \`\`\`
 
 **💡 Casos de Uso Reales:**
 - **Controlled**: Login forms, search bars, filters, calculators
 - **Uncontrolled**: Newsletter signup, simple contact forms
-- **File Upload**: <code>&lt;input type=\"file\" ref={fileRef} /&gt;</code> (always uncontrolled)
+- **File Upload**: <code>&lt;input type='file' ref={fileRef} /&gt;</code> (always uncontrolled)
 - **Form Libraries**: React Hook Form usa uncontrolled para performance
 
 **🆚 Controlled vs Uncontrolled:**

@@ -72,7 +72,7 @@ function App() {
   aria-pressed={on}
   onClick={toggle}
   onKeyDown={handleKeyDown}
-  role=\"switch\"
+  role='switch'
   tabIndex={0}
 >
   Toggle

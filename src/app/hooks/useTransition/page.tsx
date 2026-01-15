@@ -67,8 +67,7 @@ En este ejemplo, demostramos cómo useTransition mantiene el input responsivo mi
 `;
 
 const filePaths = [
-  'src/app/hooks/useTransition/_client_example.tsx',
-  'src/app/hooks/useTransition/SlowList.tsx'
+  'src/app/hooks/useTransition/_client_example.tsx'
 ];
 
 export default function UseTransitionPage() {

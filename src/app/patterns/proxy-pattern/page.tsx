@@ -93,7 +93,7 @@ proxy.age = 'thirty'; // Error!
 **⚠️ Consideraciones:**
 - Performance overhead (mínimo pero existe)
 - Debugging puede ser más complejo
-- No todos los objetos son \"proxiables\" (sealed, frozen)
+- No todos los objetos son proxiables (sealed, frozen)
 
 **Ejemplo del código:**
 Proxy con access control (oculta password), validation (valida tipos), y caching (cachea operaciones costosas)."

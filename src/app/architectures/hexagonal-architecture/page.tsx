@@ -1,78 +1,150 @@
-export default function HexagonalArchitecturePage() {
+import ArchitecturePageLayout from '../../../components/ArchitecturePageLayout';
+
+const description = `
+🏛️ **Hexagonal Architecture** - También conocida como Ports & Adapters, es un patrón que separa la lógica de negocio del código de infraestructura mediante interfaces bien definidas.
+
+**🎯 Principio Fundamental:**
+El core de la aplicación (lógica de negocio) está en el centro del hexágono, completamente aislado del mundo exterior. La comunicación con sistemas externos (UI, DB, APIs) se realiza a través de "puertos" (interfaces) y "adaptadores" (implementaciones concretas).
+
+**📐 Componentes Clave:**
+
+**1. 🎯 Core/Domain (Centro del Hexágono)**
+- Lógica de negocio pura
+- Reglas y entidades del dominio
+- Independiente de frameworks y tecnologías
+- No conoce nada del mundo exterior
+
+**2. 🔌 Ports (Puertos - Interfaces)**
+- **Primary/Driving Ports:** Interfaces que expone el core (API de entrada)
+- **Secondary/Driven Ports:** Interfaces que el core requiere (API de salida)
+- Definen CONTRATOS, no implementaciones
+- Ejemplo: UserRepository interface, PaymentGateway interface
+
+**3. 🔧 Adapters (Adaptadores - Implementaciones)**
+- **Primary/Driving Adapters:** UI, Controllers, API endpoints
+- **Secondary/Driven Adapters:** Database, External APIs, File systems
+- Implementan los ports
+- Son intercambiables sin afectar el core
+
+**🎨 Arquitectura Visual:**
+\`\`\`
+        Primary Adapters (Driving Side)
+         UI | REST API | GraphQL
+              ↓
+         Primary Ports (Interfaces)
+              ↓
+       ┌──────────────────┐
+       │   CORE DOMAIN    │
+       │ Business Logic   │
+       │   Entities       │
+       └──────────────────┘
+              ↓
+        Secondary Ports (Interfaces)
+              ↓
+       Secondary Adapters (Driven Side)
+       PostgreSQL | MongoDB | External API
+\`\`\`
+
+**✨ Beneficios:**
+- ✅ **Altamente Testeable:** Mock adapters fácilmente
+- ✅ **Independiente de Frameworks:** El core no depende de React, Express, etc.
+- ✅ **Flexible:** Cambia DB de SQL a NoSQL sin tocar el core
+- ✅ **Mantenible:** Lógica de negocio aislada y clara
+- ✅ **Escalable:** Añade nuevos adapters sin modificar el core
+
+**🔑 Reglas de Oro:**
+1. El core NUNCA importa código de adapters
+2. Los adapters implementan ports definidos por el core
+3. Las dependencias apuntan HACIA el core (Dependency Inversion)
+4. El core contiene SOLO lógica de negocio
+
+**🏢 Casos de Uso Reales:**
+- **E-commerce:** Core con lógica de checkout, adapters para Stripe/PayPal
+- **Multi-tenant SaaS:** Core común, adapters por cliente
+- **Sistemas Legacy:** Migra adapters gradualmente sin tocar el core
+
+**💡 En React/TypeScript:**
+- **Core:** Entities, Use Cases, Business Rules
+- **Primary Ports:** Service interfaces que expone el core
+- **Primary Adapters:** React Components, API Routes
+- **Secondary Ports:** Repository interfaces, Gateway interfaces
+- **Secondary Adapters:** API clients, LocalStorage, IndexedDB
+
+**Ejemplo del código:**
+Implementamos un UserService con ports claramente definidos y adapters intercambiables para persistencia (InMemory, API, LocalStorage).
+`;
+
+// Client example component
+function HexagonalArchitectureDemo() {
   return (
-    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-8rem)]">
-      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="mb-6 p-4 sm:p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">Hexagonal Architecture</h1>
-          <div className="text-sm sm:text-base text-gray-300 space-y-4">
-            <p>
-              <strong className="text-cyan-400">Hexagonal Architecture</strong> (también conocida como Ports and Adapters) separa la lógica de negocio del código de infraestructura mediante puertos y adaptadores.
-            </p>
-            
-            <div className="bg-slate-700/50 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-white mb-2">Componentes principales:</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-300">
-                <li><strong>Core/Domain:</strong> Lógica de negocio pura</li>
-                <li><strong>Ports:</strong> Interfaces que definen cómo interactuar con el core</li>
-                <li><strong>Adapters:</strong> Implementaciones concretas de los ports</li>
-                <li><strong>Primary/Driving Side:</strong> UI, API, Tests</li>
-                <li><strong>Secondary/Driven Side:</strong> DB, APIs externas, Servicios</li>
-              </ul>
-            </div>
+    <div className="p-6 max-w-4xl mx-auto">
+      <h2 className="text-2xl font-bold mb-6 text-gray-900">Hexagonal Architecture Demo</h2>
+      
+      <div className="space-y-6">
+        {/* Core */}
+        <div className="bg-purple-50 border-2 border-purple-500 rounded-lg p-6">
+          <h3 className="text-xl font-bold text-purple-900 mb-3">🎯 Core Domain</h3>
+          <div className="bg-white rounded p-4 font-mono text-sm">
+            <pre>{`// Pure business logic
+class User {
+  constructor(
+    public id: string,
+    public name: string,
+    public email: string
+  ) {}
+  
+  isValid(): boolean {
+    return this.email.includes('@');
+  }
+}`}</pre>
+          </div>
+        </div>
 
-            <div className="bg-slate-700/50 p-4 rounded-lg">
-              <h3 className="text-lg font-semibold text-white mb-2">Ventajas:</h3>
-              <ul className="list-disc list-inside space-y-1 text-gray-300">
-                <li>Altamente testeable</li>
-                <li>Independiente de frameworks</li>
-                <li>Fácil de mantener y evolucionar</li>
-                <li>Permite cambiar implementaciones fácilmente</li>
-              </ul>
+        {/* Ports */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-blue-50 border-2 border-blue-500 rounded-lg p-4">
+            <h4 className="font-bold text-blue-900 mb-2">🔌 Primary Port (Input)</h4>
+            <div className="bg-white rounded p-3 font-mono text-xs">
+              <pre>{`interface UserService {
+  createUser(data): User;
+  getUser(id): User;
+}`}</pre>
             </div>
+          </div>
 
-            <div className="bg-purple-900/30 p-4 rounded-lg border border-purple-700">
-              <p className="text-purple-200 text-sm">
-                <strong>Uso en React:</strong> Los hooks personalizados pueden actuar como ports, mientras que los servicios API son adapters. El core contiene la lógica de negocio pura.
-              </p>
+          <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4">
+            <h4 className="font-bold text-green-900 mb-2">🔌 Secondary Port (Output)</h4>
+            <div className="bg-white rounded p-3 font-mono text-xs">
+              <pre>{`interface UserRepository {
+  save(user): Promise<void>;
+  findById(id): Promise<User>;
+}`}</pre>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 via-white to-pink-50 p-6">
-        <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
-          <div className="text-center mb-6">
-            <div className="inline-block p-3 bg-purple-100 rounded-full mb-4">
-              <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-              </svg>
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Hexagonal Architecture</h2>
-            <p className="text-gray-600">Ports and Adapters Pattern</p>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <div className="bg-white rounded p-3 font-mono text-xs overflow-x-auto border border-gray-300">
-                <pre className="text-gray-800">{`// Port (Interface)
-interface UserRepository {
-  save(user: User): Promise<void>;
-  findById(id: string): Promise<User>;
-}
 
-// Core Domain
-class UserService {
-  constructor(private repo: UserRepository) {}
+        {/* Adapters */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-blue-100 border border-blue-300 rounded-lg p-4">
+            <h4 className="font-bold text-blue-800 mb-2">🔧 Primary Adapter (UI)</h4>
+            <div className="bg-white rounded p-3 font-mono text-xs">
+              <pre>{`// React Component
+function UserForm() {
+  const service = useUserService();
   
-  async createUser(data: UserData) {
-    const user = new User(data);
-    await this.repo.save(user);
-    return user;
-  }
-}
+  const handleSubmit = (data) => {
+    service.createUser(data);
+  };
+}`}</pre>
+            </div>
+          </div>
 
-// Adapter (Implementation)
-class APIUserRepository implements UserRepository {
+          <div className="bg-green-100 border border-green-300 rounded-lg p-4">
+            <h4 className="font-bold text-green-800 mb-2">🔧 Secondary Adapter (DB)</h4>
+            <div className="bg-white rounded p-3 font-mono text-xs">
+              <pre>{`// API Implementation
+class APIUserRepository 
+  implements UserRepository {
   async save(user: User) {
     await fetch('/api/users', {
       method: 'POST',
@@ -80,11 +152,33 @@ class APIUserRepository implements UserRepository {
     });
   }
 }`}</pre>
-              </div>
             </div>
           </div>
         </div>
+
+        {/* Benefits */}
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg p-6">
+          <h3 className="text-lg font-bold mb-3">✨ Ventaja Clave</h3>
+          <p className="text-sm">
+            Puedes cambiar de InMemoryRepository a APIRepository a FirebaseRepository
+            <strong> sin modificar una sola línea del core business logic</strong>.
+            Solo cambias qué adapter inyectas!
+          </p>
+        </div>
       </div>
     </div>
+  );
+}
+
+const filePaths = ['src/app/architectures/hexagonal-architecture/page.tsx'];
+
+export default function HexagonalArchitecturePage() {
+  return (
+    <ArchitecturePageLayout
+      title="Hexagonal Architecture (Ports & Adapters)"
+      description={description}
+      filePaths={filePaths}
+      ClientExample={HexagonalArchitectureDemo}
+    />
   );
 }

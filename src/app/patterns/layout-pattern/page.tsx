@@ -30,7 +30,7 @@ El Layout Pattern se enfoca en crear componentes reutilizables que controlan la 
 \`\`\`tsx
 function TwoColumnLayout({ left, right }) {
   return (
-    <div className=\"grid md:grid-cols-2 gap-4\">
+    <div className='grid md:grid-cols-2 gap-4'>
       <div>{left}</div>
       <div>{right}</div>
     </div>
