@@ -5,7 +5,7 @@ import CodeDisplay from '../../../components/CodeDisplay';
 
 const HeavyComponent = React.lazy(() => import('./HeavyComponent'));
 
-export default function LazySuspenseExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function LazySuspenseExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [showHeavyComponent, setShowHeavyComponent] = useState(false);
 
   return (

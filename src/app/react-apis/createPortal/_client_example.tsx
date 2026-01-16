@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import CodeDisplay from '../../../components/CodeDisplay';
 
-export default function PortalExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function PortalExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

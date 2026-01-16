@@ -1,6 +1,6 @@
 'use client';
 
-export function command''patternDescription() {
+export function CommandPatternDescription() {
   const formattedTitle = "Command Pattern";
   
   return (

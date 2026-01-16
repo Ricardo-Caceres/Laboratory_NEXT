@@ -57,7 +57,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
   return [storedValue, setValue] as const;
 }
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, loading, error } = useFetch<{ id: number; title: string }>('https://jsonplaceholder.typicode.com/todos/1');
   const [count, setCount] = useLocalStorage('count', 0);

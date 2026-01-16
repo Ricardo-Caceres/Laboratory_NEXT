@@ -1,6 +1,6 @@
 'use client';
 
-export function proxy''patternDescription() {
+export function ProxyPatternDescription() {
   const formattedTitle = "Proxy Pattern";
   
   return (

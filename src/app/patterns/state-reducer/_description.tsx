@@ -1,6 +1,6 @@
 'use client';
 
-export function state''reducerDescription() {
+export function StateReducerDescription() {
   const formattedTitle = "State Reducer Pattern";
   
   return (

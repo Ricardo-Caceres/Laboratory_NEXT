@@ -69,7 +69,7 @@ const calculator = {
   },
 };
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [accessLogs, setAccessLogs] = useState<string[]>([]);
   const [cacheLogs, setCacheLogs] = useState<string[]>([]);
   const [calcInput, setCalcInput] = useState('5');

@@ -30,7 +30,7 @@ class EventEmitter {
 
 const eventEmitter = new EventEmitter();
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [messages, setMessages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
 

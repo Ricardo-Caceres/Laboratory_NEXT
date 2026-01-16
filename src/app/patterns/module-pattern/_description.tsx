@@ -1,6 +1,6 @@
 'use client';
 
-export function module''patternDescription() {
+export function ModulePatternDescription() {
   const formattedTitle = "Module Pattern";
   
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-export function facade''patternDescription() {
+export function FacadePatternDescription() {
   const formattedTitle = "Facade Pattern";
   
   return (

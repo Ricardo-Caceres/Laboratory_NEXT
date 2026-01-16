@@ -1,6 +1,6 @@
 'use client';
 
-export function decorator''patternDescription() {
+export function DecoratorPatternDescription() {
   const formattedTitle = "Decorator Pattern";
   
   return (

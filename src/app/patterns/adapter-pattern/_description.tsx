@@ -1,6 +1,6 @@
 'use client';
 
-export function adapter''patternDescription() {
+export function AdapterPatternDescription() {
   const formattedTitle = "Adapter Pattern";
   
   return (

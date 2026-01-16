@@ -13,7 +13,7 @@ const RegularGreeting = ({ name }: { name: string }) => {
   return <p>Hello, {name}!</p>;
 };
 
-export default function MemoExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function MemoExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [count, setCount] = useState(0);
   const fixedName = "Alice";
 

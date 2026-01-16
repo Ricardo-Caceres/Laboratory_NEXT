@@ -1,6 +1,6 @@
 'use client';
 
-export function factory''patternDescription() {
+export function FactoryPatternDescription() {
   const formattedTitle = "Factory Pattern";
   
   return (

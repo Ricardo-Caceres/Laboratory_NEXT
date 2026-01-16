@@ -31,7 +31,7 @@ const onRenderCallback: ProfilerOnRenderCallback = (
   console.log('---');
 };
 
-export default function ProfilerExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ProfilerExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   return (
     <div className="flex h-screen">
       <div className="w-1/2 p-4 overflow-y-auto">

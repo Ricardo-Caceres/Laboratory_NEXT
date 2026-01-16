@@ -2,9 +2,9 @@ import { RightPanel } from '@/components/layout/RightPanel';
 import dynamic from 'next/dynamic';
 
 const ClientExample = dynamic(() => import('./_client_example'));
-const Description = dynamic(() => import('./_description').then(mod => ({ default: mod.provider''patternDescription })));
+const Description = dynamic(() => import('./_description').then(mod => ({ default: mod.ProviderPatternDescription })));
 
-export default function provider''patternPage() {
+export default function ProviderPatternPage() {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
       <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">

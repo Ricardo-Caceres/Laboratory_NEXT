@@ -1,6 +1,6 @@
 'use client';
 
-export function props''getterDescription() {
+export function PropsGetterDescription() {
   const formattedTitle = "Props Getter Pattern";
   
   return (

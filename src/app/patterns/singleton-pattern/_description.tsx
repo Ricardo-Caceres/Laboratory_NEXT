@@ -1,6 +1,6 @@
 'use client';
 
-export function singleton''patternDescription() {
+export function SingletonPatternDescription() {
   const formattedTitle = "Singleton Pattern";
   
   return (

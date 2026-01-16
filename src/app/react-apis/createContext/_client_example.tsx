@@ -23,7 +23,7 @@ function ThemedDisplay() {
   );
 }
 
-export default function CreateContextExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function CreateContextExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   return (
     <div className="flex h-screen">
       <div className="w-1/2 p-4 overflow-y-auto">

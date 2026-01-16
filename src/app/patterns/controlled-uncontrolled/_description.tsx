@@ -1,6 +1,6 @@
 'use client';
 
-export function controlled''uncontrolledDescription() {
+export function ControlledUncontrolledDescription() {
   const formattedTitle = "Controlled vs Uncontrolled";
   
   return (

@@ -34,7 +34,7 @@ class MyForm extends React.Component {
   }
 }
 
-export default function CreateRefExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function CreateRefExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   return (
     <div className="flex h-screen">
       <div className="w-1/2 p-4 overflow-y-auto">

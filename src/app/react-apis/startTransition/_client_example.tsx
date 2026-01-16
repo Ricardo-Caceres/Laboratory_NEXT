@@ -14,7 +14,7 @@ function SlowList({ query }: { query: string }) {
   );
 }
 
-export default function StartTransitionExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function StartTransitionExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [inputValue, setInputValue] = useState('');
   const [displayValue, setDisplayValue] = useState('');
   const [isPending, startTransition] = useTransition();

@@ -62,7 +62,7 @@ class Logger {
   }
 }
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [config, setConfig] = useState(ConfigManager.getInstance().getAll());
   const [logs, setLogs] = useState<string[]>([]);
   const [logMessage, setLogMessage] = useState('');

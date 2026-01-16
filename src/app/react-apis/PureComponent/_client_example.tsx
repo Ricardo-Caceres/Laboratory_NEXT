@@ -27,7 +27,7 @@ class RegularGreeting extends React.Component<RegularGreetingProps> {
   }
 }
 
-export default function PureComponentExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function PureComponentExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [count, setCount] = React.useState(0);
   const fixedName = "Bob";
   const fixedVersion = 1;

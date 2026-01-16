@@ -97,7 +97,7 @@ export function UseIdDescription() {
         <ul className="list-disc pl-6 space-y-2 text-[var(--foreground)] opacity-90">
           <li>NO uses useId para keys en listas (usa datos estables)</li>
           <li>El ID generado incluye ":" - no lo uses en selectores CSS</li>
-          <li>Puedes agregar sufijos: <code className="text-[var(--primary)]">{`${id}-description`}</code></li>
+          <li>Puedes agregar sufijos: <code className="text-[var(--primary)]">{`\${id}-description`}</code></li>
           <li>Solo genera UN id por componente - reutilízalo con sufijos</li>
         </ul>
       </section>

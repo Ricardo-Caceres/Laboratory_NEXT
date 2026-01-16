@@ -25,7 +25,7 @@ function useToggle(initialState = false) {
   return { isOn, toggle, setOn, setOff, getTogglerProps, getStatusProps };
 }
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const { isOn, getTogglerProps, getStatusProps } = useToggle();
 
   return (

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import CodeDisplay from '../../../components/CodeDisplay';
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [showIf, setShowIf] = useState(true);
   const [showTernary, setShowTernary] = useState(false);
   const [userRole, setUserRole] = useState<'guest' | 'user' | 'admin'>('guest');

@@ -36,7 +36,7 @@ const CalculatorModule = (() => {
   return { add, subtract, multiply, divide };
 })();
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const [count, setCount] = useState(0);
   const [calcResult, setCalcResult] = useState<number | string>(0);
 

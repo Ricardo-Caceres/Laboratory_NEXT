@@ -1,6 +1,6 @@
 'use client';
 
-export function strategy''patternDescription() {
+export function StrategyPatternDescription() {
   const formattedTitle = "Strategy Pattern";
   
   return (

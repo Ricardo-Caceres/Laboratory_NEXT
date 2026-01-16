@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import MyInput from './MyInput';
 import CodeDisplay from '../../../components/CodeDisplay';
 
-export default function ParentComponent({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ParentComponent({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {

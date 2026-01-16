@@ -1,6 +1,6 @@
 'use client';
 
-export function conditional''renderingDescription() {
+export function ConditionalRenderingDescription() {
   const formattedTitle = "Conditional Rendering";
   
   return (

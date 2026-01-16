@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import CodeDisplay from '../../../components/CodeDisplay';
 
-export default function ClientExample({ codeContent }: { codeContent: { filePath: string; content: string }[] }) {
+export default function ClientExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
   // Controlled input state
   const [controlledValue, setControlledValue] = useState('');
   const [controlledSubmitted, setControlledSubmitted] = useState('');

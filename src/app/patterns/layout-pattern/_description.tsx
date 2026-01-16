@@ -1,6 +1,6 @@
 'use client';
 
-export function layout''patternDescription() {
+export function LayoutPatternDescription() {
   const formattedTitle = "Layout Pattern";
   
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-export function provider''patternDescription() {
+export function ProviderPatternDescription() {
   const formattedTitle = "Provider Pattern";
   
   return (
