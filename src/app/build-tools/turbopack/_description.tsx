@@ -12,7 +12,7 @@ export default function TurbopackDescription() {
           <ul className="space-y-2">
             <li>✓ Rust-powered - Rendimiento nativo</li>
             <li>✓ Incremental - Solo compila cambios</li>
-            <li>✓ HMR instantáneo - Updates <10ms</li>
+            <li>✓ HMR instantáneo - Updates &lt;10ms</li>
             <li>✓ Lazy bundling - Build on-demand</li>
             <li>✓ Next.js native - Integración perfecta</li>
           </ul>
