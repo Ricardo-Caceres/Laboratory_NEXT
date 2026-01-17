@@ -1,7 +1,6 @@
 'use client';
 
 import { ThemeProvider, useTheme } from './ThemeContext';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme();
@@ -23,13 +22,10 @@ function ThemedDisplay() {
   );
 }
 
-export default function CreateContextExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function CreateContextExample() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+    <div className="space-y-6">
+      
         <div className="container mx-auto py-8">
           <h1 className="text-2xl font-bold mb-4">React.createContext Example</h1>
           <p className="text-lg mb-4">`React.createContext` crea un objeto Contexto. Cuando React renderiza un componente que se suscribe a este objeto Contexto, leerá el valor de contexto actual del `Provider` más cercano en el árbol.</p>
@@ -39,6 +35,5 @@ export default function CreateContextExample({ codeContent = [] }: { codeContent
           </ThemeProvider>
         </div>
       </div>
-    </div>
   );
 }

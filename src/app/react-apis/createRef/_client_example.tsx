@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 class MyForm extends React.Component {
   textInput: React.RefObject<HTMLInputElement | null> = React.createRef<HTMLInputElement>();
@@ -17,32 +16,44 @@ class MyForm extends React.Component {
 
   render() {
     return (
-      <div className="container mx-auto py-8">
-        <h1 className="text-2xl font-bold mb-4">React.createRef Example</h1>
-        <p className="text-lg mb-4">`React.createRef` crea una ref que puede adjuntarse a elementos React. Las refs proporcionan una forma de acceder a nodos DOM o instancias de componentes React creados en el método `render`.</p>
-        <input
-          className="border p-2 mr-2"
-          type="text"
-          ref={this.textInput}
-          placeholder="Click button to focus"
-        />
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={this.focusTextInput}>
-          Focus the text input
-        </button>
+      <div className="p-6 rounded-lg bg-[var(--panel)] border border-[var(--border)]">
+        <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">React.createRef Demo</h2>
+        <p className="text-base mb-6 text-[var(--foreground)] opacity-80">
+          React.createRef crea una ref que puede adjuntarse a elementos React. Las refs proporcionan una forma de 
+          acceder a nodos DOM o instancias de componentes React creados en el método render.
+        </p>
+        
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              className="flex-1 border p-3 rounded bg-[var(--background)] border-[var(--border)] text-[var(--foreground)]"
+              type="text"
+              ref={this.textInput}
+              placeholder="Click button to focus this input"
+            />
+            <button 
+              className="px-6 py-3 rounded font-medium transition-colors bg-[var(--primary)] hover:opacity-90 text-white whitespace-nowrap"
+              onClick={this.focusTextInput}
+            >
+              Focus Input
+            </button>
+          </div>
+          
+          <div className="p-4 bg-[var(--background)] rounded border border-[var(--border)]">
+            <p className="text-sm text-[var(--foreground)] opacity-70">
+              💡 <strong>Tip:</strong> Haz clic en el botón para ver cómo la ref accede directamente al input del DOM y le hace focus.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default function CreateRefExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function CreateRefExample() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
-        <MyForm />
-      </div>
+    <div className="space-y-6">
+      <MyForm />
     </div>
   );
 }

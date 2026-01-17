@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, Profiler, ProfilerOnRenderCallback } from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -31,13 +30,10 @@ const onRenderCallback: ProfilerOnRenderCallback = (
   console.log('---');
 };
 
-export default function ProfilerExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function ProfilerExample() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+    <div className="space-y-6">
+      
         <div className="container mx-auto py-8">
           <h1 className="text-2xl font-bold mb-4">React.Profiler Example</h1>
           <p className="text-lg mb-4">`React.Profiler` mide el rendimiento de renderizado de un árbol de React. Permite recopilar información sobre cuánto tiempo tardan los componentes en renderizarse y cuándo lo hacen.</p>
@@ -47,6 +43,5 @@ export default function ProfilerExample({ codeContent = [] }: { codeContent?: { 
           </Profiler>
         </div>
       </div>
-    </div>
   );
 }

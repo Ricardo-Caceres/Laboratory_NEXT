@@ -2,17 +2,13 @@
 
 import React, { useState } from 'react';
 import Modal from './Modal';
-import CodeDisplay from '../../../components/CodeDisplay';
 
-export default function PortalExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function PortalExample() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+    <div className="space-y-6">
+      
         <div className="container mx-auto py-8">
           <h1 className="text-2xl font-bold mb-4">React.createPortal Example</h1>
           <p className="text-lg mb-4">`React.createPortal` permite renderizar hijos en un nodo DOM que existe fuera de la jerarquía del componente padre. Esto es útil para modales, tooltips, y otros elementos que necesitan salirse del flujo normal del DOM.</p>
@@ -26,6 +22,5 @@ export default function PortalExample({ codeContent = [] }: { codeContent?: { fi
           </Modal>
         </div>
       </div>
-    </div>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 interface MyComponentProps {
   message: string;
@@ -34,26 +33,41 @@ class MyComponent extends React.Component<MyComponentProps, MyComponentState> {
     const { message } = this.props;
     const { count } = this.state;
     return (
-      <div className="container mx-auto py-8">
-        <h1 className="text-2xl font-bold mb-4">Class Component Example</h1>
-        <p className="text-lg mb-4">`React.Component` es la clase base para definir componentes de clase en React. Permite manejar el estado interno y el ciclo de vida.</p>
-        <p className="text-lg mb-2">{message}</p>
-        <p className="text-lg mb-4">Count: {count}</p>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={this.handleClick}>Increment</button>
+      <div className="p-6 rounded-lg bg-[var(--panel)] border border-[var(--border)]">
+        <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">Class Component Demo</h2>
+        <p className="text-base mb-6 text-[var(--foreground)] opacity-80">
+          React.Component es la clase base para definir componentes de clase en React. 
+          Permite manejar el estado interno y el ciclo de vida.
+        </p>
+        
+        <div className="space-y-4">
+          <div className="p-4 bg-[var(--background)] rounded border border-[var(--border)]">
+            <p className="text-lg mb-2 text-[var(--foreground)]">{message}</p>
+            <p className="text-lg font-semibold text-[var(--foreground)]">Count: {count}</p>
+          </div>
+          
+          <button 
+            className="px-6 py-3 rounded font-medium transition-colors bg-[var(--primary)] hover:opacity-90 text-white"
+            onClick={this.handleClick}
+          >
+            Increment Counter
+          </button>
+          
+          <div className="p-4 bg-[var(--code-bg)] rounded border border-[var(--border)]">
+            <p className="text-sm text-[var(--foreground)] opacity-70">
+              💡 <strong>Tip:</strong> Abre la consola para ver los logs del ciclo de vida (componentDidMount).
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default function ComponentExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function ComponentExample() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
-        <MyComponent message="Hello from Component!" />
-      </div>
+    <div className="space-y-6">
+      <MyComponent message="Hello from Class Component!" />
     </div>
   );
 }

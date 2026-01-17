@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useTransition } from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 function SlowList({ query }: { query: string }) {
   const items = Array.from({ length: 10000 }, (_, i) => `Item ${i + 1}`);
@@ -14,7 +13,7 @@ function SlowList({ query }: { query: string }) {
   );
 }
 
-export default function StartTransitionExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function StartTransitionExample() {
   const [inputValue, setInputValue] = useState('');
   const [displayValue, setDisplayValue] = useState('');
   const [isPending, startTransition] = useTransition();
@@ -28,11 +27,8 @@ export default function StartTransitionExample({ codeContent = [] }: { codeConte
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+    <div className="space-y-6">
+      
         <div className="container mx-auto py-8">
           <h1 className="text-2xl font-bold mb-4">React.startTransition Example</h1>
           <p className="text-lg mb-4">`React.startTransition` permite marcar actualizaciones de estado como transiciones. Esto ayuda a mantener la interfaz de usuario responsiva durante operaciones de renderizado costosas.</p>
@@ -47,6 +43,5 @@ export default function StartTransitionExample({ codeContent = [] }: { codeConte
           <SlowList query={displayValue} />
         </div>
       </div>
-    </div>
   );
 }

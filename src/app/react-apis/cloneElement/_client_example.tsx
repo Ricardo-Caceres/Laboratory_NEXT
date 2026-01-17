@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 interface WrapperProps {
   children: React.ReactElement;
@@ -28,13 +27,10 @@ function Wrapper({ children }: WrapperProps) {
   );
 }
 
-export default function CloneElementExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function CloneElementExample() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+    <div className="space-y-6">
+      
         <div className="container mx-auto py-8">
           <h1 className="text-2xl font-bold mb-4">React.cloneElement Example</h1>
           <p className="text-lg mb-4">`React.cloneElement` clona y devuelve un nuevo elemento React usando un elemento como punto de partida. Esto permite inyectar nuevas props o modificar las existentes.</p>
@@ -46,6 +42,5 @@ export default function CloneElementExample({ codeContent = [] }: { codeContent?
           </Wrapper>
         </div>
       </div>
-    </div>
   );
 }

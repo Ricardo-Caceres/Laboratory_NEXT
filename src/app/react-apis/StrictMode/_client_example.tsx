@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import CodeDisplay from '../../../components/CodeDisplay';
 
 function MyComponent() {
   const [count, setCount] = useState(0);
@@ -21,13 +20,10 @@ function MyComponent() {
   );
 }
 
-export default function StrictModeExample({ codeContent = [] }: { codeContent?: { filePath: string; content: string }[] } = {}) {
+export default function StrictModeExample() {
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 overflow-y-auto">
-        <CodeDisplay codeContent={codeContent} />
-      </div>
-      <div className="w-1/2 flex flex-col items-center justify-center bg-white">
+    <div className="space-y-6">
+      
         <React.StrictMode>
           <div className="container mx-auto py-8">
             <h1 className="text-2xl font-bold mb-4">Strict Mode Enabled</h1>
@@ -36,6 +32,5 @@ export default function StrictModeExample({ codeContent = [] }: { codeContent?: 
           </div>
         </React.StrictMode>
       </div>
-    </div>
   );
 }
