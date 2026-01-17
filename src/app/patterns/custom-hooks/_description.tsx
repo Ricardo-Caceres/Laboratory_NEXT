@@ -54,6 +54,240 @@ export function CustomHooksDescription() {
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
+          Ejemplo 1: useLocalStorage
+        </h2>
+        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre className="text-sm text-gray-100">
+{`// useLocalStorage.js
+import { useState, useEffect } from 'react';
+
+function useLocalStorage(key, initialValue) {
+  // State para almacenar el valor
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(error);
+      return initialValue;
+    }
+  });
+
+  // Función para actualizar el valor
+  const setValue = (value) => {
+    try {
+      // Permitir que value sea una función como useState
+      const valueToStore = value instanceof Function 
+        ? value(storedValue) 
+        : value;
+      
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}
+
+// Uso en componente
+function App() {
+  const [name, setName] = useLocalStorage('name', 'John');
+  const [theme, setTheme] = useLocalStorage('theme', 'light');
+
+  return (
+    <div>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle Theme
+      </button>
+    </div>
+  );
+}`}
+          </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
+          Ejemplo 2: useFetch
+        </h2>
+        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre className="text-sm text-gray-100">
+{`// useFetch.js
+import { useState, useEffect } from 'react';
+
+function useFetch(url, options = {}) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(url, options);
+        
+        if (!response.ok) {
+          throw new Error(\`HTTP error! status: \${response.status}\`);
+        }
+        
+        const json = await response.json();
+        setData(json);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]); // Re-fetch cuando cambia la URL
+
+  return { data, loading, error };
+}
+
+// Uso en componente
+function UserProfile({ userId }) {
+  const { data: user, loading, error } = useFetch(
+    \`/api/users/\${userId}\`
+  );
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+}`}
+          </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
+          Ejemplo 3: useDebounce
+        </h2>
+        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre className="text-sm text-gray-100">
+{`// useDebounce.js
+import { useState, useEffect } from 'react';
+
+function useDebounce(value, delay = 500) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    // Configurar timeout
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    // Limpiar timeout si value cambia antes del delay
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// Uso en componente de búsqueda
+function SearchBar() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      // Hacer API call solo después del debounce
+      fetch(\`/api/search?q=\${debouncedSearchTerm}\`)
+        .then(res => res.json())
+        .then(data => console.log(data));
+    }
+  }, [debouncedSearchTerm]);
+
+  return (
+    <input
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      placeholder="Search..."
+    />
+  );
+}`}
+          </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
+          Ejemplo 4: useMediaQuery
+        </h2>
+        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre className="text-sm text-gray-100">
+{`// useMediaQuery.js
+import { useState, useEffect } from 'react';
+
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    
+    // Set initial value
+    setMatches(media.matches);
+
+    // Listener callback
+    const listener = (e) => setMatches(e.matches);
+
+    // Add listener
+    media.addEventListener('change', listener);
+
+    // Cleanup
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+}
+
+// Uso en componente responsive
+function ResponsiveComponent() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1024px)');
+  const isDesktop = useMediaQuery('(min-width: 1025px)');
+
+  return (
+    <div>
+      {isMobile && <MobileView />}
+      {isTablet && <TabletView />}
+      {isDesktop && <DesktopView />}
+    </div>
+  );
+}
+
+// O usar directamente
+function Header() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  return (
+    <header>
+      {isMobile ? <HamburgerMenu /> : <FullNavigation />}
+    </header>
+  );
+}`}
+          </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Mejores prácticas
         </h2>
         <ul className="list-disc pl-6 space-y-2 text-[var(--foreground)] opacity-90">
