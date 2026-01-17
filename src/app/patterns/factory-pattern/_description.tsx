@@ -23,8 +23,8 @@ export function FactoryPatternDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo Básico
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// Sin Factory Pattern (problemático)
 function createButton(type) {
   if (type === 'primary') {
@@ -53,7 +53,7 @@ class ButtonFactory {
 // Uso
 <ButtonFactory.create('primary' label="Submit" />
 <ButtonFactory.create('danger' label="Delete" />`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -61,8 +61,8 @@ class ButtonFactory {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Factory en React: Componentes Dinámicos
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// Componentes base
 const PrimaryButton = ({ label, onClick }) => (
   <button 
@@ -113,7 +113,7 @@ function MyForm() {
     </form>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -121,8 +121,8 @@ function MyForm() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Factory con Configuración
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// notificationFactory.js
 class NotificationFactory {
   static create(type, message) {
@@ -206,7 +206,7 @@ function App() {
     </>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -214,8 +214,8 @@ function App() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Factory para Formularios Dinámicos
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// Componentes de input
 const TextInput = ({ label, ...props }) => (
   <div>
@@ -291,7 +291,7 @@ const userFormSchema = {
 };
 
 <DynamicForm schema={userFormSchema} />`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 

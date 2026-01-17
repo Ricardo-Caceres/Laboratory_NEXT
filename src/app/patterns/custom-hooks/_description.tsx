@@ -56,8 +56,8 @@ export function CustomHooksDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo 1: useLocalStorage
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// useLocalStorage.js
 import { useState, useEffect } from 'react';
 
@@ -108,7 +108,7 @@ function App() {
     </div>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -116,8 +116,8 @@ function App() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo 2: useFetch
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// useFetch.js
 import { useState, useEffect } from 'react';
 
@@ -169,7 +169,7 @@ function UserProfile({ userId }) {
     </div>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -177,8 +177,8 @@ function UserProfile({ userId }) {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo 3: useDebounce
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// useDebounce.js
 import { useState, useEffect } from 'react';
 
@@ -222,7 +222,7 @@ function SearchBar() {
     />
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -230,8 +230,8 @@ function SearchBar() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo 4: useMediaQuery
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// useMediaQuery.js
 import { useState, useEffect } from 'react';
 
@@ -282,7 +282,7 @@ function Header() {
     </header>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 

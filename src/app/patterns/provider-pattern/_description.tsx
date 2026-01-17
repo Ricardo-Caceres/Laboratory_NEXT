@@ -23,8 +23,8 @@ export function ProviderPatternDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo Básico: Theme Provider
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// 1. Crear el Context
 import { createContext, useContext, useState } from 'react';
 
@@ -84,7 +84,7 @@ function Header() {
     </header>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -92,8 +92,8 @@ function Header() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Auth Provider Completo
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from 'react';
 
@@ -204,7 +204,7 @@ function ProtectedRoute({ children }) {
 
   return children;
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -212,8 +212,8 @@ function ProtectedRoute({ children }) {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Múltiples Providers Combinados
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// AppProviders.jsx - Componente que combina providers
 export function AppProviders({ children }) {
   return (
@@ -259,7 +259,7 @@ function Dashboard() {
     </div>
   );
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -267,8 +267,8 @@ function Dashboard() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Provider con Reducer (Estado Complejo)
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// CartContext.jsx
 import { createContext, useContext, useReducer } from 'react';
 
@@ -369,7 +369,7 @@ export function useCart() {
   }
   return context;
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 

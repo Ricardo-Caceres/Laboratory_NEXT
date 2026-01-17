@@ -23,8 +23,8 @@ export function SingletonPatternDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo Básico en JavaScript
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// Singleton básico con ES6
 class ConfigManager {
   constructor() {
@@ -57,7 +57,7 @@ const config2 = new ConfigManager();
 console.log(config2.get('apiUrl')); // 'https://api.example.com'
 
 console.log(config1 === config2); // true (misma instancia!)`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -65,8 +65,8 @@ console.log(config1 === config2); // true (misma instancia!)`}
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Singleton con Método estático
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`class Logger {
   static instance = null;
 
@@ -110,7 +110,7 @@ const sameLogger = Logger.getInstance();
 sameLogger.log('User logged in');
 
 console.log(logger === sameLogger); // true`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
@@ -118,8 +118,8 @@ console.log(logger === sameLogger); // true`}
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Singleton en React
         </h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-          <pre className="text-sm text-gray-100">
+        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
+          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
 {`// apiClient.js - Singleton para API client
 class ApiClient {
   static instance = null;
@@ -186,7 +186,7 @@ function LoginButton() {
 
   return <button onClick={() => handleLogin('token123')}>Login</button>;
 }`}
-          </pre>
+          </code></pre>
         </div>
       </section>
 
