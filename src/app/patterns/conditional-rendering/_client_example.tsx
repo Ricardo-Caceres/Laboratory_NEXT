@@ -9,11 +9,11 @@ export default function ClientExample({ codeContent = [] }: { codeContent?: { fi
   const [userRole, setUserRole] = useState<'guest' | 'user' | 'admin'>('guest');
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen">
-      <div className="w-full lg:w-1/2 p-4 overflow-y-auto bg-gray-50">
+    <div className="flex flex-col gap-6 p-4 sm:p-6">
+      <div className="w-full bg-gray-50 rounded-lg p-4 border border-gray-200">
         <CodeDisplay codeContent={codeContent} />
       </div>
-      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-gradient-to-br from-rose-50 via-white to-pink-50 p-6 sm:p-8 overflow-y-auto">
+      <div className="w-full flex flex-col items-center justify-center bg-gradient-to-br from-rose-50 via-white to-pink-50 p-6 sm:p-8 rounded-lg">
         <div className="w-full max-w-2xl">
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-200">
             <div className="text-center mb-6">

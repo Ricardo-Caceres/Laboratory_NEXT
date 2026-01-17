@@ -1,7 +1,7 @@
 # 🗂️ Índice Completo de Módulos - Laboratory NEXT
 
 ## 📊 Estadísticas
-- **Total de Módulos:** 137+
+- **Total de Módulos:** 138+
 - **Categorías:** 30+
 - **Estado:** ✅ Production Ready
 - **Build:** ✅ Successful
@@ -88,6 +88,7 @@
 - `/patterns/custom-hooks`
 - `/patterns/factory-pattern`
 - `/patterns/hoc`
+- `/patterns/idempotency` ⭐ - Idempotencia con React/Next.js
 - `/patterns/layout-pattern`
 - `/patterns/module-pattern`
 - `/patterns/observer-pattern`
@@ -269,6 +270,17 @@
 **Path:** `/tools/prometheus`
 **Nivel:** Producción
 **Por qué importa:** Monitoring en aplicaciones reales
+
+### 5. Idempotencia ⭐ NUEVO
+**Path:** `/patterns/idempotency`
+**Nivel:** Intermedio-Avanzado
+**Por qué importa:** Crítico para APIs confiables y prevención de duplicados
+**Incluye:**
+- Custom hooks para React
+- API routes idempotentes en Next.js
+- Ejemplos de pagos y mutaciones
+- Integración con TanStack Query
+- Demos interactivos
 
 ---
 
