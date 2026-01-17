@@ -1,5 +1,7 @@
 'use client';
 
+import { CodeBlock } from '@/components/CodeBlock';
+
 export function CustomHooksDescription() {
   return (
     <div className="space-y-8">
@@ -56,9 +58,9 @@ export function CustomHooksDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo 1: useLocalStorage
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// useLocalStorage.js
+        <CodeBlock
+          filename="useLocalStorage.js"
+          code={`// useLocalStorage.js
 import { useState, useEffect } from 'react';
 
 function useLocalStorage(key, initialValue) {
@@ -108,8 +110,7 @@ function App() {
     </div>
   );
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
@@ -230,9 +231,9 @@ function SearchBar() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo 4: useMediaQuery
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// useMediaQuery.js
+        <CodeBlock
+          filename="example.jsx"
+          code={`// useMediaQuery.js
 import { useState, useEffect } from 'react';
 
 function useMediaQuery(query) {
@@ -282,8 +283,7 @@ function Header() {
     </header>
   );
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>

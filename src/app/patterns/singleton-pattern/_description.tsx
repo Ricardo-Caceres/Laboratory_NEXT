@@ -1,5 +1,7 @@
 'use client';
 
+import { CodeBlock } from '@/components/CodeBlock';
+
 export function SingletonPatternDescription() {
   return (
     <div className="space-y-8">
@@ -23,9 +25,9 @@ export function SingletonPatternDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo Básico en JavaScript
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// Singleton básico con ES6
+        <CodeBlock
+          filename="ConfigManager.jsx"
+          code={`// Singleton básico con ES6
 class ConfigManager {
   constructor() {
     if (ConfigManager.instance) {
@@ -57,17 +59,16 @@ const config2 = new ConfigManager();
 console.log(config2.get('apiUrl')); // 'https://api.example.com'
 
 console.log(config1 === config2); // true (misma instancia!)`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Singleton con Método estático
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`class Logger {
+        <CodeBlock
+          filename="Logger.jsx"
+          code={`class Logger {
   static instance = null;
 
   constructor() {
@@ -110,17 +111,16 @@ const sameLogger = Logger.getInstance();
 sameLogger.log('User logged in');
 
 console.log(logger === sameLogger); // true`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Singleton en React
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// apiClient.js - Singleton para API client
+        <CodeBlock
+          filename="apiClient.js"
+          code={`// apiClient.js - Singleton para API client
 class ApiClient {
   static instance = null;
 
@@ -186,8 +186,7 @@ function LoginButton() {
 
   return <button onClick={() => handleLogin('token123')}>Login</button>;
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>

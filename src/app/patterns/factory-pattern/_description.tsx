@@ -1,5 +1,7 @@
 'use client';
 
+import { CodeBlock } from '@/components/CodeBlock';
+
 export function FactoryPatternDescription() {
   return (
     <div className="space-y-8">
@@ -23,9 +25,9 @@ export function FactoryPatternDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo Básico
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// Sin Factory Pattern (problemático)
+        <CodeBlock
+          filename="ButtonFactory.jsx"
+          code={`// Sin Factory Pattern (problemático)
 function createButton(type) {
   if (type === 'primary') {
     return <button className="btn-primary">Click</button>;
@@ -53,17 +55,16 @@ class ButtonFactory {
 // Uso
 <ButtonFactory.create('primary' label="Submit" />
 <ButtonFactory.create('danger' label="Delete" />`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Factory en React: Componentes Dinámicos
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// Componentes base
+        <CodeBlock
+          filename="example.jsx"
+          code={`// Componentes base
 const PrimaryButton = ({ label, onClick }) => (
   <button 
     onClick={onClick}
@@ -113,17 +114,16 @@ function MyForm() {
     </form>
   );
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Factory con Configuración
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// notificationFactory.js
+        <CodeBlock
+          filename="example.jsx"
+          code={`// notificationFactory.js
 class NotificationFactory {
   static create(type, message) {
     const config = {
@@ -206,17 +206,16 @@ function App() {
     </>
   );
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Factory para Formularios Dinámicos
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// Componentes de input
+        <CodeBlock
+          filename="example.jsx"
+          code={`// Componentes de input
 const TextInput = ({ label, ...props }) => (
   <div>
     <label>{label}</label>
@@ -291,8 +290,7 @@ const userFormSchema = {
 };
 
 <DynamicForm schema={userFormSchema} />`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>

@@ -1,5 +1,7 @@
 'use client';
 
+import { CodeBlock } from '@/components/CodeBlock';
+
 export function ProviderPatternDescription() {
   return (
     <div className="space-y-8">
@@ -23,9 +25,9 @@ export function ProviderPatternDescription() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Ejemplo Básico: Theme Provider
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// 1. Crear el Context
+        <CodeBlock
+          filename="ThemeProvider.jsx"
+          code={`// 1. Crear el Context
 import { createContext, useContext, useState } from 'react';
 
 const ThemeContext = createContext(null);
@@ -84,8 +86,7 @@ function Header() {
     </header>
   );
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
@@ -267,9 +268,9 @@ function Dashboard() {
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
           Provider con Reducer (Estado Complejo)
         </h2>
-        <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto border border-gray-800 shadow-lg">
-          <pre className="text-sm font-mono leading-relaxed"><code className="text-gray-100">
-{`// CartContext.jsx
+        <CodeBlock
+          filename="example.jsx"
+          code={`// CartContext.jsx
 import { createContext, useContext, useReducer } from 'react';
 
 const CartContext = createContext(null);
@@ -369,8 +370,7 @@ export function useCart() {
   }
   return context;
 }`}
-          </code></pre>
-        </div>
+        />
       </section>
 
       <section>
