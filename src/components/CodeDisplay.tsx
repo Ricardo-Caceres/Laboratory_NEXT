@@ -62,15 +62,19 @@ export default function CodeDisplay({ codeContent, filePaths }: CodeDisplayProps
   }
 
   return (
-    <div className="bg-[var(--panel)] text-[var(--foreground)] p-3 sm:p-4 rounded-lg overflow-auto max-h-[400px] sm:max-h-[600px] lg:max-h-[calc(100vh-20rem)] border border-[var(--border)]">
-      {content.map((file, index) => (
-        <CodeBlock
-          key={file.filePath}
-          filePath={file.filePath}
-          content={file.content}
-          codeRef={(el) => { codeRefs.current[index] = el; }}
-        />
-      ))}
+    <div className="bg-[var(--panel)] text-[var(--foreground)] rounded-lg overflow-hidden border border-[var(--border)] shadow-sm">
+      <div className="overflow-auto max-h-[500px] lg:max-h-[calc(100vh-28rem)]">
+        <div className="p-4 sm:p-6 space-y-6">
+          {content.map((file, index) => (
+            <CodeBlock
+              key={file.filePath}
+              filePath={file.filePath}
+              content={file.content}
+              codeRef={(el) => { codeRefs.current[index] = el; }}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

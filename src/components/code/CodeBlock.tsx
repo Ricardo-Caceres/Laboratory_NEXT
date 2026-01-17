@@ -16,18 +16,22 @@ interface CodeBlockProps {
  */
 export const CodeBlock = ({ filePath, content, codeRef }: CodeBlockProps) => {
   return (
-    <div className="mb-4 last:mb-0">
-      <h2 className="text-sm sm:text-lg font-bold mb-2 break-all text-[var(--primary)]">
-        {filePath}
-      </h2>
-      <pre className="overflow-x-auto">
-        <code
-          ref={codeRef}
-          className="language-typescript text-xs sm:text-sm"
-        >
-          {content}
-        </code>
-      </pre>
+    <div className="last:mb-0">
+      <div className="bg-[var(--background)] border border-[var(--border)] rounded-t-lg px-4 py-2">
+        <h2 className="text-xs sm:text-sm font-semibold break-all text-[var(--primary)] font-mono">
+          📄 {filePath}
+        </h2>
+      </div>
+      <div className="bg-[var(--code-bg)] border-x border-b border-[var(--border)] rounded-b-lg">
+        <pre className="overflow-x-auto p-4">
+          <code
+            ref={codeRef}
+            className="language-typescript text-xs sm:text-sm"
+          >
+            {content}
+          </code>
+        </pre>
+      </div>
     </div>
   );
 };
