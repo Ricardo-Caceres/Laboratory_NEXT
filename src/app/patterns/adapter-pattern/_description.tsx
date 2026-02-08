@@ -1,22 +1,23 @@
 'use client';
 
 export function AdapterPatternDescription() {
-  const formattedTitle = "Adapter Pattern";
-  
   return (
     <div className="space-y-8">
       <div>
         <p className="text-[var(--foreground)] opacity-90 leading-relaxed mb-3">
-          <strong className="text-[var(--primary)]">Adapter Pattern</strong> - Un patrón de diseño fundamental en el desarrollo de software.
+          <strong className="text-[var(--primary)]">Adapter Pattern</strong> - Permite que interfaces incompatibles trabajen juntas convirtiendo la interfaz de una clase en otra que los clientes esperan.
         </p>
       </div>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
-          Descripción
+          ¿Qué es el Adapter Pattern?
         </h2>
+        <p className="text-[var(--foreground)] opacity-90 leading-relaxed mb-4">
+          El patrón Adapter actúa como un puente entre dos interfaces incompatibles. Es especialmente útil cuando necesitas integrar código legacy con sistemas nuevos, o cuando trabajas con APIs de terceros que no coinciden con tu interfaz esperada.
+        </p>
         <p className="text-[var(--foreground)] opacity-90 leading-relaxed">
-          Este patrón proporciona soluciones probadas para problemas comunes en el desarrollo de aplicaciones React.
+          Este patrón envuelve un objeto para hacer que su interfaz sea compatible con otra interfaz, permitiendo que clases con interfaces incompatibles trabajen juntas sin modificar su código fuente.
         </p>
       </section>
 
@@ -25,25 +26,37 @@ export function AdapterPatternDescription() {
           Beneficios
         </h2>
         <ul className="list-disc pl-6 space-y-2 text-[var(--foreground)] opacity-90">
-          <li>Mejora la estructura del código</li>
-          <li>Facilita el mantenimiento</li>
-          <li>Promueve mejores prácticas</li>
-          <li>Aumenta la reutilización</li>
+          <li><strong>Reutilización de código existente:</strong> Permite usar clases legacy sin modificarlas</li>
+          <li><strong>Principio Open/Closed:</strong> Puedes introducir nuevos adaptadores sin romper código existente</li>
+          <li><strong>Separación de responsabilidades:</strong> El código de conversión está aislado en el adaptador</li>
+          <li><strong>Flexibilidad:</strong> Facilita la integración con APIs de terceros o sistemas externos</li>
         </ul>
       </section>
 
       <section>
         <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
-          Casos de uso
+          Casos de uso comunes
+        </h2>
+        <ul className="list-disc pl-6 space-y-2 text-[var(--foreground)] opacity-90">
+          <li><strong>Integración de APIs legacy:</strong> Convertir formatos de datos antiguos a modernos</li>
+          <li><strong>APIs de terceros:</strong> Adaptar respuestas de APIs externas a tu modelo de datos</li>
+          <li><strong>Migración gradual:</strong> Permitir que código nuevo y viejo coexistan durante una migración</li>
+          <li><strong>Normalización de datos:</strong> Convertir múltiples formatos de entrada a un formato unificado</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-bold text-[var(--foreground)] mb-4">
+          Ejemplo práctico
         </h2>
         <p className="text-[var(--foreground)] opacity-90 leading-relaxed">
-          Este patrón es especialmente útil en aplicaciones React modernas donde se requiere una arquitectura escalable y mantenible.
+          En el ejemplo interactivo, verás cómo un <code className="px-2 py-1 bg-gray-100 rounded text-sm">UserAdapter</code> convierte datos de una API legacy (con campos como <code className="px-2 py-1 bg-gray-100 rounded text-sm">user_name</code>, <code className="px-2 py-1 bg-gray-100 rounded text-sm">user_email</code>) al formato moderno que tu aplicación espera (<code className="px-2 py-1 bg-gray-100 rounded text-sm">name</code>, <code className="px-2 py-1 bg-gray-100 rounded text-sm">email</code>, <code className="px-2 py-1 bg-gray-100 rounded text-sm">id</code>).
         </p>
       </section>
 
       <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
         <p className="text-[var(--foreground)] opacity-90 leading-relaxed">
-          Explora el ejemplo interactivo para ver cómo implementar este patrón en tu aplicación.
+          <strong>💡 Tip:</strong> El patrón Adapter es ideal cuando no tienes control sobre el código fuente que necesitas adaptar, o cuando modificarlo directamente violaría el principio Open/Closed.
         </p>
       </div>
     </div>
