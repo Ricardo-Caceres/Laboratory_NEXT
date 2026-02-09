@@ -37,6 +37,8 @@ const sections = {
       { name: 'Controlled/Uncontrolled', href: '/patterns/controlled-uncontrolled', desc: 'Component control patterns' },
       { name: 'Conditional Rendering', href: '/patterns/conditional-rendering', desc: 'Display logic patterns' },
       { name: 'Layout Pattern', href: '/patterns/layout-pattern', desc: 'Reusable layout components' },
+      { name: 'Business Rules', href: '/patterns/business-rules', desc: 'Domain logic encapsulation' },
+      { name: 'Idempotency', href: '/patterns/idempotency', desc: 'Safe retry operations' },
       { name: 'Singleton Pattern', href: '/patterns/singleton-pattern', desc: 'Single instance management' },
       { name: 'Factory Pattern', href: '/patterns/factory-pattern', desc: 'Object creation abstraction' },
       { name: 'Observer Pattern', href: '/patterns/observer-pattern', desc: 'Event notification system' },
@@ -117,13 +119,15 @@ const sections = {
     description: '🧪 Frameworks y metodologías de testing para aplicaciones robustas y confiables',
     items: [
       { name: 'Jest', href: '/testing/jest', desc: 'Zero-config testing framework' },
-      { name: 'Mocha', href: '/testing/mocha', desc: 'Flexible testing framework' },
+      { name: 'React Testing Library', href: '/testing/react-testing-library', desc: 'Test React components' },
       { name: 'Cypress', href: '/testing/cypress', desc: 'E2E testing framework' },
-      { name: 'Karma', href: '/testing/karma', desc: 'Test runner for browsers' },
       { name: 'TDD', href: '/testing/tdd', desc: 'Test-Driven Development' },
       { name: 'Unit Tests', href: '/testing/unit', desc: 'Unit testing practices' },
       { name: 'Integration Tests', href: '/testing/integration', desc: 'Integration testing' },
       { name: 'E2E Tests', href: '/testing/e2e', desc: 'End-to-end testing' },
+      { name: 'Enzyme', href: '/testing/enzyme', desc: 'React component testing (legacy)' },
+      { name: 'Mocha', href: '/testing/mocha', desc: 'Flexible testing framework' },
+      { name: 'Karma', href: '/testing/karma', desc: 'Test runner for browsers' },
     ],
   },
   'UI Libraries': {
@@ -217,6 +221,22 @@ const sections = {
     items: [
       { name: 'Turborepo', href: '/tools/turborepo', desc: 'High-performance monorepo build system' },
       { name: 'DataDog', href: '/tools/datadog', desc: 'Monitoring & observability platform' },
+    ],
+  },
+  'Design & UX': {
+    description: '🎨 Fundamentos de diseño, UX/UI y accesibilidad para crear experiencias excepcionales',
+    items: [
+      { name: 'UI Fundamentals', href: '/design/ui-fundamentals', desc: 'Core UI design principles' },
+      { name: 'UX Fundamentals', href: '/design/ux-fundamentals', desc: 'User experience best practices' },
+      { name: 'Design Principles', href: '/design/principles', desc: 'Essential design principles' },
+      { name: 'Accessibility', href: '/design/accessibility', desc: 'Web accessibility standards' },
+    ],
+  },
+  'Performance & Optimization': {
+    description: '⚡ Técnicas avanzadas de optimización y rendimiento para aplicaciones ultra-rápidas',
+    items: [
+      { name: 'Rate Limiting', href: '/performance/rate-limiting', desc: 'API rate limiting strategies' },
+      { name: 'Styling Solutions', href: '/styling', desc: 'CSS-in-JS & styling approaches' },
     ],
   },
   'Security & Best Practices': {
