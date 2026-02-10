@@ -3,11 +3,19 @@
 import React, { useState } from 'react';
 import { CheckCircle, Circle, ChevronDown, ChevronRight, BookOpen } from 'lucide-react';
 
-export default function TDDLearningModules() {
-  const [expandedModule, setExpandedModule] = useState(null);
-  const [completedLessons, setCompletedLessons] = useState({});
+interface Module {
+  id: number;
+  title: string;
+  description: string;
+  color: string;
+  lessons: string[];
+}
 
-  const modules = [
+export default function TDDLearningModules() {
+  const [expandedModule, setExpandedModule] = useState<number | null>(null);
+  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
+
+  const modules: Module[] = [
     {
       id: 1,
       title: "Fundamentos de TDD",
@@ -83,11 +91,11 @@ export default function TDDLearningModules() {
     }
   ];
 
-  const toggleModule = (moduleId) => {
+  const toggleModule = (moduleId: number): void => {
     setExpandedModule(expandedModule === moduleId ? null : moduleId);
   };
 
-  const toggleLesson = (moduleId, lessonIndex) => {
+  const toggleLesson = (moduleId: number, lessonIndex: number): void => {
     const key = `${moduleId}-${lessonIndex}`;
     setCompletedLessons(prev => ({
       ...prev,
@@ -95,7 +103,7 @@ export default function TDDLearningModules() {
     }));
   };
 
-  const getModuleProgress = (moduleId) => {
+  const getModuleProgress = (moduleId: number): number => {
     const module = modules.find(m => m.id === moduleId);
     if (!module) return 0;
     
@@ -107,11 +115,11 @@ export default function TDDLearningModules() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
             <BookOpen className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-4xl font-bold text-slate-800 mb-2">
@@ -138,7 +146,7 @@ export default function TDDLearningModules() {
                   onClick={() => toggleModule(module.id)}
                   className="w-full p-6 flex items-start gap-4 text-left hover:bg-slate-50 transition-colors"
                 >
-                  <div className={`w-12 h-12 ${module.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                  <div className={`w-12 h-12 ${module.color} rounded-lg flex items-center justify-center shrink-0`}>
                     <span className="text-white font-bold text-xl">{module.id}</span>
                   </div>
                   
@@ -164,7 +172,7 @@ export default function TDDLearningModules() {
                     </div>
                   </div>
                   
-                  <div className="flex-shrink-0 text-slate-400">
+                  <div className="shrink-0 text-slate-400">
                     {isExpanded ? <ChevronDown /> : <ChevronRight />}
                   </div>
                 </button>
@@ -179,11 +187,11 @@ export default function TDDLearningModules() {
                         
                         return (
                           <button
-                            key={idx}
+                            key={lessonKey}
                             onClick={() => toggleLesson(module.id, idx)}
                             className="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-white transition-colors text-left group"
                           >
-                            <div className="flex-shrink-0 mt-0.5">
+                            <div className="shrink-0 mt-0.5">
                               {isCompleted ? (
                                 <CheckCircle className="w-5 h-5 text-green-500" />
                               ) : (

@@ -8,9 +8,9 @@ export default function TDDPage() {
   return (
     <>
     <div className="flex flex-col lg:flex-row min-h-screen">
-      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-[var(--panel)]">
-        <div className="mb-6 p-4 sm:p-6 bg-[var(--background)] rounded-lg border border-[var(--border)]">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-4">TDD</h1>
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 overflow-y-auto bg-(--panel)">
+        <div className="mb-6 p-4 sm:p-6 bg-(--background) rounded-lg border border-(--border)">
+          <h1 className="text-2xl sm:text-3xl font-bold text-(--foreground) mb-4">TDD</h1>
           <div className="text-sm sm:text-base"><Description /></div>
         </div>
       </div>
